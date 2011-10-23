@@ -43,7 +43,7 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/ga
 
 proxy="http://proxy.zte.com.cn:80"
 
-export http_proxy=$proxy
-export https_proxy=$proxy
+#export http_proxy=$proxy
+#export https_proxy=$proxy
 
 set -o vi

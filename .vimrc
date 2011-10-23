@@ -93,7 +93,7 @@ if MySys() == 'linux'
 endif
 
 if MySys() == 'linux'
-  set guifont=DejaVu\ Sans\ Mono\ 10
+  set guifont=DejaVu\ Sans\ Mono\ 10.5
 endif
 
 if MySys() == 'windows'

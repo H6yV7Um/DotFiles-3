@@ -149,6 +149,8 @@ filetype plugin indent on     " required!
 set backspace=indent,eol,start
 
 
+set showmode
+set showcmd
 "When .vimrc is edited, reload it
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
@@ -193,10 +195,9 @@ set tags=tags;
 
 "let mapleader='\' 
 
-if v:version >= 730
-  set undofile
-  set ul=500
-endif
+
+set undofile
+set ul=500
 
 if bufwinnr(1)
   map <kPlus> <C-W>+

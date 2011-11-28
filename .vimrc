@@ -18,35 +18,22 @@ Bundle 'gmarik/vundle'
 "Bundle 'mutewinter/bufpos'
 "Bundle 'vim-scripts/FuzzyFinder'
 "Bundle 'vim-scripts/ZoomWin'
-Bundle 'wincent/Command-T'
 "Bundle 'spiiph/vim-space'
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'mutewinter/LustyJuggler'
 " UI Additions
 "Bundle 'mutewinter/vim-indent-guides'
 "Bundle 'dickeytk/status.vim'
-Bundle 'scrooloose/nerdtree'
 "Bundle 'mutewinter/ir_black_mod'
 "Bundle 'godlygeek/csapprox'
 " OS Integration
 "Bundle 'mkitt/browser-refresh.vim'
-" Commands
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-surround'
 "Bundle 'tpope/vim-speeddating'
 "Bundle 'vim-scripts/hexHighlight.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'godlygeek/tabular'
-Bundle 'mileszs/ack.vim'
 " Automatic Helpers
 "Bundle 'IndexedSearch'
 "Bundle 'xolox/vim-session'
-Bundle 'Raimondi/delimitMate'
-Bundle 'scrooloose/syntastic'
-Bundle 'ervandew/supertab'
-Bundle 'vim-scripts/AutoComplPop'
 " Language Additions
-Bundle 'vim-ruby/vim-ruby'
 "Bundle 'msanders/cocoa.vim'
 "Bundle 'tpope/vim-haml'
 "Bundle 'pangloss/vim-javascript'
@@ -58,23 +45,77 @@ Bundle 'vim-ruby/vim-ruby'
 " Libraries
 "Bundle 'L9'
 "Bundle 'tpope/vim-repeat'
-
-Bundle "tpope/vim-endwise"
-Bundle "majutsushi/tagbar"
-Bundle "vim-scripts/Railscasts-Theme-GUIand256color"
-Bundle "vim-scripts/a.vim"
-Bundle "vim-scripts/YankRing.vim"
 " vim-scripts repos
 "Bundle 'L9'
 "Bundle 'FuzzyFinder'
 "Bundle 'rails.vim'
-
-
-
-
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 " ...
+
+
+
+
+
+Bundle 'wincent/Command-T'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+Bundle 'godlygeek/tabular'
+Bundle 'mileszs/ack.vim'
+"Bundle 'Raimondi/delimitMate'
+Bundle 'scrooloose/syntastic'
+Bundle 'ervandew/supertab'
+"Bundle 'vim-scripts/AutoComplPop'
+Bundle 'vim-ruby/vim-ruby'
+Bundle "tpope/vim-endwise"
+Bundle "majutsushi/tagbar"
+Bundle "msanders/snipmate.vim"
+Bundle "scrooloose/snipmate-snippets"
+" vim-scripts repos
+Bundle "Railscasts-Theme-GUIand256color"
+Bundle "a.vim"
+Bundle "YankRing.vim"
+Bundle "std_c.zip"
+Bundle "matchit.zip"
+Bundle "Mark--Karkat"
+
+"Bundle "vim-scripts/Railscasts-Theme-GUIand256color"
+"Bundle "vim-scripts/a.vim"
+"Bundle "vim-scripts/YankRing.vim"
+"Bundle "vim-scripts/std_c.zip"
+"Bundle "vim-scripts/matchit.zip"
+
+
+"camelcasemotion
+"gundo
+"hammer
+"matchit
+"mru
+"omnicppcomplete
+"simplefold
+"taglist
+"textile
+"vim-abolish
+"vim-colors-solarized
+"vim-extradite
+"vim-haml
+"vim-liquid
+"vim-markdown
+"vim-pastie
+"vim-ragtag
+"vim-rails
+"vim-rake
+"vim-repeat
+"vim-ruby-sinatra
+"vim-surround
+"vim-textobj-rubyblock
+"vim-textobj-user
+"vim-unimpaired
+"zencoding-vim
+
+
 
 filetype plugin indent on     " required! 
 "
@@ -142,12 +183,6 @@ set list
 
 set guifont=DejaVu\ Sans\ Mono\ 10.5
 
-if MySys() == 'windows'
-  set guifont=DejaVu_Sans_Mono:h10.5:cANSI
-  "set guifont=Monaco:h10.5:cANSI
-  "set guiont=Bitstream_Vera_Sans_Mono:h10.5:cANSI
-  "set gfw=Microsoft\ Yahei\ 12:h10.5:cGB2312
-endif
 
 
 set bsdir=last

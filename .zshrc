@@ -21,7 +21,7 @@ export ZSH_THEME="robbyrussell"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails ruby)
+plugins=(archlinux bundler extract gnu-utils rails3 redis-cli rvm vundle git rails ruby)
 
 source $ZSH/oh-my-zsh.sh
 

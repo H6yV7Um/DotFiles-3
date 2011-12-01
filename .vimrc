@@ -73,6 +73,7 @@ Bundle "tpope/vim-endwise"
 Bundle "majutsushi/tagbar"
 Bundle "msanders/snipmate.vim"
 Bundle "scrooloose/snipmate-snippets"
+Bundle "nathanaelkane/vim-indent-guides"
 " vim-scripts repos
 Bundle "Railscasts-Theme-GUIand256color"
 Bundle "a.vim"
@@ -87,6 +88,7 @@ Bundle "Mark--Karkat"
 "Bundle "vim-scripts/std_c.zip"
 "Bundle "vim-scripts/matchit.zip"
 
+" closetag
 
 "camelcasemotion
 "gundo
@@ -168,6 +170,7 @@ set hlsearch
 set shiftwidth=4
 set sts=4
 set tabstop=4
+set expandtab
 
 "highlight word according to the language
 set incsearch
@@ -209,17 +212,15 @@ endif
 map <F7> eb"tye k /<C-R>t<CR>
 map <F12> :!ctags -R<CR> <CR> :!cscope -Rbq<CR><CR>
 
+" In case I forget to start as root
+cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 colorscheme railscasts
 
 highlight Pmenu                     guifg=white guibg=DarkGray
 highlight PmenuSel                  guifg=white guibg=red
-highlight Comment                   guifg=DarkGray gui=none
+highlight Comment                   guifg=#404040 gui=none
 hi        Search                    guibg=yellow guifg=red gui=none
 
-"number
-set nu
-set nuw=2
-hi LineNr guifg=darkgray guibg=#181818
 
 "fold
 set foldenable
@@ -230,7 +231,14 @@ set foldcolumn=2
 "hi FoldColumn guifg=white guibg=#660000
 "hi FoldColumn guifg=white guibg=darkblue
 hi FoldColumn guifg=white guibg=#181818
-hi Folded guifg=darkgray guibg=#141414
+"hi Folded guifg=darkgray guibg=#141414
+hi Folded guifg=darkgrey guibg=#141414
+
+"number
+set nu
+set nuw=2
+"hi LineNr guifg=darkgray guibg=#181818
+hi LineNr guifg=#404040 guibg=#181818
 
 "tab
 set showtabline=0
@@ -273,14 +281,19 @@ let c_C99=1
 "syntastic
 let g:syntastic_c_check_header = 1
 
+" Indent guides
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
 "----------------------status line----------------------
 set laststatus=2
 "syntastic
 set statusline=
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-set statusline+=%2*\|%F\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
+set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
 set statusline+=\(%{&enc}\,%{&fileformat}\)
 
 

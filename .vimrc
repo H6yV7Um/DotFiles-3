@@ -74,6 +74,7 @@ Bundle "majutsushi/tagbar"
 Bundle "msanders/snipmate.vim"
 Bundle "scrooloose/snipmate-snippets"
 Bundle "nathanaelkane/vim-indent-guides"
+Bundle "greyblake/vim-preview"
 " vim-scripts repos
 Bundle "Railscasts-Theme-GUIand256color"
 Bundle "a.vim"
@@ -81,19 +82,17 @@ Bundle "YankRing.vim"
 Bundle "std_c.zip"
 Bundle "matchit.zip"
 Bundle "Mark--Karkat"
+Bundle "ZoomWin"
+Bundle "Gist.vim"
+Bundle "Conque-Shell"
+Bundle "calendar.vim"
 
-"Bundle "vim-scripts/Railscasts-Theme-GUIand256color"
-"Bundle "vim-scripts/a.vim"
-"Bundle "vim-scripts/YankRing.vim"
-"Bundle "vim-scripts/std_c.zip"
-"Bundle "vim-scripts/matchit.zip"
 
 " closetag
 
 "camelcasemotion
 "gundo
 "hammer
-"matchit
 "mru
 "omnicppcomplete
 "simplefold

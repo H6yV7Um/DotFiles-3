@@ -185,9 +185,9 @@ autocmd BufRead,BufNewFile *.conf		setfiletype c
 set listchars=tab:▸\ ,eol:¬
 set list
 
-set guifont=DejaVu\ Sans\ Mono\ 10.5
+"set guifont=DejaVu\ Sans\ Mono\ 10.5
 
-
+set guifont=Droid\ Sans\ Mono\ 10.5
 
 set bsdir=last
 

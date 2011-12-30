@@ -15,10 +15,11 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 --naughty.config.default_preset.font = "sans 10.5"
 --naughty.config.default_preset.position = "bottom_right"
 
-
+theme.wallpaper_cmd = { "awsetbg" }
 
 -- This is used later as the default terminal and editor to run.
 terminal = "terminator"
+shell = "zsh"
 editor = "gvim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -51,18 +52,21 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag({ 1, "gvim", "Chrome", "irssi", 5, 6, 7, 8, 9 }, s, layouts[1])
 end
 -- }}}
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
+   --{ "manual", terminal .. " -e man awesome" },
+   --{ "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
+   --{ "gvim", shell .. " gvim"},
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
+--mystatusbar = awful.wibox({ position = "bottom", screen = 1, ontop = false, width = 1, height = 16 })
+
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "open terminal", terminal }

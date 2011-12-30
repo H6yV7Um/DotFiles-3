@@ -3,6 +3,8 @@ export GTK_IM_MODULE="ibus"
 export QT_IM_MODULE="xim"
 
 ibus-daemon -d -x
+VBoxClient-all &
+#conky &
 #xresources
 xrdb ~/.Xresources
 #exec awesome

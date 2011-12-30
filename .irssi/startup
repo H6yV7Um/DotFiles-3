@@ -1,9 +1,9 @@
 NETWORK ADD -autosendcmd '/^msg NickServ identify jinlei0216' freenode
 SERVER ADD -auto -network freenode chat.freenode.net 6666
-CHANNEL ADD -auto #ruboto freenode
-CHANNEL ADD -auto #sinatra freenode
-CHANNEL ADD -auto #irssi freenode
-CHANNEL ADD -auto #gentoo-cn freenode
-CHANNEL ADD -auto #gentoo freenode
+#CHANNEL ADD -auto #ruboto freenode
+#CHANNEL ADD -auto #sinatra freenode
+#CHANNEL ADD -auto #irssi freenode
+#CHANNEL ADD -auto #gentoo-cn freenode
+#CHANNEL ADD -auto #gentoo freenode
 IGNORE * JOIN
 IGNORE * QUIT

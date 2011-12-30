@@ -75,6 +75,7 @@ Bundle "msanders/snipmate.vim"
 Bundle "scrooloose/snipmate-snippets"
 Bundle "nathanaelkane/vim-indent-guides"
 Bundle "greyblake/vim-preview"
+Bundle "xolox/vim-easytags"
 " vim-scripts repos
 Bundle "Railscasts-Theme-GUIand256color"
 Bundle "a.vim"

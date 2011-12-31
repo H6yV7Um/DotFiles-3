@@ -2,8 +2,6 @@ export XMODIFIERS="@im=ibus"
 export GTK_IM_MODULE="ibus"
 export QT_IM_MODULE="xim"
 
-ibus-daemon -d -x
-VBoxClient-all &
 #conky &
 #xresources
 xrdb ~/.Xresources
@@ -36,5 +34,7 @@ xrdb ~/.Xresources
 # exec startkde
 # exec startxfce4
 # exec openbox
+#ibus-daemon -d -x
+#VBoxClient-all &
 exec awesome
 # ...or the Window Manager of your choice

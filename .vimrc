@@ -150,6 +150,10 @@ filetype plugin indent on     " required!
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+set mouse=a
+set vb t_vb= 
+set wildmenu
+
 
 set showmode
 set showcmd
@@ -228,6 +232,7 @@ set foldenable
 set foldmethod=syntax
 set foldlevel=0
 set foldcolumn=2
+set foldnestmax=1
 "hi FoldColumn guifg=white guibg=#660000
 "hi FoldColumn guifg=white guibg=darkblue
 hi FoldColumn guifg=white guibg=#181818
@@ -240,23 +245,75 @@ set nuw=2
 "hi LineNr guifg=darkgray guibg=#181818
 hi LineNr guifg=#404040 guibg=#181818
 
+
+" Cursor line
+set cursorline
+highlight CursorLine guibg=#222222
+
+
 "tab
-set showtabline=0
+set showtabline=2
 
 
+function ShortTabLine()
+    let ret = ''
+    for i in range(tabpagenr('$'))
+        " select the color group for highlighting active tab
+        if i + 1 == tabpagenr()
+            let ret .= '%#errorMsg#'
+        else
+            let ret .= '%#TabLine#'
+        endif
+
+        " find the buffername for the tablabel
+        let buflist = tabpagebuflist(i+1)
+        let winnr = tabpagewinnr(i+1)
+        let buffername = bufname(buflist[winnr - 1])
+        let filename = fnamemodify(buffername,':t')
+        " check if there is no name
+        if filename == ''
+            let filename = 'noname'
+        endif
+        " only show the first 6 letters of the name  and
+        " .. if the filename is more than 8 letters long
+        if strlen(filename) >=8
+            let ret .= '[' . filename[0:7] . '..]'
+        else
+            let ret .= '[' . filename . ']'
+        endif
+    endfor
+    " after the last tab fill with TabLineFill and reset tab page #
+    let ret .= '%#TabLineFill#%T'
+    return ret
+endfunction
+
+set guitablabel=%!ShortTabLine()
+
+function! InfoGuiTooltip()
+    "get window count
+    let wincount = tabpagewinnr(tabpagenr(),'$')
+    let bufferlist=''
+   "get name of active buffers in windows
+    for i in tabpagebuflist()
+        let bufferlist .= '['.fnamemodify(bufname(i),':t').'] ' 
+    endfor
+    return bufname($).' windows: '.wincount.' ' .bufferlist ' '
+endfunction
+
+"set guitabtooltip=%!InfoGuiTooltip()
 
 function! s:ExecuteInShell(command)
-  let command = join(map(split(a:command), 'expand(v:val)'))
-  let winnr = bufwinnr('^' . command . '$')
-  silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
-  setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
-  echo 'Execute ' . command . '...'
-  silent! execute 'silent %!'. command
-  silent! execute 'resize ' . line('$')
-  silent! redraw
-  silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-  silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
-  echo 'Shell command ' . command . ' executed.'
+    let command = join(map(split(a:command), 'expand(v:val)'))
+    let winnr = bufwinnr('^' . command . '$')
+    silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+    echo 'Execute ' . command . '...'
+    silent! execute 'silent %!'. command
+    silent! execute 'resize ' . line('$')
+    silent! redraw
+    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+    echo 'Shell command ' . command . ' executed.'
 endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
@@ -265,6 +322,7 @@ command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
 
 "------------------------plugins------------------------"
+" cd ~/.vim/bundle/Command-T/ruby/ ; ruby extconf.rb ; make 
 
 "ack 
 map <C-H><C-H> eb :Ack <C-R><C-W><CR>
@@ -286,6 +344,7 @@ let Tlist_Use_Right_Window = 1
 
 "nerdtree
 map <F8> :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.o$', '\~$', 'cscope\.', 'ctags$']
 
 "Cscope
 map <F3> :cs f 3 <C-R><C-W><CR>
@@ -307,6 +366,13 @@ let g:indent_guides_auto_colors = 1
 let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
+
+
+" syntastic
+let g:syntastic_echo_current_error=0
+let g:syntastic_enable_signs=0
+"
+
 "----------------------status line----------------------
 set laststatus=2
 "syntastic

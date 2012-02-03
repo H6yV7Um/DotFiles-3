@@ -23,6 +23,12 @@ shell = "zsh"
 editor = "gvim"
 editor_cmd = terminal .. " -e " .. editor
 
+awful.util.spawn_with_shell("ibus-daemon -d -x")
+awful.util.spawn_with_shell("VBoxClient-all")
+awful.util.spawn_with_shell("gvim")
+awful.util.spawn_with_shell("terminator -e irssi")
+awful.util.spawn_with_shell("chromium")
+
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.  -- If you do not like this or do not have such a key,
@@ -222,7 +228,7 @@ for s = 1, screen.count() do
         memwidget_tb,
         cpuwidget,
         --cpuwidget_graph,
-        --netwidget,
+        netwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -416,9 +422,3 @@ client.add_signal("focus", function(c) c.border_color = beautiful.border_focus e
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 --
-awful.util.spawn_with_shell("ibus-daemon -d -x")
-awful.util.spawn_with_shell("VBoxClient-all")
-awful.util.spawn_with_shell("gvim")
-awful.util.spawn_with_shell("terminator -e irssi")
-awful.util.spawn_with_shell("chromium")
-

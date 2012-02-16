@@ -26,7 +26,8 @@ editor_cmd = terminal .. " -e " .. editor
 awful.util.spawn_with_shell("ibus-daemon -d -x")
 awful.util.spawn_with_shell("VBoxClient-all")
 awful.util.spawn_with_shell("gvim")
-awful.util.spawn_with_shell("terminator -e irssi")
+--awful.util.spawn_with_shell("terminator -e irssi")
+awful.util.spawn_with_shell("terminator")
 awful.util.spawn_with_shell("chromium")
 
 
@@ -143,7 +144,8 @@ vicious.register(cpuwidget, vicious.widgets.cpu, "|CPU:$1%")
  --Initialize widget
 netwidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(netwidget, vicious.widgets.net, '|<span color="#CC9393">D ${eth0 down_kb}</span> <span color="#7F9F7F">U ${eth0 up_kb}</span>', 3)
+--vicious.register(netwidget, vicious.widgets.net, '|<span color="#CC9393">D ${eth0 down_kb}</span> <span color="#7F9F7F">U ${eth0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '|<span color="#CC9393">D ${eth2 down_kb}</span> <span color="#7F9F7F">U ${eth2 up_kb}</span>', 3)
 --dnicon = widget({ type = "imagebox" })
 --upicon = widget({ type = "imagebox" })
 --dnicon.image = image(beautiful.widget_net)

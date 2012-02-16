@@ -44,7 +44,8 @@ channels = (
   { name = "#redis"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#vim"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#xfce"; chatnet = "freenode"; }
+  { name = "#xfce"; chatnet = "freenode"; },
+  { name = "#lua"; chatnet = "freenode"; autojoin = "yes"; }
 );
 
 aliases = {

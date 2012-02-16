@@ -151,7 +151,8 @@ filetype plugin indent on     " required!
 set backspace=indent,eol,start
 
 set mouse=a
-set vb t_vb= 
+"set vb t_vb= 
+set novb
 set wildmenu
 
 
@@ -276,8 +277,9 @@ function ShortTabLine()
         endif
         " only show the first 6 letters of the name  and
         " .. if the filename is more than 8 letters long
-        if strlen(filename) >=8
-            let ret .= '[' . filename[0:7] . '..]'
+        let maxlen = 10
+        if strlen(filename) >= maxlen
+            let ret .= '[' . filename[0:maxlen - 1] . '..]'
         else
             let ret .= '[' . filename . ']'
         endif

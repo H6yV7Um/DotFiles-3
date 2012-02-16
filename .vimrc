@@ -69,24 +69,24 @@ Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
 "Bundle 'vim-scripts/AutoComplPop'
 Bundle 'vim-ruby/vim-ruby'
-Bundle "tpope/vim-endwise"
-Bundle "majutsushi/tagbar"
-Bundle "msanders/snipmate.vim"
-Bundle "scrooloose/snipmate-snippets"
-Bundle "nathanaelkane/vim-indent-guides"
-Bundle "greyblake/vim-preview"
-Bundle "xolox/vim-easytags"
+Bundle 'tpope/vim-endwise'
+Bundle 'majutsushi/tagbar'
+Bundle 'msanders/snipmate.vim'
+Bundle 'scrooloose/snipmate-snippets'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'greyblake/vim-preview'
+Bundle 'xolox/vim-easytags'
 " vim-scripts repos
-Bundle "Railscasts-Theme-GUIand256color"
-Bundle "a.vim"
-Bundle "YankRing.vim"
-Bundle "std_c.zip"
-Bundle "matchit.zip"
-Bundle "Mark--Karkat"
-Bundle "ZoomWin"
-Bundle "Gist.vim"
-Bundle "Conque-Shell"
-Bundle "calendar.vim"
+Bundle 'Railscasts-Theme-GUIand256color'
+Bundle 'a.vim'
+Bundle 'YankRing.vim'
+Bundle 'std_c.zip'
+Bundle 'matchit.zip'
+Bundle 'Mark--Karkat'
+Bundle 'ZoomWin'
+Bundle 'Gist.vim'
+Bundle 'Conque-Shell'
+Bundle 'calendar.vim'
 
 
 " closetag

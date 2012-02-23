@@ -1,0 +1,3 @@
+--recurse
+--languages=-javascript
+--langmap=ruby:+.rake.builder.rjs

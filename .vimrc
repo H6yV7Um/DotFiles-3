@@ -39,7 +39,6 @@ Bundle 'gmarik/vundle'
 "Bundle 'pangloss/vim-javascript'
 "Bundle 'kchmck/vim-coffee-script'
 "Bundle 'itspriddle/vim-jquery'
-"Bundle 'tpope/vim-rails'
 "Bundle 'mutewinter/taskpaper.vim'
 "Bundle 'leshill/vim-json'
 " Libraries
@@ -56,19 +55,27 @@ Bundle 'gmarik/vundle'
 
 
 
+"ruby
+Bundle 'tpope/vim-rails'
+Bundle 'vim-ruby/vim-ruby'
 
 Bundle 'wincent/Command-T'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
+
 Bundle 'tpope/vim-surround'
+
+"git
 Bundle 'tpope/vim-fugitive'
+
+"align
 Bundle 'godlygeek/tabular'
+
 Bundle 'mileszs/ack.vim'
 "Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
 "Bundle 'vim-scripts/AutoComplPop'
-Bundle 'vim-ruby/vim-ruby'
 Bundle "tpope/vim-endwise"
 Bundle "majutsushi/tagbar"
 Bundle "msanders/snipmate.vim"
@@ -76,6 +83,8 @@ Bundle "scrooloose/snipmate-snippets"
 Bundle "nathanaelkane/vim-indent-guides"
 Bundle "greyblake/vim-preview"
 Bundle "xolox/vim-easytags"
+
+Bundle "kchmck/vim-coffee-script"
 " vim-scripts repos
 Bundle "Railscasts-Theme-GUIand256color"
 Bundle "a.vim"
@@ -197,8 +206,6 @@ set guifont=DejaVu\ Sans\ Mono\ 10.5
 
 set bsdir=last
 
-"ctags
-set tags=tags;
 
 
 "let mapleader='\' 
@@ -215,7 +222,7 @@ if bufwinnr(1)
 endif
 
 map <F7> eb"tye k /<C-R>t<CR>
-map <F12> :!ctags -R<CR> <CR> :!cscope -Rbq<CR><CR>
+map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
 
 " In case I forget to start as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
@@ -277,7 +284,7 @@ function ShortTabLine()
         endif
         " only show the first 6 letters of the name  and
         " .. if the filename is more than 8 letters long
-        let maxlen = 10
+        let maxlen = 15
         if strlen(filename) >= maxlen
             let ret .= '[' . filename[0:maxlen - 1] . '..]'
         else
@@ -320,7 +327,13 @@ endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
 
+"ctags
+set tags=tags;
 
+"Cscope
+map <F3> :cs f 3 <C-R><C-W><CR>
+map <F2> :cs add cscope.out<CR>
+map <F4> :cs f t <C-R><C-W><CR>
 
 
 "------------------------plugins------------------------"
@@ -347,14 +360,13 @@ let Tlist_Use_Right_Window = 1
 "nerdtree
 map <F8> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.o$', '\~$', 'cscope\.', 'ctags$']
+let NERDTreeChDirMode = 2
 
-"Cscope
-map <F3> :cs f 3 <C-R><C-W><CR>
-map <F2> :cs add cscope.out<CR>
-map <F4> :cs f t <C-R><C-W><CR>
 
 "Tagbar
 map <F6> :TagbarToggle<CR>
+let g:tagbar_sort = 0
+autocmd FileType c,cpp,rb,vim nested :TagbarOpen
 
 "std_c plugin
 let c_C99=1

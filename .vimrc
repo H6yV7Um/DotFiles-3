@@ -4,25 +4,107 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
 Bundle 'gmarik/vundle'
 
-" My Bundles here:
 "
 " original repos on github
+"Bundle 'tpope/vim-repeat'
+" vim-scripts repos
+"Bundle 'FuzzyFinder'
+" non github repos
+"Bundle 'git://git.wincent.com/command-t.git'
+
+
+
+
+"ruby
+Bundle 'tpope/vim-rails'
+Bundle 'vim-ruby/vim-ruby'
+"Bundle 'astashov/vim-ruby-debugger'
+"ruby-debug
+"unmap <Leader>m
+"map <Leader>M  :call g:RubyDebugger.open_breakpoints()<CR>
+"unmap <Leader>t
+"map <Leader>T  :call g:RubyDebugger.open_frames()<CR>
+"unmap <Leader>n
+"map <Leader>N  :call g:RubyDebugger.next()<CR>
+
+"由于映射原因,暂不使用
+"Bundle 'janx/vim-rubytest'
+
+
+Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'fholgado/minibufexpl.vim'  
+
+Bundle 'tpope/vim-surround'
+
+"git
+Bundle 'tpope/vim-fugitive'
+
+"align
+Bundle 'godlygeek/tabular'
+
+Bundle 'mileszs/ack.vim'
+Bundle 'vim-scripts/VimIM'
+Bundle 'vim-scripts/AutoClose'
+"Bundle 'Raimondi/delimitMate'
+Bundle 'scrooloose/syntastic'
+
+Bundle 'ervandew/supertab'
+"Bundle 'vim-scripts/AutoComplPop'
+
+" Langs
+Bundle 'tpope/vim-haml'
+Bundle 'pangloss/vim-javascript'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'itspriddle/vim-jquery'
+Bundle 'leshill/vim-json'
+Bundle 'kchmck/vim-coffee-script'
+
+Bundle 'tpope/vim-endwise'
+Bundle 'majutsushi/tagbar'
+Bundle 'msanders/snipmate.vim'
+Bundle 'scrooloose/snipmate-snippets'
+Bundle 'nathanaelkane/vim-indent-guides'
+"md, rdoc, textile
+Bundle 'greyblake/vim-preview'
+
+
+"C
+Bundle 'std_c.zip'
+
+"Auto reload ctags
+"Bundle 'xolox/vim-easytags' 
+
+Bundle 'Railscasts-Theme-GUIand256color'
+Bundle 'a.vim'
+Bundle 'YankRing.vim'
+
+Bundle 'matchit.zip'
+
+"Highlight what you want
+Bundle 'Mark--Karkat'
+Bundle 'vim-scripts/ZoomWin'
+
+Bundle 'Gist.vim'
+
+Bundle 'Conque-Shell'
+Bundle 'calendar.vim'
+
+
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Navigation
 "Bundle 'mutewinter/bufpos'
 "Bundle 'vim-scripts/FuzzyFinder'
-"Bundle 'vim-scripts/ZoomWin'
 "Bundle 'spiiph/vim-space'
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'mutewinter/LustyJuggler'
 " UI Additions
-"Bundle 'mutewinter/vim-indent-guides'
 "Bundle 'dickeytk/status.vim'
 "Bundle 'mutewinter/ir_black_mod'
 "Bundle 'godlygeek/csapprox'
@@ -34,69 +116,11 @@ Bundle 'gmarik/vundle'
 "Bundle 'IndexedSearch'
 "Bundle 'xolox/vim-session'
 " Language Additions
-"Bundle 'msanders/cocoa.vim'
-"Bundle 'tpope/vim-haml'
-"Bundle 'pangloss/vim-javascript'
-"Bundle 'kchmck/vim-coffee-script'
-"Bundle 'itspriddle/vim-jquery'
 "Bundle 'mutewinter/taskpaper.vim'
-"Bundle 'leshill/vim-json'
+"Bundle 'msanders/cocoa.vim'
 " Libraries
 "Bundle 'L9'
-"Bundle 'tpope/vim-repeat'
-" vim-scripts repos
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
-"Bundle 'rails.vim'
-" non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
-" ...
 
-
-
-
-"ruby
-Bundle 'tpope/vim-rails'
-Bundle 'vim-ruby/vim-ruby'
-
-Bundle 'wincent/Command-T'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-
-Bundle 'tpope/vim-surround'
-
-"git
-Bundle 'tpope/vim-fugitive'
-
-"align
-Bundle 'godlygeek/tabular'
-
-Bundle 'mileszs/ack.vim'
-"Bundle 'Raimondi/delimitMate'
-Bundle 'scrooloose/syntastic'
-Bundle 'ervandew/supertab'
-"Bundle 'vim-scripts/AutoComplPop'
-
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'tpope/vim-endwise'
-Bundle 'majutsushi/tagbar'
-Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/snipmate-snippets'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'greyblake/vim-preview'
-Bundle 'xolox/vim-easytags'
-
-" vim-scripts repos
-Bundle 'Railscasts-Theme-GUIand256color'
-Bundle 'a.vim'
-Bundle 'YankRing.vim'
-Bundle 'std_c.zip'
-Bundle 'matchit.zip'
-Bundle 'Mark--Karkat'
-Bundle 'ZoomWin'
-Bundle 'Gist.vim'
-Bundle 'Conque-Shell'
-Bundle 'calendar.vim'
 
 
 " closetag
@@ -130,31 +154,10 @@ Bundle 'calendar.vim'
 
 
 filetype plugin indent on     " required! 
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
 
 
 
 
-
-
-
-"set nocompatible
-"
-"filetype off
-"
-""activate pathogen
-"call pathogen#runtime_append_all_bundles()
-"call pathogen#helptags()
-"
-"filetype plugin indent on 
 
 
 "allow backspacing over everything in insert mode
@@ -165,6 +168,8 @@ set mouse=a
 set novb
 set wildmenu
 
+"search ignore case
+set ignorecase
 
 set showmode
 set showcmd
@@ -180,6 +185,9 @@ set linebreak
 set showbreak=...
 set nowrap
 set hlsearch
+
+" 通过使用: commands命令，告诉我们文件的哪一行被改变过
+set report=0
 
 "C
 set shiftwidth=4
@@ -264,7 +272,7 @@ highlight CursorLine guibg=#222222
 set showtabline=2
 
 
-function ShortTabLine()
+function! ShortTabLine()
     let ret = ''
     for i in range(tabpagenr('$'))
         " select the color group for highlighting active tab
@@ -299,19 +307,20 @@ endfunction
 
 set guitablabel=%!ShortTabLine()
 
-function! InfoGuiTooltip()
-    "get window count
-    let wincount = tabpagewinnr(tabpagenr(),'$')
-    let bufferlist=''
-   "get name of active buffers in windows
-    for i in tabpagebuflist()
-        let bufferlist .= '['.fnamemodify(bufname(i),':t').'] ' 
-    endfor
-    return bufname($).' windows: '.wincount.' ' .bufferlist ' '
-endfunction
+"function! InfoGuiTooltip()
+    ""get window count
+    "let wincount = tabpagewinnr(tabpagenr(),'$')
+    "let bufferlist=''
+   ""get name of active buffers in windows
+    "for i in tabpagebuflist()
+        "let bufferlist .= '[' . fnamemodify(bufname(i),':t') .'] '
+    "endfor
+    "return bufname($).' windows: ' . wincount .' ' . bufferlist. ' '
+"endfunction
 
 "set guitabtooltip=%!InfoGuiTooltip()
 
+" Execute a cmd in a shell :Shell xxxx
 function! s:ExecuteInShell(command)
     let command = join(map(split(a:command), 'expand(v:val)'))
     let winnr = bufwinnr('^' . command . '$')
@@ -371,7 +380,6 @@ autocmd FileType c,cpp,rb,vim nested :TagbarOpen
 
 "std_c plugin
 let c_C99=1
-
 
 "syntastic
 let g:syntastic_c_check_header = 1

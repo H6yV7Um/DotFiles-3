@@ -145,7 +145,7 @@ vicious.register(cpuwidget, vicious.widgets.cpu, "|CPU:$1%")
 netwidget = widget({ type = "textbox" })
 -- Register widget
 --vicious.register(netwidget, vicious.widgets.net, '|<span color="#CC9393">D ${eth0 down_kb}</span> <span color="#7F9F7F">U ${eth0 up_kb}</span>', 3)
-vicious.register(netwidget, vicious.widgets.net, '|<span color="#CC9393">D ${eth2 down_kb}</span> <span color="#7F9F7F">U ${eth2 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '|<span color="#CC9393">D ${eth0 down_kb}</span> <span color="#7F9F7F">U ${eth0 up_kb}</span>', 3)
 --dnicon = widget({ type = "imagebox" })
 --upicon = widget({ type = "imagebox" })
 --dnicon.image = image(beautiful.widget_net)

@@ -50,3 +50,5 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/ga
 #export ftp_proxy=$proxy
 
 set -o vi
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

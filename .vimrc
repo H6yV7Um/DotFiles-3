@@ -209,7 +209,9 @@ autocmd BufRead,BufNewFile *.conf		setfiletype c
 set listchars=tab:▸\ ,eol:¬
 set list
 
-set guifont=DejaVu\ Sans\ Mono\ 10.5
+"set guifont=DejaVu\ Sans\ Mono\ 10.5
+set guifont=Ubuntu\ Mono\ 12
+"set guifont=DejaVu\ Sans\ Mono\ 11
 
 "set guifont=Droid\ Sans\ Mono\ 10.5
 
@@ -411,3 +413,14 @@ set statusline+=\(%{&enc}\,%{&fileformat}\)
 
 hi User2 guifg=red guibg=lightblue
 
+
+"--------------------------------"
+
+
+" MiniBufExpl Colors
+hi MBEVisibleActive guifg=#A6DB29 guibg=fg
+hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
+hi MBEVisibleChanged guifg=#F1266F guibg=fg
+hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
+hi MBEChanged guifg=#CD5907 guibg=fg
+hi MBENormal guifg=#808080 guibg=fg

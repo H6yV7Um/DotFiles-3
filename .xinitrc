@@ -35,6 +35,6 @@ xrdb ~/.Xresources
 # exec startxfce4
 # exec openbox
 #ibus-daemon -d -x
-#VBoxClient-all &
+# VBoxClient-all &
 exec awesome
 # ...or the Window Manager of your choice

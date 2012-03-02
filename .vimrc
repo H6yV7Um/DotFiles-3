@@ -424,3 +424,8 @@ hi MBEVisibleChanged guifg=#F1266F guibg=fg
 hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
 hi MBEChanged guifg=#CD5907 guibg=fg
 hi MBENormal guifg=#808080 guibg=fg
+
+
+"Leader P
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+

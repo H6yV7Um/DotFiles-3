@@ -23,7 +23,7 @@ shell = "zsh"
 editor = "gvim"
 editor_cmd = terminal .. " -e " .. editor
 
-awful.util.spawn_with_shell("ibus-daemon -d -x")
+--awful.util.spawn_with_shell("ibus-daemon -d -x")
 awful.util.spawn_with_shell("VBoxClient-all")
 awful.util.spawn_with_shell("gvim")
 --awful.util.spawn_with_shell("terminator -e irssi")

@@ -23,7 +23,7 @@ shell = "zsh"
 editor = "gvim"
 editor_cmd = terminal .. " -e " .. editor
 
---awful.util.spawn_with_shell("ibus-daemon -d -x")
+awful.util.spawn_with_shell("ibus-daemon -d -x")
 awful.util.spawn_with_shell("VBoxClient-all")
 awful.util.spawn_with_shell("gvim")
 --awful.util.spawn_with_shell("terminator -e irssi")
@@ -86,7 +86,8 @@ myawesomemenu = {
 
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+                                    { "open terminal", terminal },
+                                    { "reboot", shell .. " reboot"}
                                   }
                         })
 

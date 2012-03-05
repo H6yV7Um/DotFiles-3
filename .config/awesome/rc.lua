@@ -87,7 +87,7 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "open terminal", terminal },
-                                    { "reboot", shell .. " reboot"}
+                                    { "open chromium", shell .. " chromim"}
                                   }
                         })
 

@@ -33,7 +33,7 @@ Bundle 'vim-ruby/vim-ruby'
 "Bundle 'janx/vim-rubytest'
 
 
-Bundle 'wincent/Command-T'
+"Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
@@ -42,16 +42,16 @@ Bundle 'fholgado/minibufexpl.vim'
 Bundle 'tpope/vim-surround'
 
 "git
-Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-fugitive'
 
 "align
 Bundle 'godlygeek/tabular'
 
 Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/VimIM'
+"Bundle 'vim-scripts/VimIM'
 Bundle 'vim-scripts/AutoClose'
 "Bundle 'Raimondi/delimitMate'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 
 Bundle 'ervandew/supertab'
 "Bundle 'vim-scripts/AutoComplPop'
@@ -80,7 +80,7 @@ Bundle 'std_c.zip'
 "Bundle 'xolox/vim-easytags' 
 
 Bundle 'Railscasts-Theme-GUIand256color'
-Bundle 'a.vim'
+"Bundle 'a.vim'
 Bundle 'YankRing.vim'
 
 Bundle 'matchit.zip'
@@ -92,7 +92,7 @@ Bundle 'vim-scripts/ZoomWin'
 Bundle 'Gist.vim'
 
 Bundle 'Conque-Shell'
-Bundle 'calendar.vim'
+"Bundle 'calendar.vim'
 
 
 "Bundle 'tpope/vim-fugitive'
@@ -189,6 +189,7 @@ set hlsearch
 " 通过使用: commands命令，告诉我们文件的哪一行被改变过
 set report=0
 
+set hidden
 "C
 set shiftwidth=4
 set sts=4
@@ -373,11 +374,14 @@ let Tlist_Use_Right_Window = 1
 map <F8> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.o$', '\~$', 'cscope\.', 'ctags$']
 let NERDTreeChDirMode = 2
+let NERDTreeWinSize = 25
+
 
 
 "Tagbar
 map <F6> :TagbarToggle<CR>
 let g:tagbar_sort = 0
+let g:tagbar_width = 20
 autocmd FileType c,cpp,rb,vim nested :TagbarOpen
 
 "std_c plugin

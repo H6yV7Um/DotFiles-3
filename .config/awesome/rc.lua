@@ -7,7 +7,7 @@ require("awful.rules")
 require("beautiful")
 -- Notification library
 require("naughty")
-
+--require(awful.util.getdir("config") .. "/runonce.lua")
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
@@ -24,12 +24,28 @@ editor = "gvim"
 editor_cmd = terminal .. " -e " .. editor
 shell_cmd = shell .. " -c "
 
-awful.util.spawn_with_shell("ibus-daemon -d -x")
-awful.util.spawn_with_shell("VBoxClient-all")
-awful.util.spawn_with_shell("gvim")
+
+local r = require("runonce")
+
+autorun_items = 
+{
+    "terminator", 
+    "VBoxClient-all",
+    "gvim",
+    "ibus-daemon -d -x",
+    "chromium"
+}
+
+for index, item in ipairs(autorun_items) do
+  r.run(item)
+end
+
+--awful.util.spawn_with_shell("ibus-daemon -d -x")
+--awful.util.spawn_with_shell("VBoxClient-all")
+--awful.util.spawn_with_shell("gvim")
 --awful.util.spawn_with_shell("terminator -e irssi")
-awful.util.spawn_with_shell("terminator")
-awful.util.spawn_with_shell("chromium")
+--awful.util.spawn_with_shell("terminator")
+--awful.util.spawn_with_shell("chromium")
 
 
 -- Default modkey.

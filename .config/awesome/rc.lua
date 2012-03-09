@@ -25,6 +25,7 @@ editor_cmd = terminal .. " -e " .. editor
 shell_cmd = shell .. " -c "
 
 
+
 local r = require("runonce")
 
 autorun_items = 
@@ -119,7 +120,7 @@ mytextclock = awful.widget.textclock({ align = "right" })
 --Initialize widget
 datewidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, "|%y-%m-%d %H:%M:%S|", 1)
+vicious.register(datewidget, vicious.widgets.date, "%y-%m-%d %H:%M:%S", 1)
 
 
 --  Initialize widget
@@ -138,13 +139,13 @@ vicious.register(datewidget, vicious.widgets.date, "|%y-%m-%d %H:%M:%S|", 1)
  --Initialize widget
 memwidget_tb = widget({ type = "textbox" })
 -- Register widget
-vicious.register(memwidget_tb, vicious.widgets.mem, "|$1%($2M/$3M)", 13)
+vicious.register(memwidget_tb, vicious.widgets.mem, "$1%($2M/$3M)", 13)
 
 
  --Initialize widget
 cpuwidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(cpuwidget, vicious.widgets.cpu, "|CPU:$1%")
+vicious.register(cpuwidget, vicious.widgets.cpu, "$1%")
 
 
 --Initialize widget
@@ -163,11 +164,18 @@ vicious.register(cpuwidget, vicious.widgets.cpu, "|CPU:$1%")
 netwidget = widget({ type = "textbox" })
 -- Register widget
 --vicious.register(netwidget, vicious.widgets.net, '|<span color="#CC9393">D ${eth0 down_kb}</span> <span color="#7F9F7F">U ${eth0 up_kb}</span>', 3)
-vicious.register(netwidget, vicious.widgets.net, '|<span color="#CC9393">D ${eth0 down_kb}</span> <span color="#7F9F7F">U ${eth0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⇩${eth0 down_kb}</span> <span color="#7F9F7F">⇧${eth0 up_kb}</span>', 3)
 --dnicon = widget({ type = "imagebox" })
 --upicon = widget({ type = "imagebox" })
 --dnicon.image = image(beautiful.widget_net)
 --upicon.image = image(beautiful.widget_netup)
+
+cpu_icon = widget({ type = "imagebox" })
+cpu_icon.image = image(beautiful.cpu)
+mem_icon = widget({ type = "imagebox" })
+mem_icon.image = image(beautiful.mem)
+clock_icon = widget({ type = "imagebox" })
+clock_icon.image = image(beautiful.clock)
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -242,11 +250,11 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         --mytextclock,
-        datewidget,
+        datewidget, clock_icon,
         --upicon, netwidget, dnicon,
         --memwidget,
-        memwidget_tb,
-        cpuwidget,
+        memwidget_tb, mem_icon,
+        cpuwidget, cpu_icon,
         --cpuwidget_graph,
         netwidget,
         s == 1 and mysystray or nil,

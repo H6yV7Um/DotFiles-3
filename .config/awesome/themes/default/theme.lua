@@ -51,6 +51,10 @@ theme.menu_width  = "100"
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
 
+theme.cpu = configdir .. "/icons/cpu.png"
+theme.mem = configdir .. "/icons/mem.png"
+theme.clock = configdir .. "/icons/clock.png"
+
 -- Define the image to load
 theme.titlebar_close_button_normal = configdir .. "/themes/default/titlebar/close_normal.png"
 theme.titlebar_close_button_focus  = configdir .. "/themes/default/titlebar/close_focus.png"

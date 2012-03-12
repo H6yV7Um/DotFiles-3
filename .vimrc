@@ -35,26 +35,82 @@ Bundle 'vim-ruby/vim-ruby'
 
 "Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
+
 Bundle 'scrooloose/nerdtree'
+
 Bundle 'scrooloose/nerdcommenter'
+
 Bundle 'fholgado/minibufexpl.vim'  
+
 
 Bundle 'tpope/vim-surround'
 
+Bundle 'Lokaltog/vim-easymotion'
+
+Bundle 'tpope/vim-unimpaired'
+ 
+Bundle 'ervandew/supertab'
+"Bundle 'vim-scripts/AutoComplPop'
+
+
+Bundle 'mileszs/ack.vim'
+
+"Bundle 'vim-scripts/VimIM'
+
+
+Bundle 'vim-scripts/AutoClose'
+"Bundle 'Raimondi/delimitMate'
+Bundle 'tpope/vim-endwise'
+
+"Bundle 'scrooloose/syntastic'
+
+Bundle 'YankRing.vim'
+
+Bundle 'matchit.zip'
+
+Bundle 'majutsushi/tagbar'
+"taglist
+
+Bundle 'msanders/snipmate.vim'
+Bundle 'scrooloose/snipmate-snippets'
+
+Bundle 'nathanaelkane/vim-indent-guides'
+
 "git
-"Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-fugitive'
 
 "align
 Bundle 'godlygeek/tabular'
 
-Bundle 'mileszs/ack.vim'
-"Bundle 'vim-scripts/VimIM'
-Bundle 'vim-scripts/AutoClose'
-"Bundle 'Raimondi/delimitMate'
-"Bundle 'scrooloose/syntastic'
+"Highlight what you want
+Bundle 'Mark--Karkat'
 
-Bundle 'ervandew/supertab'
-"Bundle 'vim-scripts/AutoComplPop'
+Bundle 'Railscasts-Theme-GUIand256color'
+"Bundle 'a.vim'
+
+
+Bundle 'vim-scripts/ZoomWin'
+
+Bundle 'chrisbra/NrrwRgn'
+
+Bundle 'jeetsukumaran/vim-buffergator'
+
+Bundle 'sjl/gundo.vim'
+
+Bundle 'michaeljsmith/vim-indent-object'
+
+Bundle 'rgarver/Kwbd.vim'
+
+"Bundle 'Gist.vim'
+
+"Bundle 'Conque-Shell'
+
+Bundle 'rson/vim-conque'
+
+
+"Bundle 'calendar.vim'
+
+
 
 " Langs
 Bundle 'tpope/vim-haml'
@@ -63,14 +119,13 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'leshill/vim-json'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'mmalecki/vim-node.js'
+Bundle 'skammer/vim-css-color'
+"vim-liquid
 
-Bundle 'tpope/vim-endwise'
-Bundle 'majutsushi/tagbar'
-Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/snipmate-snippets'
-Bundle 'nathanaelkane/vim-indent-guides'
 "md, rdoc, textile
 Bundle 'greyblake/vim-preview'
+"vim-markdown
 
 
 "C
@@ -79,76 +134,57 @@ Bundle 'std_c.zip'
 "Auto reload ctags
 "Bundle 'xolox/vim-easytags' 
 
-Bundle 'Railscasts-Theme-GUIand256color'
-"Bundle 'a.vim'
-Bundle 'YankRing.vim'
 
-Bundle 'matchit.zip'
-
-"Highlight what you want
-Bundle 'Mark--Karkat'
-Bundle 'vim-scripts/ZoomWin'
-
-Bundle 'Gist.vim'
-
-Bundle 'Conque-Shell'
-"Bundle 'calendar.vim'
-
-
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'Lokaltog/vim-easymotion'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+
 " Navigation
 "Bundle 'mutewinter/bufpos'
 "Bundle 'vim-scripts/FuzzyFinder'
 "Bundle 'spiiph/vim-space'
-"Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'mutewinter/LustyJuggler'
+
 " UI Additions
 "Bundle 'dickeytk/status.vim'
 "Bundle 'mutewinter/ir_black_mod'
 "Bundle 'godlygeek/csapprox'
+
 " OS Integration
 "Bundle 'mkitt/browser-refresh.vim'
 "Bundle 'tpope/vim-speeddating'
 "Bundle 'vim-scripts/hexHighlight.vim'
+
 " Automatic Helpers
 "Bundle 'IndexedSearch'
 "Bundle 'xolox/vim-session'
+
 " Language Additions
 "Bundle 'mutewinter/taskpaper.vim'
 "Bundle 'msanders/cocoa.vim'
+
 " Libraries
 "Bundle 'L9'
 
 
 
 " closetag
-
 "camelcasemotion
-"gundo
 "hammer
 "mru
 "omnicppcomplete
 "simplefold
-"taglist
 "textile
 "vim-abolish
 "vim-colors-solarized
 "vim-extradite
-"vim-haml
-"vim-liquid
-"vim-markdown
 "vim-pastie
 "vim-ragtag
 "vim-rails
 "vim-rake
 "vim-repeat
 "vim-ruby-sinatra
-"vim-surround
 "vim-textobj-rubyblock
 "vim-textobj-user
-"vim-unimpaired
 "zencoding-vim
 
 

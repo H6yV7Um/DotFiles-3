@@ -21,8 +21,8 @@ beautiful.init(awful.util.getdir("config") .. "/themes/default/theme.lua")
 terminal = "terminator"
 shell = "zsh"
 editor = "gvim"
-editor_cmd = terminal .. " -e " .. editor
 shell_cmd = shell .. " -c "
+term_cmd = terminal .. " -e "
 
 
 
@@ -97,6 +97,9 @@ myawesomemenu = {
    --{ "manual", terminal .. " -e man awesome" },
    --{ "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
    --{ "gvim", shell .. " gvim"},
+   { "manual", term_cmd .. "\'man awesome\'" },
+   --{ "edit config", term_cmd .. "\'gvim " .. awful.util.getdir("config") .. "/rc.lua" .. "\'" },
+   { "edit config", shell_cmd .. "\'gvim " .. awful.util.getdir("config") .. "/rc.lua" .. "\'" },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }

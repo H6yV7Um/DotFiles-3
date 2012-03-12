@@ -35,6 +35,7 @@ Bundle 'vim-ruby/vim-ruby'
 
 "Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
+"Bundle 'vim-scripts/FuzzyFinder'
 
 Bundle 'scrooloose/nerdtree'
 
@@ -107,11 +108,15 @@ Bundle 'rgarver/Kwbd.vim'
 
 Bundle 'rson/vim-conque'
 
+Bundle 'Lokaltog/vim-powerline'
+
+Bundle 'DrawIt'
 
 "Bundle 'calendar.vim'
 
+Bundle 'tpope/vim-repeat'
 
-
+Bundle 'xuhdev/SingleCompile'
 " Langs
 Bundle 'tpope/vim-haml'
 Bundle 'pangloss/vim-javascript'
@@ -126,13 +131,29 @@ Bundle 'skammer/vim-css-color'
 "md, rdoc, textile
 Bundle 'greyblake/vim-preview'
 "vim-markdown
+"textile
 
+
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'kana/vim-textobj-user'
+
+
+"html,xml
+Bundle 'tpope/vim-ragtag'
 
 "C
 Bundle 'std_c.zip'
+Bundle 'echofunc.vim'
 
+"lua
+Bundle 'lua-support'
 "Auto reload ctags
 "Bundle 'xolox/vim-easytags' 
+
+Bundle 'bash-support.vim'
+
+"Bundle 'tpope/vim-speeddating'
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -140,7 +161,6 @@ Bundle 'std_c.zip'
 
 " Navigation
 "Bundle 'mutewinter/bufpos'
-"Bundle 'vim-scripts/FuzzyFinder'
 "Bundle 'spiiph/vim-space'
 "Bundle 'mutewinter/LustyJuggler'
 
@@ -151,8 +171,7 @@ Bundle 'std_c.zip'
 
 " OS Integration
 "Bundle 'mkitt/browser-refresh.vim'
-"Bundle 'tpope/vim-speeddating'
-"Bundle 'vim-scripts/hexHighlight.vim'
+"Bundle 'hexHighlight.vim'
 
 " Automatic Helpers
 "Bundle 'IndexedSearch'
@@ -167,24 +186,18 @@ Bundle 'std_c.zip'
 
 
 
-" closetag
+"closetag
 "camelcasemotion
 "hammer
 "mru
 "omnicppcomplete
 "simplefold
-"textile
 "vim-abolish
 "vim-colors-solarized
 "vim-extradite
 "vim-pastie
-"vim-ragtag
-"vim-rails
 "vim-rake
-"vim-repeat
 "vim-ruby-sinatra
-"vim-textobj-rubyblock
-"vim-textobj-user
 "zencoding-vim
 
 

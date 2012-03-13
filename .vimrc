@@ -482,3 +482,6 @@ hi MBENormal guifg=#808080 guibg=fg
 "Leader P
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
 
+
+"Autoclose
+nmap <Leader>x <Plug>ToggleAutoCloseMappings

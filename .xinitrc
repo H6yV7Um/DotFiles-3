@@ -36,5 +36,7 @@ xrdb ~/.Xresources
 # exec openbox
 #ibus-daemon -d -x
 # VBoxClient-all &
-exec awesome
+#exec awesome
+exec awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+
 # ...or the Window Manager of your choice

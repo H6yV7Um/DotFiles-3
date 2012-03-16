@@ -33,13 +33,49 @@ Bundle 'vim-ruby/vim-ruby'
 "Bundle 'janx/vim-rubytest'
 
 
-Bundle 'wincent/Command-T'
+"Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
+"Bundle 'vim-scripts/FuzzyFinder'
+
 Bundle 'scrooloose/nerdtree'
+
 Bundle 'scrooloose/nerdcommenter'
+
 Bundle 'fholgado/minibufexpl.vim'  
 
+
 Bundle 'tpope/vim-surround'
+
+Bundle 'Lokaltog/vim-easymotion'
+
+Bundle 'tpope/vim-unimpaired'
+ 
+Bundle 'ervandew/supertab'
+"Bundle 'vim-scripts/AutoComplPop'
+
+
+Bundle 'mileszs/ack.vim'
+
+"Bundle 'vim-scripts/VimIM'
+
+
+Bundle 'vim-scripts/AutoClose'
+"Bundle 'Raimondi/delimitMate'
+Bundle 'tpope/vim-endwise'
+
+"Bundle 'scrooloose/syntastic'
+
+Bundle 'YankRing.vim'
+
+Bundle 'matchit.zip'
+
+Bundle 'majutsushi/tagbar'
+"taglist
+
+Bundle 'msanders/snipmate.vim'
+Bundle 'scrooloose/snipmate-snippets'
+
+Bundle 'nathanaelkane/vim-indent-guides'
 
 "git
 Bundle 'tpope/vim-fugitive'
@@ -47,15 +83,40 @@ Bundle 'tpope/vim-fugitive'
 "align
 Bundle 'godlygeek/tabular'
 
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/VimIM'
-Bundle 'vim-scripts/AutoClose'
-"Bundle 'Raimondi/delimitMate'
-Bundle 'scrooloose/syntastic'
+"Highlight what you want
+Bundle 'Mark--Karkat'
 
-Bundle 'ervandew/supertab'
-"Bundle 'vim-scripts/AutoComplPop'
+Bundle 'Railscasts-Theme-GUIand256color'
+"Bundle 'a.vim'
 
+
+Bundle 'vim-scripts/ZoomWin'
+
+Bundle 'chrisbra/NrrwRgn'
+
+Bundle 'jeetsukumaran/vim-buffergator'
+
+Bundle 'sjl/gundo.vim'
+
+Bundle 'michaeljsmith/vim-indent-object'
+
+Bundle 'rgarver/Kwbd.vim'
+
+"Bundle 'Gist.vim'
+
+"Bundle 'Conque-Shell'
+
+Bundle 'rson/vim-conque'
+
+Bundle 'Lokaltog/vim-powerline'
+
+Bundle 'DrawIt'
+
+"Bundle 'calendar.vim'
+
+Bundle 'tpope/vim-repeat'
+
+Bundle 'xuhdev/SingleCompile'
 " Langs
 Bundle 'tpope/vim-haml'
 Bundle 'pangloss/vim-javascript'
@@ -63,92 +124,80 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'leshill/vim-json'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'mmalecki/vim-node.js'
+Bundle 'skammer/vim-css-color'
+"vim-liquid
 
-Bundle 'tpope/vim-endwise'
-Bundle 'majutsushi/tagbar'
-Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/snipmate-snippets'
-Bundle 'nathanaelkane/vim-indent-guides'
 "md, rdoc, textile
 Bundle 'greyblake/vim-preview'
+"vim-markdown
+"textile
 
+
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'kana/vim-textobj-user'
+
+
+"html,xml
+Bundle 'tpope/vim-ragtag'
 
 "C
 Bundle 'std_c.zip'
+Bundle 'echofunc.vim'
 
+"lua
+Bundle 'lua-support'
 "Auto reload ctags
 "Bundle 'xolox/vim-easytags' 
 
-Bundle 'Railscasts-Theme-GUIand256color'
-Bundle 'a.vim'
-Bundle 'YankRing.vim'
+Bundle 'bash-support.vim'
 
-Bundle 'matchit.zip'
-
-"Highlight what you want
-Bundle 'Mark--Karkat'
-Bundle 'vim-scripts/ZoomWin'
-
-Bundle 'Gist.vim'
-
-Bundle 'Conque-Shell'
-Bundle 'calendar.vim'
+"Bundle 'tpope/vim-speeddating'
 
 
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'Lokaltog/vim-easymotion'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+
 " Navigation
 "Bundle 'mutewinter/bufpos'
-"Bundle 'vim-scripts/FuzzyFinder'
 "Bundle 'spiiph/vim-space'
-"Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'mutewinter/LustyJuggler'
+
 " UI Additions
 "Bundle 'dickeytk/status.vim'
 "Bundle 'mutewinter/ir_black_mod'
 "Bundle 'godlygeek/csapprox'
+
 " OS Integration
 "Bundle 'mkitt/browser-refresh.vim'
-"Bundle 'tpope/vim-speeddating'
-"Bundle 'vim-scripts/hexHighlight.vim'
+"Bundle 'hexHighlight.vim'
+
 " Automatic Helpers
 "Bundle 'IndexedSearch'
 "Bundle 'xolox/vim-session'
+
 " Language Additions
 "Bundle 'mutewinter/taskpaper.vim'
 "Bundle 'msanders/cocoa.vim'
+
 " Libraries
 "Bundle 'L9'
 
 
 
-" closetag
-
+"closetag
 "camelcasemotion
-"gundo
 "hammer
 "mru
 "omnicppcomplete
 "simplefold
-"taglist
-"textile
 "vim-abolish
 "vim-colors-solarized
 "vim-extradite
-"vim-haml
-"vim-liquid
-"vim-markdown
 "vim-pastie
-"vim-ragtag
-"vim-rails
 "vim-rake
-"vim-repeat
 "vim-ruby-sinatra
-"vim-surround
-"vim-textobj-rubyblock
-"vim-textobj-user
-"vim-unimpaired
 "zencoding-vim
 
 
@@ -189,6 +238,7 @@ set hlsearch
 " 通过使用: commands命令，告诉我们文件的哪一行被改变过
 set report=0
 
+set hidden
 "C
 set shiftwidth=4
 set sts=4
@@ -373,11 +423,14 @@ let Tlist_Use_Right_Window = 1
 map <F8> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.o$', '\~$', 'cscope\.', 'ctags$']
 let NERDTreeChDirMode = 2
+let NERDTreeWinSize = 25
+
 
 
 "Tagbar
 map <F6> :TagbarToggle<CR>
 let g:tagbar_sort = 0
+let g:tagbar_width = 20
 autocmd FileType c,cpp,rb,vim nested :TagbarOpen
 
 "std_c plugin
@@ -429,3 +482,6 @@ hi MBENormal guifg=#808080 guibg=fg
 "Leader P
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
 
+
+"Autoclose
+nmap <Leader>x <Plug>ToggleAutoCloseMappings

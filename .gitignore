@@ -1,3 +1,6 @@
 *.un
 *.swp
 *.un~
+.serverauth*
+*.pid
+*.swo

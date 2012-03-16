@@ -1,3 +1,6 @@
 [submodule ".config/awesome/plugins/revelation"]
 	path = .config/awesome/plugins/revelation
 	url = https://github.com/bioe007/awesome-revelation.git
+[submodule ".config/awesome/plugins/lognotify"]
+	path = .config/awesome/plugins/lognotify
+	url = https://github.com/Mic92/lognotify.git

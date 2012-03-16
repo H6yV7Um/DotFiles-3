@@ -351,7 +351,7 @@ for s = 1, screen.count() do
         cpuwidget, cpuicon,
         iowidget, ioicon,
         netwidget, neticon,
-        batbar.widget, batwidget, baticon,
+        batwidget, batbar.widget, baticon,
         thermalwidget, thermalicon,
         s == 1 and mysystray or nil,
         mytasklist[s],

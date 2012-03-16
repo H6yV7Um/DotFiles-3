@@ -210,8 +210,8 @@ batbar:set_gradient_colors({ '#FF5656', '#88A175', '#AECF96'})
 awful.widget.layout.margins[batbar.widget] = { top = 2, bottom = 2, left = 1, right = 2 }
 
 vicious.cache(vicious.widgets.bat)
-vicious.register(batbar, vicious.widgets.bat, "$2",  11, "BAT1")
-vicious.register(batwidget, vicious.widgets.bat, "$1$2% $3h", 11, "BAT1")
+vicious.register(batbar, vicious.widgets.bat, "$2",  11, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, "$1$2% $3h", 11, "BAT0")
 -- }}}
 
 
@@ -257,7 +257,7 @@ cpuicon:buttons( cpuwidget:buttons() )
 local thermalwidget = widget({ type = "textbox" })
 local thermalicon = widget({ type = "imagebox" })
 thermalicon.image = image(icon_path.."temp.png")
-vicious.register(thermalwidget, vicious.widgets.thermal, "$1°C", 5, {"thermal_zone0", "sys"})
+vicious.register(thermalwidget, vicious.widgets.thermal, "$1°C", 5, {"thermal_zone0", "core"})
 -- }}}
 
 --{{{Network usage widget

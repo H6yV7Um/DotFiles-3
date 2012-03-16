@@ -8,6 +8,8 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
+
+require("volume")
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
@@ -106,6 +108,11 @@ datewidget = widget({ type = "textbox" })
 vicious.register(datewidget, vicious.widgets.date, "|%y-%m-%d %H:%M:%S|", 1)
 
 
+
+
+
+
+
 --  Initialize widget
 --memwidget = awful.widget.progressbar()
 ---- Progressbar properties
@@ -129,6 +136,10 @@ vicious.register(memwidget_tb, vicious.widgets.mem, "|$1%($2M/$3M)", 13)
 cpuwidget = widget({ type = "textbox" })
 -- Register widget
 vicious.register(cpuwidget, vicious.widgets.cpu, "|CPU:$1%")
+
+
+volumewidget = widget({ type = "textbox" })
+vicious.register(volumewidget, vicious.widgets.volume, "|$1/$2", 2, "Master")
 
 
 --Initialize widget
@@ -233,6 +244,8 @@ for s = 1, screen.count() do
         cpuwidget,
         --cpuwidget_graph,
         netwidget,
+        volumewidget,
+        volume_widget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -254,6 +267,12 @@ awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
 awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
 awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
+awful.key({ }, "XF86AudioRaiseVolume", function ()
+   awful.util.spawn("amixer set Master 10%+") end),
+awful.key({ }, "XF86AudioLowerVolume", function ()
+   awful.util.spawn("amixer set Master 10%-") end),
+--awful.key({ }, "XF86AudioMute", function ()
+   --awful.util.spawn("amixer sset Master toggle") end),
 awful.key({ modkey,           }, "j",
 function ()
     awful.client.focus.byidx( 1)

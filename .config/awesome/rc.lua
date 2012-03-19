@@ -269,7 +269,7 @@ vicious.register(thermalwidget, vicious.widgets.thermal, "$1°C", 5, {"thermal_z
 --{{{Network usage widget
 netwidget = widget({ type = "textbox" })
 local neticon  = widget({ type = "imagebox" }); neticon.image = image(icon_path.."ethernet.png")
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⇩${eth0 down_kb}</span> <span color="#7F9F7F">⇧${eth0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⇩${wlan0 down_kb}</span> <span color="#7F9F7F">⇧${wlan0 up_kb}</span>', 3)
 ---}}}
 
 -- {{{ Disk I/O

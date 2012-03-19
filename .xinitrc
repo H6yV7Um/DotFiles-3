@@ -37,6 +37,6 @@ xrdb ~/.Xresources
 #ibus-daemon -d -x
 # VBoxClient-all &
 #exec awesome
-exec awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+exec awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
 
 # ...or the Window Manager of your choice

@@ -17,8 +17,6 @@ require("cal")
 require("markup")
 -- }}}
 
-
-require("volume")
 -- {{{ Theme
 -- Themes define colours, icons, and wallpapers
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
@@ -254,10 +252,74 @@ cpuicon:buttons( cpuwidget:buttons() )
 
 -- }}}
 
+-- {{{ Volume level
+local vol_icon = widget({ type = "imagebox" }); vol_icon.image = image(icon_path.."volume.png")
 
-volumewidget = widget({ type = "textbox" })
-vicious.register(volumewidget, vicious.widgets.volume, "|$1/$2", 2, "Master")
+vicious.cache(vicious.widgets.volume)
 
+
+volbar = awful.widget.progressbar()
+volbar:set_width(8)
+volbar:set_height(20)
+volbar:set_vertical(true)
+volbar:set_background_color(beautiful.fg_off_widget)
+volbar:set_color(beautiful.fg_widget)
+-- Bar from green to red
+volbar:set_gradient_colors({ '#AECF96', '#88A175', '#FF5656' })
+awful.widget.layout.margins[volbar.widget] = { top = 2, bottom = 2, left = 2 }
+
+vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "Master")
+volbar.widget:buttons(awful.util.table.join(
+   awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle") end),
+   awful.button({ }, 4, function () awful.util.spawn("amixer -q set Master 10%+") end),
+   awful.button({ }, 5, function () awful.util.spawn("amixer -q set Master 10%-") end)
+)) -- Register assigned buttons
+
+volwidget = widget({ type = "textbox" })
+vicious.register(volwidget, vicious.widgets.volume, "$2$1%", 2, "Master")
+volwidget:buttons(volbar.widget:buttons())
+-- }}}
+
+
+--{{{ Wifi
+local wifiwidget = widget({ type = "textbox" })
+local wifiicon   = widget({ type = "imagebox" })
+local wifitooltip= awful.tooltip({})
+wifitooltip:add_to_object(wifiwidget)
+wifiicon.image = image(icon_path.."wifi.png")
+vicious.register(wifiwidget, vicious.widgets.wifi, function(widget, args)
+  local tooltip = ("<b>mode</b> %s <b>chan</b> %s <b>rate</b> %s Mb/s"):format(
+                  args["{mode}"], args["{chan}"], args["{rate}"])
+  local quality = 0
+  if args["{linp}"] > 0 then
+    quality = args["{link}"] / args["{linp}"] * 100
+  end
+  wifitooltip:set_text(tooltip)
+  return ("%s: %.1f%%"):format(args["{ssid}"], quality)
+end, 7, "wlan0")
+wifiicon:buttons( wifiwidget:buttons(awful.util.table.join(
+awful.button({}, 1, function()
+  local networks = iwlist.scan_networks()
+  if #networks > 0 then
+    local msg = {}
+    for i, ap in ipairs(networks) do
+      local line = "<b>ESSID:</b> %s <b>MAC:</b> %s <b>Qual.:</b> %.2f%% <b>%s</b>"
+      local enc = iwlist.get_encryption(ap)
+      msg[i] = line:format(ap.essid, ap.address, ap.quality, enc)
+    end
+    naughty.notify({text = table.concat(msg, "\n")})
+  else
+  end
+end),
+awful.button({ "Shift" }, 1, function ()
+  -- restart-auto-wireless is just a script of mine,
+  -- which just restart netcfg
+  local wpa_cmd = "sudo restart-auto-wireless && notify-send 'wpa_actiond' 'restarted' || notify-send 'wpa_actiond' 'error on restart'"
+  awful.util.spawn_with_shell(wpa_cmd)
+end), -- left click
+awful.button({ }, 3, function ()  vicious.force{wifiwidget} end) -- right click
+)))
+--}}}
 
 -- {{{ CPU temperature
 local thermalwidget = widget({ type = "textbox" })
@@ -279,14 +341,8 @@ local iowidget = widget({ type = "textbox" })
 vicious.register(iowidget, vicious.widgets.dio, "⇧${sda read_mb}⇩${sda write_mb}M", 3)
 -- }}}
 
---{{{ systray
--- Create a systray
-mysystray = widget({ type = "systray" })
 
--- Create a wibox for each screen and add it
-mywibox = {}
-mypromptbox = {}
-mylayoutbox = {}
+--{{{ taglist buttons
 mytaglist = {}
 mytaglist.buttons = awful.util.table.join(
     awful.button({ }, 1, awful.tag.viewonly),
@@ -296,43 +352,60 @@ mytaglist.buttons = awful.util.table.join(
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 )
+--}}}
+
+--{{{ tasklist buttons
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
-awful.button({ }, 1, function (c)
-    if not c:isvisible() then
-        awful.tag.viewonly(c:tags()[1])
-    end
-    client.focus = c
-    c:raise()
-end),
-awful.button({ }, 3, function ()
-    if instance then
-        instance:hide()
-        instance = nil
-    else
-        instance = awful.menu.clients({ width=250 })
-    end
-end),
-awful.button({ }, 4, function ()
-    awful.client.focus.byidx(1)
-    if client.focus then client.focus:raise() end
-end),
-awful.button({ }, 5, function ()
-    awful.client.focus.byidx(-1)
-    if client.focus then client.focus:raise() end
-end))
+    awful.button({ }, 1, function (c)
+        if not c:isvisible() then
+            awful.tag.viewonly(c:tags()[1])
+        end
+        client.focus = c
+        c:raise()
+    end),
+    awful.button({ }, 3, function ()
+        if instance then
+            instance:hide()
+            instance = nil
+        else
+            instance = awful.menu.clients({ width=250 })
+        end
+    end),
+    awful.button({ }, 4, function ()
+        awful.client.focus.byidx(1)
+        if client.focus then client.focus:raise() end
+    end),
+    awful.button({ }, 5, function ()
+        awful.client.focus.byidx(-1)
+        if client.focus then client.focus:raise() end
+    end))
+--}}}
+
+
+--{{{ tray for each screen
+
+local mysystray = widget({ type = "systray" }) --ibus
+local mywibox = {}
+local mystatusbox = {}
+local mypromptbox = {} -- mod4 +r
+local mylayoutbox = {}
+
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
+
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     mylayoutbox[s] = awful.widget.layoutbox(s)
     mylayoutbox[s]:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
-    awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
-    awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
-    awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
+        awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
+        awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
+        awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
+        awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end))
+    )
+
     -- Create a taglist widget
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, mytaglist.buttons)
 
@@ -343,7 +416,7 @@ for s = 1, screen.count() do
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
-    -- Add widgets to the wibox - order matters
+
     mywibox[s].widgets = {
         {
             mylauncher,
@@ -353,17 +426,28 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         datewidget, clockicon,
-        memwidget_tb, mem_icon,
-        cpuwidget, cpuicon,
-        iowidget, ioicon,
-        netwidget, neticon,
-        batwidget, batbar.widget, baticon,
-        thermalwidget, thermalicon,
-        volumewidget,
-        volume_widget,
+        volbar.widget,volwidget,vol_icon,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
+    }
+
+    -- Status
+    mystatusbox[s] = awful.wibox({ position = "bottom", screen = s })
+
+    mystatusbox[s].widgets = {
+        thermalicon, thermalwidget,
+        baticon, batwidget, batbar.widget, 
+         wifiicon,wifiwidget,
+        {
+            memwidget_tb, mem_icon,
+            cpuwidget, cpuicon,
+            iowidget, ioicon,
+            netwidget, neticon,
+            layout = awful.widget.layout.horizontal.rightleft,
+        },
+        layout = awful.widget.layout.horizontal.leftright,
+        height = mystatusbox[s].height
     }
 end
 -- }}}
@@ -381,19 +465,12 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
-    awful.key({ modkey            }, "e",      revelation),
-
-    awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 10%+") end),
-    awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 10%-") end),
-    --awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
-    awful.key({ modkey,           }, "j",
-    function ()
+    awful.key({ modkey,           }, "j", function ()
         awful.client.focus.byidx( 1)
         if client.focus then client.focus:raise() end
     end),
 
-    awful.key({ modkey,           }, "k",
-    function ()
+    awful.key({ modkey,           }, "k", function ()
         awful.client.focus.byidx(-1)
         if client.focus then client.focus:raise() end
     end),
@@ -407,8 +484,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
 
-    awful.key({ modkey,           }, "Tab",
-    function ()
+    awful.key({ modkey,           }, "Tab", function ()
         awful.client.focus.history.previous()
         if client.focus then
             client.focus:raise()
@@ -417,8 +493,6 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({                   }, "Print", function  () awful.util.spawn("scrot -e 'mv $f ~/ 2>/dev/null'") end),
-    awful.key({ modkey,           }, "z", function  () awful.util.spawn("slock") end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -440,7 +514,18 @@ globalkeys = awful.util.table.join(
         mypromptbox[mouse.screen].widget,
         awful.util.eval, nil,
         awful.util.getdir("cache") .. "/history_eval")
-    end)
+    end),
+
+    --Custom
+    awful.key({                   }, "Print", function  () 
+        awful.util.spawn("scrot -e 'mv $f ~/ 2>/dev/null'")
+        naughty.notify{ title = "Notice", text  = "Screenshot Saved!", timeout = 7}
+    end),
+    awful.key({ modkey,           }, "z",     function () awful.util.spawn("slock") end),
+    awful.key({ modkey            }, "e",     revelation),
+    awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 10%+") end),
+    awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 10%-") end)
+    --awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
 )
 
 clientkeys = awful.util.table.join(

@@ -2,7 +2,7 @@ This is my gentoo dotfiles, other distribution is **maybe** okay.
 
 # vim
 
-* Base on [vundel](https://github.com/gmarik/vundle)
+* Base on [vundle](https://github.com/gmarik/vundle)
 
 # awesome
 

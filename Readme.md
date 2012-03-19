@@ -2,11 +2,13 @@ This is my gentoo dotfiles, other distribution is **maybe** okay.
 
 # vim
 
-* Base on vundel
+* Base on [vundel](https://github.com/gmarik/vundle)
 
 # awesome
 
-* Mostly from Mic92, I modify the cal.rc and volumn widget.
+* Mostly from [Mic92](https://github.com/Mic92/awesome-dotfiles), I modify the cal.rc and volumn widget.
+* vicious
+* revelation
 
 # ScreenShot
 

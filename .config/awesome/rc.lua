@@ -15,6 +15,7 @@ require("plugins/revelation")
 require("plugins/lognotify")
 require("cal")
 require("markup")
+require("iwlist")
 -- }}}
 
 -- {{{ Theme
@@ -307,7 +308,7 @@ awful.button({}, 1, function()
       local enc = iwlist.get_encryption(ap)
       msg[i] = line:format(ap.essid, ap.address, ap.quality, enc)
     end
-    naughty.notify({text = table.concat(msg, "\n")})
+    naughty.notify({title = "Wlan", text = table.concat(msg, "\n")})
   else
   end
 end),
@@ -323,9 +324,11 @@ awful.button({ }, 3, function ()  vicious.force{wifiwidget} end) -- right click
 
 -- {{{ CPU temperature
 local thermalwidget = widget({ type = "textbox" })
+local thermalwidget1= widget({ type = "textbox" })
 local thermalicon = widget({ type = "imagebox" })
 thermalicon.image = image(icon_path.."temp.png")
-vicious.register(thermalwidget, vicious.widgets.thermal, "$1°C", 5, {"thermal_zone0", "core"})
+vicious.register(thermalwidget, vicious.widgets.thermal, "$1°C/", 5, {"thermal_zone0", "sys"})
+vicious.register(thermalwidget1, vicious.widgets.thermal, "$1°C", 5, {"thermal_zone1", "sys"})
 -- }}}
 
 --{{{Network usage widget
@@ -436,7 +439,7 @@ for s = 1, screen.count() do
     mystatusbox[s] = awful.wibox({ position = "bottom", screen = s })
 
     mystatusbox[s].widgets = {
-        thermalicon, thermalwidget,
+        thermalicon, thermalwidget,thermalwidget1,
         baticon, batwidget, batbar.widget, 
          wifiicon,wifiwidget,
         {

@@ -108,7 +108,7 @@ Bundle 'rgarver/Kwbd.vim'
 
 Bundle 'rson/vim-conque'
 
-Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/vim-powerline'
 
 Bundle 'DrawIt'
 
@@ -424,6 +424,9 @@ map <F8> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.o$', '\~$', 'cscope\.', 'ctags$']
 let NERDTreeChDirMode = 2
 let NERDTreeWinSize = 25
+let NERDTreeShowBookmarks = 1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 
 
 
@@ -477,6 +480,8 @@ hi MBEVisibleChanged guifg=#F1266F guibg=fg
 hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
 hi MBEChanged guifg=#CD5907 guibg=fg
 hi MBENormal guifg=#808080 guibg=fg
+let g:miniBufExplorerMoreThanOne=0
+let g:miniBufExplSplitBelow=0  " Put new window above
 
 
 "Leader P

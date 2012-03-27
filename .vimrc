@@ -41,7 +41,8 @@ Bundle 'scrooloose/nerdtree'
 
 Bundle 'scrooloose/nerdcommenter'
 
-Bundle 'fholgado/minibufexpl.vim'  
+"Bundle 'fholgado/minibufexpl.vim'  
+Bundle 'sjbach/lusty'
 
 
 Bundle 'tpope/vim-surround'
@@ -59,9 +60,9 @@ Bundle 'mileszs/ack.vim'
 "Bundle 'vim-scripts/VimIM'
 
 
-Bundle 'vim-scripts/AutoClose'
+"Bundle 'vim-scripts/AutoClose'
 "Bundle 'Raimondi/delimitMate'
-Bundle 'tpope/vim-endwise'
+"Bundle 'tpope/vim-endwise'
 
 "Bundle 'scrooloose/syntastic'
 
@@ -261,12 +262,12 @@ set list
 
 "set guifont=DejaVu\ Sans\ Mono\ 10.5
 set guifont=Ubuntu\ Mono\ 12
-"set guifont=DejaVu\ Sans\ Mono\ 11
+"set guifont=DejaVu\ Sans\ Mono\ 10
 
 "set guifont=Droid\ Sans\ Mono\ 10.5
+"set linespace=2 "The fucking underscore problem
 
 set bsdir=last
-
 
 
 "let mapleader='\' 
@@ -284,7 +285,7 @@ endif
 
 map <F7> eb"tye k /<C-R>t<CR>
 map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
-
+map <Leader>h *#
 " In case I forget to start as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 colorscheme railscasts
@@ -388,6 +389,17 @@ function! s:ExecuteInShell(command)
 endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
+" Get :cmd output to a buffer :TabMessage
+function! TabMessage(cmd)
+  redir => message
+  silent execute a:cmd
+  redir END
+  new
+  silent put=message
+  set nomodified
+endfunction
+command! -nargs=+ -complete=command CmdPutInTab call TabMessage(<q-args>)
+
 
 "ctags
 set tags=tags;
@@ -421,12 +433,12 @@ let Tlist_Use_Right_Window = 1
 
 "nerdtree
 map <F8> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.o$', '\~$', 'cscope\.', 'ctags$']
+let NERDTreeIgnore=['\.o$','\.a$', '\~$', 'cscope\.', 'tags$']
 let NERDTreeChDirMode = 2
 let NERDTreeWinSize = 25
 let NERDTreeShowBookmarks = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
+autocmd vimenter * NERDTree
 
 
 
@@ -486,7 +498,13 @@ let g:miniBufExplSplitBelow=0  " Put new window above
 
 "Leader P
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+map <Leader>ft :CtrlPTag<CR>
 
 
 "Autoclose
 nmap <Leader>x <Plug>ToggleAutoCloseMappings
+
+"Yankring
+"
+nmap <Leader>yr :YRShow<CR>
+

@@ -276,8 +276,18 @@ volbar.widget:buttons(awful.util.table.join(
    awful.button({ }, 5, function () awful.util.spawn("amixer -q set Master 10%-") end)
 )) -- Register assigned buttons
 
+
 volwidget = widget({ type = "textbox" })
-vicious.register(volwidget, vicious.widgets.volume, "$2$1%", 2, "Master")
+vicious.register(volwidget, vicious.widgets.volume, "$1%", 2, "Master")
+--vicious.register(volwidget, vicious.widgets.volume, function (widget, args)
+    --if args[1] == 0 then
+        --vol_icon.image = image(icon_path.."volume-mute.png")
+    --else
+        --vol_icon.image = image(icon_path.."volume.png")
+    --end
+    --return args[1]
+--end, 2, "Master")
+
 volwidget:buttons(volbar.widget:buttons())
 -- }}}
 
@@ -331,10 +341,53 @@ vicious.register(thermalwidget, vicious.widgets.thermal, "$1°C/", 5, {"thermal_
 vicious.register(thermalwidget1, vicious.widgets.thermal, "$1°C", 5, {"thermal_zone1", "sys"})
 -- }}}
 
+
+function getNet()
+    local nets = {}
+    local net_found = {}
+
+    for line in io.lines("/proc/net/dev") do
+        local name = string.match(line, "^[%s]?[%s]?[%s]?[%s]?([%w]+):")
+        if name ~= nil then
+            local eth = string.match(line, "^%s+([%w]+):")
+            table.insert(nets, eth)
+        end
+    end
+
+    for index, item in ipairs(nets) do
+        if item == "eth0" then
+            net_found["eth0"] = true
+        end
+        if item == "wlan0" then
+            net_found["wlan0"] = true
+        end
+    end
+
+    if net_found ~= nil then 
+        if net_found["eth0"] == true then
+            if net_found["wlan0"] == nil then 
+                return "eth0"
+            else
+                if net_found["wlan0"] == false then
+                    return "eth0"
+                end
+            end
+        end
+
+        if net_found["wlan0"] == true then
+            return "wlan0"
+        end
+    end
+
+    return nil
+end
+
 --{{{Network usage widget
 netwidget = widget({ type = "textbox" })
 local neticon  = widget({ type = "imagebox" }); neticon.image = image(icon_path.."ethernet.png")
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⇩${wlan0 down_kb}</span> <span color="#7F9F7F">⇧${wlan0 up_kb}</span>', 3)
+local netfound = getNet()
+--vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⇩${wlan0 down_kb}</span> <span color="#7F9F7F">⇧${wlan0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⇩${' .. netfound .. ' down_kb}</span> <span color="#7F9F7F">⇧${' .. netfound .. ' up_kb}</span>', 3)
 ---}}}
 
 -- {{{ Disk I/O

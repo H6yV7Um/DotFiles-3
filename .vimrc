@@ -38,6 +38,7 @@ Bundle 'kien/ctrlp.vim'
 "Bundle 'vim-scripts/FuzzyFinder'
 
 Bundle 'scrooloose/nerdtree'
+Bundle 'VOoM'
 
 Bundle 'scrooloose/nerdcommenter'
 
@@ -53,7 +54,8 @@ Bundle 'tpope/vim-unimpaired'
  
 Bundle 'ervandew/supertab'
 "Bundle 'vim-scripts/AutoComplPop'
-
+Bundle 'cmdline-completion'
+Bundle 'Shougo/neocomplcache'
 
 Bundle 'mileszs/ack.vim'
 

@@ -60,7 +60,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'mileszs/ack.vim'
 
 "Bundle 'vim-scripts/VimIM'
-
+"Bundle 'vimim/vimim'
 
 "Bundle 'vim-scripts/AutoClose'
 "Bundle 'Raimondi/delimitMate'

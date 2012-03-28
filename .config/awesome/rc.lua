@@ -194,6 +194,9 @@ end)
 ---}}}
 
 
+local ac_text = widget({ type = "textbox" })
+--vicious.register(ac_text, vicious.contrib.ac, "$1", 11)
+vicious.register(ac_text, vicious.contrib.ac, "", 11)
 
 -- {{{ Battery
 local batwidget = widget({ type = "textbox" })
@@ -383,27 +386,10 @@ function getNet()
     return nil
 end
 
-function getTotal(netif)
-    local recv
-    local send
-    local ret = {}
-    for line in io.lines("/proc/net/dev") do
-        local name = string.match(line, netif)
-        if name ~= nil then
-            recv = tonumber(string.match(line, ":[%s]*([%d]+)"))
-            send = tonumber(string.match(line, "([%d]+)%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d$"))
-            ret["rx_total"] = string.format("%.1f", recv / 1024 / 1024)
-            ret["tx_total"] = string.format("%.1f", send / 1024 / 1024)
-            break
-        end
-    end
-    return ret
-end
 
 netwidget = widget({ type = "textbox" })
 local neticon  = widget({ type = "imagebox" }); neticon.image = image(icon_path.."ethernet.png")
 local netfound = getNet()
---vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⇩${wlan0 down_kb}</span> <span color="#7F9F7F">⇧${wlan0 up_kb}</span>', 3)
 vicious.register(netwidget, vicious.widgets.net, function(widget, args) 
     local ret
     if args['{' .. netfound .. ' carrier' .. '}'] == 0 then
@@ -411,8 +397,7 @@ vicious.register(netwidget, vicious.widgets.net, function(widget, args)
     else
         ret = '<span color="#CC9393">⇩' .. args['{' .. netfound .. ' down_kb}'] .. '</span><span color="#7F9F7F">⇧' .. args['{' .. netfound .. ' up_kb}'] .. '</span>K'
     end
-    local total = getTotal(netfound)
-    ret = ret .. ' |⇩' .. total["rx_total"] .. '⇧' .. total["tx_total"] .. 'M'
+    ret = ret .. ' |<span color="#CC9393">⇩' .. args['{' .. netfound .. ' rx_mb}'] .. '</span><span color="#7F9F7F">⇧' .. args['{' .. netfound .. ' tx_mb}'] .. '</span>M'
     return ret
 end, 3)
 ---}}}
@@ -521,6 +506,7 @@ for s = 1, screen.count() do
     mystatusbox[s].widgets = {
         thermalicon, thermalwidget,thermalwidget1,
         baticon, batwidget, batbar.widget, 
+        ac_text,
          wifiicon,wifiwidget,
         {
             memwidget_tb, mem_icon,

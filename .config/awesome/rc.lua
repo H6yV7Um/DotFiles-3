@@ -342,6 +342,7 @@ vicious.register(thermalwidget1, vicious.widgets.thermal, "$1°C", 5, {"thermal_
 -- }}}
 
 
+--{{{Network usage widget
 function getNet()
     local nets = {}
     local net_found = {}
@@ -382,12 +383,38 @@ function getNet()
     return nil
 end
 
---{{{Network usage widget
+function getTotal(netif)
+    local recv
+    local send
+    local ret = {}
+    for line in io.lines("/proc/net/dev") do
+        local name = string.match(line, netif)
+        if name ~= nil then
+            recv = tonumber(string.match(line, ":[%s]*([%d]+)"))
+            send = tonumber(string.match(line, "([%d]+)%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d$"))
+            ret["rx_total"] = string.format("%.1f", recv / 1024 / 1024)
+            ret["tx_total"] = string.format("%.1f", send / 1024 / 1024)
+            break
+        end
+    end
+    return ret
+end
+
 netwidget = widget({ type = "textbox" })
 local neticon  = widget({ type = "imagebox" }); neticon.image = image(icon_path.."ethernet.png")
 local netfound = getNet()
 --vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⇩${wlan0 down_kb}</span> <span color="#7F9F7F">⇧${wlan0 up_kb}</span>', 3)
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⇩${' .. netfound .. ' down_kb}</span> <span color="#7F9F7F">⇧${' .. netfound .. ' up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, function(widget, args) 
+    local ret
+    if args['{' .. netfound .. ' carrier' .. '}'] == 0 then
+        ret = '<span color="#CC9393">NOT CONNECTED</span>'
+    else
+        ret = '<span color="#CC9393">⇩' .. args['{' .. netfound .. ' down_kb}'] .. '</span><span color="#7F9F7F">⇧' .. args['{' .. netfound .. ' up_kb}'] .. '</span>K'
+    end
+    local total = getTotal(netfound)
+    ret = ret .. ' |⇩' .. total["rx_total"] .. '⇧' .. total["tx_total"] .. 'M'
+    return ret
+end, 3)
 ---}}}
 
 -- {{{ Disk I/O

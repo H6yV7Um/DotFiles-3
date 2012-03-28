@@ -123,6 +123,7 @@ Bundle 'xuhdev/SingleCompile'
 " Langs
 Bundle 'tpope/vim-haml'
 Bundle 'pangloss/vim-javascript'
+"Bundle 'jsbeautify'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'leshill/vim-json'

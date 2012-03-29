@@ -110,7 +110,7 @@ layouts =
 
 -- {{{ Tags
 tags = {
-    names  = { "term", "gvim", "Chrome", 4, 5, 6, 7, 8, "pcmanfm" },
+    names  = { "term", "gvim", "Chrome", 4, 5, 6, 7, "Reading", "FileManager" },
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 for s = 1, screen.count() do
@@ -194,10 +194,11 @@ datewidget:add_signal("mouse::enter",  function()
 end)
 ---}}}
 
-
+--{{{AC power
 local ac_text = widget({ type = "textbox" })
 --vicious.register(ac_text, vicious.contrib.ac, "$1", 11)
 vicious.register(ac_text, vicious.contrib.ac, "", 11)
+--}}}
 
 -- {{{ Battery
 local batwidget = widget({ type = "textbox" })
@@ -675,6 +676,7 @@ awful.rules.rules = {
     { rule = { class = "Chromium" }, properties = { tag = tags[1][3] } },
     { rule = { class = "Terminator" }, properties = { tag = tags[1][1] } },
     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
+    { rule = { class = "Acroread" }, properties = { tag = tags[1][8] } },
 }
 -- }}}
 

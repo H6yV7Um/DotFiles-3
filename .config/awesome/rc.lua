@@ -62,7 +62,8 @@ autorun_items =
     "terminator", 
     "VBoxClient-all",
     "gvim",
-    "ibus-daemon -d -x",
+    --"ibus-daemon -d -x",
+    "fcitx",
     "chromium",
     "pcmanfm"
 }

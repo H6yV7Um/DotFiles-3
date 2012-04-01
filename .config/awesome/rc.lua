@@ -65,6 +65,7 @@ autorun_items =
     --"ibus-daemon -d -x",
     "fcitx",
     "chromium",
+    "xrandr --output VBOX1 --right-of VBOX0",
     "pcmanfm"
 }
 

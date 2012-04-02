@@ -36,7 +36,9 @@ xrdb ~/.Xresources
 # exec openbox
 #ibus-daemon -d -x
 # VBoxClient-all &
-#exec awesome
-exec awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
-
+exec awesome
+#exec ck-launch-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
+#exec awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
+#eval 'dbus-launch --sh-syntax --exit-with-session'
+#exec ck-launch-session awesome
 # ...or the Window Manager of your choice

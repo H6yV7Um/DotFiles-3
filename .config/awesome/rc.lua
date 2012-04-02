@@ -324,11 +324,15 @@ awful.button({ }, 3, function ()  vicious.force{wifiwidget} end) -- right click
 
 -- {{{ CPU temperature
 local thermalwidget = widget({ type = "textbox" })
-local thermalwidget1= widget({ type = "textbox" })
+local cpuinfo_widget = widget({ type = "textbox" })
+local thermalwidget1 = widget({ type = "textbox" })
+local cpuinfo_widget1 = widget({ type = "textbox" })
 local thermalicon = widget({ type = "imagebox" })
 thermalicon.image = image(icon_path.."temp.png")
 vicious.register(thermalwidget, vicious.widgets.thermal, "$1°C/", 5, {"thermal_zone0", "sys"})
 vicious.register(thermalwidget1, vicious.widgets.thermal, "$1°C", 5, {"thermal_zone1", "sys"})
+vicious.register(cpuinfo_widget, vicious.widgets.cpufreq, "|$2G/$3mv/$5", 5, "cpu0")
+vicious.register(cpuinfo_widget1, vicious.widgets.cpufreq, "|$2G/$3mv/$5", 5, "cpu1")
 -- }}}
 
 --{{{Network usage widget
@@ -440,6 +444,7 @@ for s = 1, screen.count() do
 
     mystatusbox[s].widgets = {
         thermalicon, thermalwidget,thermalwidget1,
+        cpuinfo_widget,cpuinfo_widget1,
         baticon, batwidget, batbar.widget, 
          wifiicon,wifiwidget,
         {

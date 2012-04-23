@@ -7,3 +7,6 @@
 [submodule ".config/awesome/vicious"]
 	path = .config/awesome/vicious
 	url = https://jinleileiking@github.com/jinleileiking/vicious.git
+[submodule ".config/awesome/shifty"]
+	path = .config/awesome/shifty
+	url = https://github.com/bioe007/awesome-shifty.git

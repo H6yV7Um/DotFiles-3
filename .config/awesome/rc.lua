@@ -105,7 +105,8 @@ layouts =
     --awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
+    awful.layout.suit.magnifier,
+    awful.layout.suit.floating
 }
 -- }}}
 
@@ -131,6 +132,42 @@ myawesomemenu = {
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
+--shifty.config.tags = {
+    --w1 = {
+        --layout    = awful.layout.suit.max,
+        --mwfact    = 0.60,
+        --exclusive = false,
+        --position  = 1,
+        --init      = true,
+        --screen    = 1,
+        --slave     = true,
+    --},
+    --web = {
+        --layout      = awful.layout.suit.tile.bottom,
+        --mwfact      = 0.65,
+        --exclusive   = true,
+        --max_clients = 1,
+        --position    = 4,
+        --spawn       = browser,
+    --},
+    --mail = {
+        --layout    = awful.layout.suit.tile,
+        --mwfact    = 0.55,
+        --exclusive = false,
+        --position  = 5,
+        --spawn     = mail,
+        --slave     = true
+    --},
+    --media = {
+        --layout    = awful.layout.suit.float,
+        --exclusive = false,
+        --position  = 8,
+    --},
+    --office = {
+        --layout   = awful.layout.suit.tile,
+        --position = 9,
+    --},
+--}
 
 -- reboot/shutdown as user using Consolkit and shutdown/hibernate using upower
 -- Make sure you using ck-launch-session to start awesome and you are in the power group.

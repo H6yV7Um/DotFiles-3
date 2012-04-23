@@ -62,9 +62,10 @@ Bundle 'mileszs/ack.vim'
 "Bundle 'vim-scripts/VimIM'
 Bundle 'vimim/vimim'
 
-"Bundle 'vim-scripts/AutoClose'
+Bundle 'vim-scripts/AutoClose'
 "Bundle 'Raimondi/delimitMate'
 "Bundle 'tpope/vim-endwise'
+"Bundle 'jiangmiao/auto-pairs'
 
 "Bundle 'scrooloose/syntastic'
 
@@ -440,8 +441,8 @@ let NERDTreeIgnore=['\.o$','\.a$', '\~$', 'cscope\.', 'tags$']
 let NERDTreeChDirMode = 2
 let NERDTreeWinSize = 25
 let NERDTreeShowBookmarks = 1
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-autocmd vimenter * NERDTree
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"autocmd vimenter * NERDTree
 
 
 

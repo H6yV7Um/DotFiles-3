@@ -3,6 +3,7 @@
 [keybindings]
 [profiles]
   [[default]]
+    copy_on_selection = True
     use_system_font = False
     font = Monospace 10.5
     scrollback_infinite = True

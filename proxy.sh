@@ -8,6 +8,9 @@
 #echo -e $proxy
 
 #export lllllkkkk=$proxy
+if [ $# -lt 1 ]; then
+    echo "Usage: . ./proxy.sh on|off|show"
+fi
 
 if [ $1 = on ]; then
 

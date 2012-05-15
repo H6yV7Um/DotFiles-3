@@ -64,7 +64,7 @@ autorun_items =
     "gvim",
     --"ibus-daemon -d -x",
     "fcitx",
-    "chromium",
+    "google-chrome",
     "xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
     "pcmanfm"
 }
@@ -680,6 +680,7 @@ awful.rules.rules = {
     -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { class = "Gvim" }, properties = { tag = tags[1][2] } },
     { rule = { class = "Chromium" }, properties = { tag = tags[1][3] } },
+    { rule = { class = "Google-chrome" }, properties = { tag = tags[1][3] } },
     { rule = { class = "Terminator" }, properties = { tag = tags[1][1] } },
     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
     { rule = { class = "Acroread" }, properties = { tag = tags[1][8] } },

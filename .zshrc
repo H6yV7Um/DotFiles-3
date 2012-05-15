@@ -52,3 +52,9 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/ga
 set -o vi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+alias epv='emerge -pv'
+alias eum='sudo emerge --autounmask-write'
+alias e='sudo emerge'
+#alias s='_ -E'
+alias f='_ flaggie'
+alias eqf='equery f'

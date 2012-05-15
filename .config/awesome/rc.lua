@@ -62,8 +62,10 @@ autorun_items =
     "terminator", 
     "VBoxClient-all",
     "gvim",
-    "ibus-daemon -d -x",
+    --"ibus-daemon -d -x",
+    "fcitx",
     "chromium",
+    "xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
     "pcmanfm"
 }
 
@@ -109,7 +111,7 @@ layouts =
 
 -- {{{ Tags
 tags = {
-    names  = { "term", "gvim", "Chrome", 4, 5, 6, 7, 8, "pcmanfm" },
+    names  = { "term", "gvim", "Chrome", 4, 5, 6, 7, "Reading", "FileManager" },
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 for s = 1, screen.count() do
@@ -193,7 +195,11 @@ datewidget:add_signal("mouse::enter",  function()
 end)
 ---}}}
 
-
+--{{{AC power
+local ac_text = widget({ type = "textbox" })
+--vicious.register(ac_text, vicious.contrib.ac, "$1", 11)
+vicious.register(ac_text, vicious.contrib.ac, "", 11)
+--}}}
 
 -- {{{ Battery
 local batwidget = widget({ type = "textbox" })
@@ -276,8 +282,18 @@ volbar.widget:buttons(awful.util.table.join(
    awful.button({ }, 5, function () awful.util.spawn("amixer -q set Master 10%-") end)
 )) -- Register assigned buttons
 
+
 volwidget = widget({ type = "textbox" })
-vicious.register(volwidget, vicious.widgets.volume, "$2$1%", 2, "Master")
+vicious.register(volwidget, vicious.widgets.volume, "$1%", 2, "Master")
+--vicious.register(volwidget, vicious.widgets.volume, function (widget, args)
+    --if args[1] == 0 then
+        --vol_icon.image = image(icon_path.."volume-mute.png")
+    --else
+        --vol_icon.image = image(icon_path.."volume.png")
+    --end
+    --return args[1]
+--end, 2, "Master")
+
 volwidget:buttons(volbar.widget:buttons())
 -- }}}
 
@@ -335,10 +351,62 @@ vicious.register(cpuinfo_widget, vicious.widgets.cpufreq, "|$2G/$3mv/$5", 5, "cp
 vicious.register(cpuinfo_widget1, vicious.widgets.cpufreq, "|$2G/$3mv/$5", 5, "cpu1")
 -- }}}
 
+
 --{{{Network usage widget
+function getNet()
+    local nets = {}
+    local net_found = {}
+
+    for line in io.lines("/proc/net/dev") do
+        local name = string.match(line, "^[%s]?[%s]?[%s]?[%s]?([%w]+):")
+        if name ~= nil then
+            local eth = string.match(line, "^%s+([%w]+):")
+            table.insert(nets, eth)
+        end
+    end
+
+    for index, item in ipairs(nets) do
+        if item == "eth0" then
+            net_found["eth0"] = true
+        end
+        if item == "wlan0" then
+            net_found["wlan0"] = true
+        end
+    end
+
+    if net_found ~= nil then 
+        if net_found["eth0"] == true then
+            if net_found["wlan0"] == nil then 
+                return "eth0"
+            else
+                if net_found["wlan0"] == false then
+                    return "eth0"
+                end
+            end
+        end
+
+        if net_found["wlan0"] == true then
+            return "wlan0"
+        end
+    end
+
+    return nil
+end
+
+
 netwidget = widget({ type = "textbox" })
 local neticon  = widget({ type = "imagebox" }); neticon.image = image(icon_path.."ethernet.png")
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⇩${wlan0 down_kb}</span> <span color="#7F9F7F">⇧${wlan0 up_kb}</span>', 3)
+local netfound = getNet()
+vicious.register(netwidget, vicious.widgets.net, function(widget, args) 
+    local ret
+    if args['{' .. netfound .. ' carrier' .. '}'] == 0 then
+        ret = '<span color="#CC9393">NOT CONNECTED</span>'
+    else
+        ret = '<span color="#CC9393">⇩' .. args['{' .. netfound .. ' down_kb}'] .. '</span><span color="#7F9F7F">⇧' .. args['{' .. netfound .. ' up_kb}'] .. '</span>K'
+    end
+    ret = ret .. ' |<span color="#CC9393">⇩' .. args['{' .. netfound .. ' rx_mb}'] .. '</span><span color="#7F9F7F">⇧' .. args['{' .. netfound .. ' tx_mb}'] .. '</span>M'
+    return ret
+end, 3)
 ---}}}
 
 -- {{{ Disk I/O
@@ -446,6 +514,7 @@ for s = 1, screen.count() do
         thermalicon, thermalwidget,thermalwidget1,
         cpuinfo_widget,cpuinfo_widget1,
         baticon, batwidget, batbar.widget, 
+        ac_text,
          wifiicon,wifiwidget,
         {
             memwidget_tb, mem_icon,
@@ -613,6 +682,7 @@ awful.rules.rules = {
     { rule = { class = "Chromium" }, properties = { tag = tags[1][3] } },
     { rule = { class = "Terminator" }, properties = { tag = tags[1][1] } },
     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
+    { rule = { class = "Acroread" }, properties = { tag = tags[1][8] } },
 }
 -- }}}
 

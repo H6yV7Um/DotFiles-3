@@ -1,44 +1,13 @@
-export XMODIFIERS="@im=ibus"
-export GTK_IM_MODULE="ibus"
-export QT_IM_MODULE="xim"
-
-#conky &
-#xresources
-xrdb ~/.Xresources
-#exec awesome
 #!/bin/sh
-#
-## ~/.xinitrc
-#
-#export XMODIFIERS=@im=fcitx
-#export GTK_IM_MODULE=fcitx # 或者是xim，取决于你是否编译了对应的输入法模块
-#export QT_IM_MODULE=fcitx # 或者是xim，取决于你是否编译了对应的输入法模块
-# Executed by startx (run your window manager from here)
+#export XMODIFIERS="@im=ibus"
+#export GTK_IM_MODULE="ibus"
+#export QT_IM_MODULE="xim"
 
-#proxy="http://proxysh.zte.com.cn:80"
-#proxy="http://proxynj.zte.com.cn:80"
-#proxy="http://proxy.zte.com.cn:80"
+xrdb ~/.Xresources
 
-#export http_proxy=$proxy
-#export https_proxy=$proxy
-#export ftp_proxy=$proxy
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=xim # 或者是xim，取决于你是否编译了对应的输入法模块
+export QT_IM_MODULE=xim # 或者是xim，取决于你是否编译了对应的输入法模块
 
-#if [ -d /etc/X11/xinit/xinitrc.d ]; then
-#  for f in /etc/X11/xinit/xinitrc.d/*; do
-#    [ -x "$f" ] && . "$f"
-#  done
-#  unset f
-#fi
+exec awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
 
-# exec gnome-session
-# exec startkde
-# exec startxfce4
-# exec openbox
-#ibus-daemon -d -x
-# VBoxClient-all &
-exec awesome
-#exec ck-launch-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
-#exec awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
-#eval 'dbus-launch --sh-syntax --exit-with-session'
-#exec ck-launch-session awesome
-# ...or the Window Manager of your choice

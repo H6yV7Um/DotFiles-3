@@ -1,11 +1,13 @@
-#source 'http://ruby.taobao.org'
-source 'http://www.rubygems.org'
+source 'http://ruby.taobao.org'
+#source 'http://www.rubygems.org'
+
+gem "ruby-debug19", :platforms => :mri_19
+gem "ruby-debug-ide19", :platforms => :mri_19
 
 gem "execjs"
 gem "irbtools"
-gem "ruby-debug19"
-gem "ruby-debug-ide19"
 gem "gemedit"
 gem "foreman"
 gem "pry"
 gem "pry-nav"
+gem "sdoc"

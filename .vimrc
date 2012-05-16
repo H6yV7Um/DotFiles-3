@@ -415,7 +415,6 @@ map <F4> :cs f t <C-R><C-W><CR>
 
 
 "------------------------plugins------------------------"
-" cd ~/.vim/bundle/Command-T/ruby/ ; ruby extconf.rb ; make 
 
 "ack 
 map <C-H><C-H> eb :Ack <C-R><C-W><CR>

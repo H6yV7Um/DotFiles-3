@@ -116,7 +116,7 @@ layouts =
 
 -- {{{ Tags
 tags = {
-    names  = { "term", "gvim", "Chrome", 4, 5, 6, 7, "Reading", "FileManager" },
+    names  = { "1:term", "2:gvim", "3:Chrome", 4, 5, 6, 7, "8:Reading", "9:FileManager" },
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 for s = 1, screen.count() do

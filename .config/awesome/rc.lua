@@ -69,6 +69,7 @@ autorun_items =
     "google-chrome",
     --"xrandr --output VBOX1 --right-of VBOX0",
     "xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
+    "python ~/tools/goagent/local/proxy.py",
     "pcmanfm"
 }
 

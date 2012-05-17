@@ -239,7 +239,7 @@ end)
 --{{{AC power
 local ac_text = widget({ type = "textbox" })
 --vicious.register(ac_text, vicious.contrib.ac, "$1", 11)
-vicious.register(ac_text, vicious.contrib.ac, "$1", 11, "AC")
+vicious.register(ac_text, vicious.contrib.ac, "AC:$1", 11, "AC")
 --}}}
 
 

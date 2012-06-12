@@ -16,6 +16,7 @@ require("plugins/lognotify")
 require("cal")
 require("markup")
 require("iwlist")
+require("util")
 -- }}} 
 
 --  {{{Theme
@@ -62,14 +63,15 @@ local r = require("runonce")
 autorun_items = 
 {
     "terminator", 
-    "VBoxClient-all",
+    --"VBoxClient-all",
     "gvim",
     --"ibus-daemon -d -x",
     "fcitx",
     "google-chrome",
     --"xrandr --output VBOX1 --right-of VBOX0",
     "xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
-    "python ~/tools/goagent/local/proxy.py",
+    "/usr/bin/python2.7 /mnt/share/Tools/ALL/goagent_nop/local/proxy.py",
+    "for m in vbox{drv,netadp,netflt}; do modprobe $m; done",
     "pcmanfm"
 }
 
@@ -92,7 +94,7 @@ term_cmd = terminal .. " -e "
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
-local cpu_counts = 0
+local cpu_counts = util.get_cpu_counts()
 local icon_path = awful.util.getdir("config").."/icons/"
 -- }}}
 
@@ -117,7 +119,7 @@ layouts =
 
 -- {{{ Tags
 tags = {
-    names  = { "1:term", "2:gvim", "3:Chrome", 4, 5, 6, 7, "8:Reading", "9:FileManager" },
+    names  = { "1:term", "2:gvim", "3:Chrome", 4, 5, 6, "7:Win", "8:Reading", "9:FileManager" },
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 for s = 1, screen.count() do
@@ -240,7 +242,7 @@ end)
 --{{{AC power
 local ac_text = widget({ type = "textbox" })
 --vicious.register(ac_text, vicious.contrib.ac, "$1", 11)
-vicious.register(ac_text, vicious.contrib.ac, "AC:$1", 11, "AC")
+vicious.register(ac_text, vicious.contrib.ac, "AC:$1", 11, "ADP1")
 --}}}
 
 
@@ -282,7 +284,6 @@ vicious.register(cpuwidget, vicious.widgets.cpu,
 function (widget, args)
   local text
 
-  cpu_counts = #args
   -- list all cpu cores
   for i=1,#args do
     -- alerts, if system is stressed
@@ -309,13 +310,16 @@ cpuicon:buttons( cpuwidget:buttons() )
 local thermalwidget = widget({ type = "textbox" })
 local cpuinfo_widget = widget({ type = "textbox" })
 vicious.register(thermalwidget, vicious.widgets.thermal, "$1°C", 5, {"thermal_zone0", "sys"})
-vicious.register(cpuinfo_widget, vicious.widgets.cpufreq, "|$2G/$3mv/$5", 5, "cpu0")
+--vicious.register(cpuinfo_widget, vicious.widgets.cpufreq, "|$2G/$3mv/$5", 5, "cpu0")
+vicious.register(cpuinfo_widget, vicious.widgets.cpufreq, "|$2G", 5, "cpu0")
+
+
+local thermalwidget1 = widget({ type = "textbox" })
+local cpuinfo_widget1 = widget({ type = "textbox" })
 
 if cpu_counts > 1 then
-    local thermalwidget1 = widget({ type = "textbox" })
-    local cpuinfo_widget1 = widget({ type = "textbox" })
     vicious.register(thermalwidget1, vicious.widgets.thermal, "/$1°C", 5, {"thermal_zone1", "sys"})
-    vicious.register(cpuinfo_widget1, vicious.widgets.cpufreq, "|$2G/$3mv/$5", 5, "cpu1")
+    vicious.register(cpuinfo_widget1, vicious.widgets.cpufreq, "/$2G", 5, "cpu1")
 end
 
 local thermalicon = widget({ type = "imagebox" })
@@ -362,46 +366,78 @@ volwidget:buttons(volbar.widget:buttons())
 
 
 -- {{{Wifi
-local wifiwidget = widget({ type = "textbox" })
-local wifiicon   = widget({ type = "imagebox" })
-local wifitooltip= awful.tooltip({})
-wifitooltip:add_to_object(wifiwidget)
-wifiicon.image = image(icon_path.."wifi.png")
-vicious.register(wifiwidget, vicious.widgets.wifi, function(widget, args)
-  local tooltip = ("<b>mode</b> %s <b>chan</b> %s <b>rate</b> %s Mb/s"):format(
-                  args["{mode}"], args["{chan}"], args["{rate}"])
-  local quality = 0
-  if args["{linp}"] > 0 then
-    quality = args["{link}"] / args["{linp}"] * 100
-  end
-  wifitooltip:set_text(tooltip)
-  return ("%s: %.1f%%"):format(args["{ssid}"], quality)
-end, 7, "wlan0")
-wifiicon:buttons( wifiwidget:buttons(awful.util.table.join(
-awful.button({}, 1, function()
-  local networks = iwlist.scan_networks()
-  if #networks > 0 then
-    local msg = {}
-    for i, ap in ipairs(networks) do
-      local line = "<b>ESSID:</b> %s <b>MAC:</b> %s <b>Qual.:</b> %.2f%% <b>%s</b>"
-      local enc = iwlist.get_encryption(ap)
-      msg[i] = line:format(ap.essid, ap.address, ap.quality, enc)
-    end
-    naughty.notify({title = "Wlan", text = table.concat(msg, "\n")})
-  else
-  end
-end),
-awful.button({ "Shift" }, 1, function ()
-  -- restart-auto-wireless is just a script of mine,
-  -- which just restart netcfg
-  local wpa_cmd = "sudo restart-auto-wireless && notify-send 'wpa_actiond' 'restarted' || notify-send 'wpa_actiond' 'error on restart'"
-  awful.util.spawn_with_shell(wpa_cmd)
-end), -- left click
-awful.button({ }, 3, function ()  vicious.force{wifiwidget} end) -- right click
-)))
+--local wifiwidget = widget({ type = "textbox" })
+--local wifiicon   = widget({ type = "imagebox" })
+--local wifitooltip= awful.tooltip({})
+--wifitooltip:add_to_object(wifiwidget)
+--wifiicon.image = image(icon_path.."wifi.png")
+--vicious.register(wifiwidget, vicious.widgets.wifi, function(widget, args)
+  --local tooltip = ("<b>mode</b> %s <b>chan</b> %s <b>rate</b> %s Mb/s"):format(
+                  --args["{mode}"], args["{chan}"], args["{rate}"])
+  --local quality = 0
+  --if args["{linp}"] > 0 then
+    --quality = args["{link}"] / args["{linp}"] * 100
+  --end
+  --wifitooltip:set_text(tooltip)
+  --return ("%s: %.1f%%"):format(args["{ssid}"], quality)
+--end, 7, "wlan0")
+--wifiicon:buttons( wifiwidget:buttons(awful.util.table.join(
+--awful.button({}, 1, function()
+  --local networks = iwlist.scan_networks()
+  --if #networks > 0 then
+    --local msg = {}
+    --for i, ap in ipairs(networks) do
+      --local line = "<b>ESSID:</b> %s <b>MAC:</b> %s <b>Qual.:</b> %.2f%% <b>%s</b>"
+      --local enc = iwlist.get_encryption(ap)
+      --msg[i] = line:format(ap.essid, ap.address, ap.quality, enc)
+    --end
+    --naughty.notify({title = "Wlan", text = table.concat(msg, "\n")})
+  --else
+  --end
+--end),
+--awful.button({ "Shift" }, 1, function ()
+  ---- restart-auto-wireless is just a script of mine,
+  ---- which just restart netcfg
+  --local wpa_cmd = "sudo restart-auto-wireless && notify-send 'wpa_actiond' 'restarted' || notify-send 'wpa_actiond' 'error on restart'"
+  --awful.util.spawn_with_shell(wpa_cmd)
+--end), -- left click
+--awful.button({ }, 3, function ()  vicious.force{wifiwidget} end) -- right click
+--)))
 -- }}}
 
 
+-- {{{Wifi
+local wifiwidget = widget({ type = "textbox" })
+local wifiicon   = widget({ type = "imagebox" })
+
+local wifitooltip= awful.tooltip({})
+wifitooltip:add_to_object(wifiwidget)
+
+wifiicon.image = image(icon_path.."wifi.png")
+
+vicious.register(wifiwidget, vicious.contrib.wpa, "$1($4):$2% $3", 7, "wlan0")
+-- }}}
+
+
+-- {{{dns
+local dns_widget = widget({ type = "textbox" })
+
+vicious.register(dns_widget, vicious.contrib.dns,
+function (widget, args)
+  local text = " DNS:"
+  print(args)
+  if args == 'N/A' then
+      text = text .. args
+  else
+      for i = 0, #args do
+          if args[i] then
+              text = text .. args[i] .. " " 
+          end
+      end
+  end
+  return text
+end)
+-- }}}
 
 --{{{Network usage widget
 function getNet()
@@ -471,41 +507,41 @@ vicious.register(iowidget, vicious.widgets.dio, "⇧${sda read_mb}⇩${sda write
 -- {{{taglist buttons
 mytaglist = {}
 mytaglist.buttons = awful.util.table.join(
-    awful.button({ }, 1, awful.tag.viewonly),
-    awful.button({ modkey }, 1, awful.client.movetotag),
-    awful.button({ }, 3, awful.tag.viewtoggle),
-    awful.button({ modkey }, 3, awful.client.toggletag),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+awful.button({ }, 1, awful.tag.viewonly),
+awful.button({ modkey }, 1, awful.client.movetotag),
+awful.button({ }, 3, awful.tag.viewtoggle),
+awful.button({ modkey }, 3, awful.client.toggletag),
+awful.button({ }, 4, awful.tag.viewnext),
+awful.button({ }, 5, awful.tag.viewprev)
 )
 -- }}}
 
 -- {{{tasklist buttons
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
-    awful.button({ }, 1, function (c)
-        if not c:isvisible() then
-            awful.tag.viewonly(c:tags()[1])
-        end
-        client.focus = c
-        c:raise()
-    end),
-    awful.button({ }, 3, function ()
-        if instance then
-            instance:hide()
-            instance = nil
-        else
-            instance = awful.menu.clients({ width=250 })
-        end
-    end),
-    awful.button({ }, 4, function ()
-        awful.client.focus.byidx(1)
-        if client.focus then client.focus:raise() end
-    end),
-    awful.button({ }, 5, function ()
-        awful.client.focus.byidx(-1)
-        if client.focus then client.focus:raise() end
-    end))
+awful.button({ }, 1, function (c)
+    if not c:isvisible() then
+        awful.tag.viewonly(c:tags()[1])
+    end
+    client.focus = c
+    c:raise()
+end),
+awful.button({ }, 3, function ()
+    if instance then
+        instance:hide()
+        instance = nil
+    else
+        instance = awful.menu.clients({ width=250 })
+    end
+end),
+awful.button({ }, 4, function ()
+    awful.client.focus.byidx(1)
+    if client.focus then client.focus:raise() end
+end),
+awful.button({ }, 5, function ()
+    awful.client.focus.byidx(-1)
+    if client.focus then client.focus:raise() end
+end))
 --}}}
 
 
@@ -526,10 +562,10 @@ for s = 1, screen.count() do
     -- We need one layoutbox per screen.
     mylayoutbox[s] = awful.widget.layoutbox(s)
     mylayoutbox[s]:buttons(awful.util.table.join(
-        awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
-        awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
-        awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
-        awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end))
+    awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
+    awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
+    awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
+    awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end))
     )
 
     -- Create a taglist widget
@@ -568,7 +604,8 @@ for s = 1, screen.count() do
         cpu_counts > 1 and cpuinfo_widget1,
         baticon, batwidget, batbar.widget, 
         ac_text,
-         wifiicon,wifiwidget,
+        wifiicon,wifiwidget,
+        dns_widget,
         {
             memwidget_tb, mem_icon,
             cpuwidget, cpuicon,
@@ -592,87 +629,87 @@ awful.button({ }, 5, awful.tag.viewprev)
 
 --{{{Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
-    awful.key({ modkey,           }, "j", function ()
-        awful.client.focus.byidx( 1)
-        if client.focus then client.focus:raise() end
-    end),
+awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
+awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
+awful.key({ modkey,           }, "j", function ()
+    awful.client.focus.byidx( 1)
+    if client.focus then client.focus:raise() end
+end),
 
-    awful.key({ modkey,           }, "k", function ()
-        awful.client.focus.byidx(-1)
-        if client.focus then client.focus:raise() end
-    end),
+awful.key({ modkey,           }, "k", function ()
+    awful.client.focus.byidx(-1)
+    if client.focus then client.focus:raise() end
+end),
 
-    awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
+awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
-    -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
+-- Layout manipulation
+awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
+awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
+awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
+awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
 
-    awful.key({ modkey,           }, "Tab", function ()
-        awful.client.focus.history.previous()
-        if client.focus then
-            client.focus:raise()
-        end
-    end),
+awful.key({ modkey,           }, "Tab", function ()
+    awful.client.focus.history.previous()
+    if client.focus then
+        client.focus:raise()
+    end
+end),
 
-    -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey, "Control" }, "r", awesome.restart),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+-- Standard program
+awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+awful.key({ modkey, "Control" }, "r", awesome.restart),
+awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
+awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
+awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
+awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
+awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
+awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
+awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
+awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
-    -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+-- Prompt
+awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
-    awful.key({ modkey }, "x",
-    function ()
-        awful.prompt.run({ prompt = "Run Lua code: " },
-        mypromptbox[mouse.screen].widget,
-        awful.util.eval, nil,
-        awful.util.getdir("cache") .. "/history_eval")
-    end),
+awful.key({ modkey }, "x",
+function ()
+    awful.prompt.run({ prompt = "Run Lua code: " },
+    mypromptbox[mouse.screen].widget,
+    awful.util.eval, nil,
+    awful.util.getdir("cache") .. "/history_eval")
+end),
 
-    --Custom
-    awful.key({                   }, "Print", function  () 
-        awful.util.spawn("scrot -e 'mv $f ~/ 2>/dev/null'")
-        naughty.notify{ title = "Notice", text  = "Screenshot Saved!", timeout = 7}
-    end),
-    awful.key({ modkey,           }, "z",     function () awful.util.spawn("slock") end),
-    awful.key({ modkey            }, "e",     revelation),
-    awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 10%+") end),
-    awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 10%-") end)
-    --awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
+--Custom
+awful.key({                   }, "Print", function  () 
+    awful.util.spawn("scrot -e 'mv $f ~/ 2>/dev/null'")
+    naughty.notify{ title = "Notice", text  = "Screenshot Saved!", timeout = 7}
+end),
+awful.key({ modkey,           }, "z",     function () awful.util.spawn("slock") end),
+awful.key({ modkey            }, "e",     revelation),
+awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 10%+") end),
+awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 10%-") end)
+--awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
 )
 
 clientkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
-    awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ modkey,           }, "n",      function (c) c.minimized = not c.minimized    end),
+awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
+awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
+awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
+awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
+awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
+awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
+awful.key({ modkey,           }, "n",      function (c) c.minimized = not c.minimized    end),
 
-    awful.key({ modkey,           }, "m",
-    function (c)
-        c.maximized_horizontal = not c.maximized_horizontal
-        c.maximized_vertical   = not c.maximized_vertical
-    end)
+awful.key({ modkey,           }, "m",
+function (c)
+    c.maximized_horizontal = not c.maximized_horizontal
+    c.maximized_vertical   = not c.maximized_vertical
+end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -738,6 +775,7 @@ awful.rules.rules = {
     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
     { rule = { class = "Acroread" }, properties = { tag = tags[1][8] } },
     { rule = { class = "Evince" }, properties = { tag = tags[1][8] } },
+    { rule = { class = "VirtualBox" }, properties = { tag = tags[1][7] } },
 }
 -- }}}
 
@@ -777,17 +815,17 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 print("[awesome] Send welcome message")
 
 naughty.notify{
-  title = "Awesome "..awesome.version.." started!",
-  text  = string.format("Welcome %s. Your host is %s.\nIt is %s",
-  os.getenv("USER"), awful.util.pread("hostname"):match("[^\n]*"), os.date()),
-  timeout = 7 }
--- }}}
+    title = "Awesome "..awesome.version.." started!",
+    text  = string.format("Welcome %s. Your host is %s.\nIt is %s",
+    os.getenv("USER"), awful.util.pread("hostname"):match("[^\n]*"), os.date()),
+    timeout = 7 }
+    -- }}}
 
--- disable startup-notification globally
-local oldspawn = awful.util.spawn
-awful.util.spawn = function (s)
-  oldspawn(s, false)
-end
+    -- disable startup-notification globally
+    local oldspawn = awful.util.spawn
+    awful.util.spawn = function (s)
+        oldspawn(s, false)
+    end
 
--- vim:fen:fdm=marker
+    -- vim:fen:fdm=marker
 

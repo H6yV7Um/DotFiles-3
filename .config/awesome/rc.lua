@@ -65,12 +65,13 @@ autorun_items =
     "terminator", 
     --"VBoxClient-all",
     "gvim",
+    "/opt/bin/VirtualBox",
     --"ibus-daemon -d -x",
     "fcitx",
     "google-chrome",
     --"xrandr --output VBOX1 --right-of VBOX0",
     "xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
-    "/usr/bin/python2.7 /mnt/share/Tools/ALL/goagent_nop/local/proxy.py",
+    "/usr/bin/python2.7 /mnt/share/tools/all/goagent_nop/local/proxy.py",
     "for m in vbox{drv,netadp,netflt}; do modprobe $m; done",
     "pcmanfm"
 }

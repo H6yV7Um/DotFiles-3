@@ -20,8 +20,7 @@ export ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in
 # ~/.oh-my-zsh/plugins/*) Example format: plugins=(rails git textmate ruby
 # lighthouse)
-plugins=(archlinux bundler extract gnu-utils rails3 redis-cli rvm vundle git
-rails ruby)
+plugins=(archlinux bundler extract gnu-utils rails3 redis-cli rvm vundle git rails ruby)
 #plugins=(archlinux bundler extract gnu-utils rails3 redis-cli rvm vundle
 #rails ruby)
 
@@ -39,6 +38,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$PATH
+export PATH="${PATH}:/opt/crosstools/bin"
+
 #export
 #PATH=$TOOL_PATH/android-sdk-linux_x86/tools:$TOOL_PATH/android-sdk-linux_x86/platform-tools:$PATH
 #export PATH=$TOOL_PATH/jdk1.6.0_25/bin:$PATH
@@ -61,3 +62,5 @@ alias e='sudo emerge'
 #alias s='_ -E'
 alias f='_ flaggie'
 alias eqf='equery f'
+alias gentoo32='sudo xhost local:localhost;sudo linux32 chroot /mnt/gentoo32 /bin/bash'
+alias pdfexchange='sudo xhost local:localhost;sudo linux32 chroot /mnt/gentoo32 wine /mnt/share/Program\ Files/Tracker\ Software/PDF\ Viewer/PDFXCview.exe &'

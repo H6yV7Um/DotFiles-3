@@ -272,6 +272,7 @@ set guifont=Ubuntu\ Mono\ 12
 "set linespace=2 "The fucking underscore problem
 
 set bsdir=last
+set shortmess+=A
 
 
 "let mapleader='\' 

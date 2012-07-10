@@ -41,16 +41,16 @@ CandidateWordNumber=5
 # Available Value:
 # True False
 PhraseTips=True
+# Do not commit preedit text when unfocus a window
+# Available Value:
+# True False
+DontCommitPreeditWhenUnfocus=False
 
 [Appearance]
 # Show Input Window After Trigger Input Mode
 # Available Value:
 # True False
 ShowInputWindowAfterTriggering=True
-# Show Point After Index
-# Available Value:
-# True False
-ShowPointAfterIndex=False
 # Show Input Speed
 # Available Value:
 # True False
@@ -69,38 +69,42 @@ HideInputWindowWhenOnlyPreeditString=False
 HideInputWindowWhenOnlyOneCandidate=False
 
 [Hotkey]
-# Hot key of Triggering Input Method
+# Triggering Input Method
 TriggerKey=CTRL_SPACE CTRL_SPACE
-# Enable Left Ctrl + Left Shift to Switch Between Input Method
+# Enable Switch Key to switch Between Input Method
 # Available Value:
 # True False
 IMSwitchKey=True
-# Hotkey of Switching Active and Inactive Mode
+# Switch Key to switch Between Input Method
 # Available Value:
-# R_CTRL R_SHIFT L_SHIFT L_CTRL ALT_L_SHIFT ALT_R_SHIFT Disabled
+# CTRL_SHIFT ALT_SHIFT
+IMSwitchHotkey=CTRL_SHIFT
+# Switching Active and Inactive Mode
+# Available Value:
+# R_CTRL R_SHIFT L_SHIFT L_CTRL ALT_L_SHIFT ALT_R_SHIFT CTRL Both SHIFT Both Disabled
 SwitchKey=L_CTRL
-# Double click Switch Key to Change Mode
+# Press Switch Key twice to Change Mode
 # Available Value:
 # True False
 DoubleSwitchKey=False
 # Interval of Two Key Input
 TimeInterval=250
-# Hotkey of Switching Virtual Keyboard
+# Switching Virtual Keyboard
 VKSwitchKey=CTRL_ALT_K
-# Hotkey of Switching Remind Mode
+# Switching Remind Mode
 RemindSwitchKey=
-# Hotkey of Switching Full Width Character Mode
-FullWidthSwitchKey=SHIFT_SPACE
-# Hotkey of Switch Full Width Punc Mode
+# Switching Full Width Character Mode
+FullWidthSwitchKey=
+# Switch Full Width Punc Mode
 PuncSwitchKey=ALT_SPACE
-# Hotkey of Going Prev Page
+# Prev Page
 PrevPageKey=,
-# Hotkey of Going Next Page
+# Next Page
 NextPageKey=.
-# Hotkey to Choose Second and Third Candidate Word
+# Choose Second and Third Candidate Word
 SecondThirdCandWordKey=SHIFT
-# Hotkey of Saving All Config and Input History
+# Saving All Config and Input History
 SaveAllKey=CTRL_ALT_S
-# Hotkey of Switch Embeded Preedit
+# Switch Embeded Preedit
 SwitchPreedit=CTRL_ALT_P
 

@@ -478,7 +478,7 @@ set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
-set statusline+=\(%{&enc}\,%{&fileformat}\)
+set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
 
 
 

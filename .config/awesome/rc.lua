@@ -65,14 +65,14 @@ autorun_items =
     "terminator", 
     --"VBoxClient-all",
     "gvim",
-    "/opt/bin/VirtualBox",
+    --"/opt/bin/VirtualBox",
     --"ibus-daemon -d -x",
     "fcitx",
     "google-chrome",
     --"xrandr --output VBOX1 --right-of VBOX0",
     "xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
     "/usr/bin/python2.7 /mnt/share/tools/all/goagent_nop/local/proxy.py",
-    "for m in vbox{drv,netadp,netflt}; do modprobe $m; done",
+    --"for m in vbox{drv,netadp,netflt}; do modprobe $m; done",
     "pcmanfm"
 }
 
@@ -365,46 +365,6 @@ vicious.register(volwidget, vicious.widgets.volume, "$1%", 2, "Master")
 volwidget:buttons(volbar.widget:buttons())
 -- }}}
 
-
--- {{{Wifi
---local wifiwidget = widget({ type = "textbox" })
---local wifiicon   = widget({ type = "imagebox" })
---local wifitooltip= awful.tooltip({})
---wifitooltip:add_to_object(wifiwidget)
---wifiicon.image = image(icon_path.."wifi.png")
---vicious.register(wifiwidget, vicious.widgets.wifi, function(widget, args)
-  --local tooltip = ("<b>mode</b> %s <b>chan</b> %s <b>rate</b> %s Mb/s"):format(
-                  --args["{mode}"], args["{chan}"], args["{rate}"])
-  --local quality = 0
-  --if args["{linp}"] > 0 then
-    --quality = args["{link}"] / args["{linp}"] * 100
-  --end
-  --wifitooltip:set_text(tooltip)
-  --return ("%s: %.1f%%"):format(args["{ssid}"], quality)
---end, 7, "wlan0")
---wifiicon:buttons( wifiwidget:buttons(awful.util.table.join(
---awful.button({}, 1, function()
-  --local networks = iwlist.scan_networks()
-  --if #networks > 0 then
-    --local msg = {}
-    --for i, ap in ipairs(networks) do
-      --local line = "<b>ESSID:</b> %s <b>MAC:</b> %s <b>Qual.:</b> %.2f%% <b>%s</b>"
-      --local enc = iwlist.get_encryption(ap)
-      --msg[i] = line:format(ap.essid, ap.address, ap.quality, enc)
-    --end
-    --naughty.notify({title = "Wlan", text = table.concat(msg, "\n")})
-  --else
-  --end
---end),
---awful.button({ "Shift" }, 1, function ()
-  ---- restart-auto-wireless is just a script of mine,
-  ---- which just restart netcfg
-  --local wpa_cmd = "sudo restart-auto-wireless && notify-send 'wpa_actiond' 'restarted' || notify-send 'wpa_actiond' 'error on restart'"
-  --awful.util.spawn_with_shell(wpa_cmd)
---end), -- left click
---awful.button({ }, 3, function ()  vicious.force{wifiwidget} end) -- right click
---)))
--- }}}
 
 
 -- {{{Wifi
@@ -822,11 +782,11 @@ naughty.notify{
     timeout = 7 }
     -- }}}
 
-    -- disable startup-notification globally
-    local oldspawn = awful.util.spawn
-    awful.util.spawn = function (s)
-        oldspawn(s, false)
-    end
+-- disable startup-notification globally
+local oldspawn = awful.util.spawn
+awful.util.spawn = function (s)
+    oldspawn(s, false)
+end
 
-    -- vim:fen:fdm=marker
+-- vim:fen:fdm=marker
 

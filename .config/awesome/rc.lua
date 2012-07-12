@@ -347,7 +347,7 @@ local wx_text_thermal2 = widget({ type = "textbox" })
 
 
 vicious.register(wx_text_thermal0, vicious.contrib.sensors, "$1°C", 5, "0")
-vicious.register(wx_text_thermal2, vicious.contrib.sensors, "/$1°C", 5, "0")
+vicious.register(wx_text_thermal2, vicious.contrib.sensors, "/$1°C", 5, "2")
 
 
 local thermalicon = widget({ type = "imagebox" })

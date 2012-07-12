@@ -293,6 +293,8 @@ map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
 map <Leader>h *#
 " In case I forget to start as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+map <Leader>y "+y<CR>
+map <Leader>p "+gP<CR>
 colorscheme railscasts
 
 highlight Pmenu                     guifg=white guibg=DarkGray

@@ -70,10 +70,11 @@ autorun_items =
     "fcitx",
     "google-chrome",
     --"xrandr --output VBOX1 --right-of VBOX0",
-    "xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
+    --"xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
+    "xrandr --output LVDS1 --mode 1366x768 --output VGA1 --mode auto  --left-of LVDS1",
     "/usr/bin/python2.7 /mnt/share/tools/all/goagent_nop/local/proxy.py",
     --"for m in vbox{drv,netadp,netflt}; do modprobe $m; done",
-    "pcmanfm"
+    --"pcmanfm"
 }
 
 for index, item in ipairs(autorun_items) do
@@ -307,21 +308,47 @@ cpuicon:buttons( cpuwidget:buttons() )
 
 -- }}}
 
+--- {{{CPU Freq
+local wx_text_cpu_freq = widget({ type = "textbox" })
+vicious.register(wx_text_cpu_freq, vicious.widgets.cpuinf,
+function (widget, args)
+  local text
+
+  -- list all cpu cores
+  for i=0, cpu_counts - 1 do
+    -- append to list
+    if i > 0 then text = text.."/"..args["{cpu" .. i .. " ghz}"].."G"
+    else text = "|" .. args["{cpu" .. i .. " ghz}"].."G" end
+    print(cpu_counts)
+  end
+  return text
+end)
+
+--}}}
+--
 --  {{{CPU temperature
-local thermalwidget = widget({ type = "textbox" })
-local cpuinfo_widget = widget({ type = "textbox" })
-vicious.register(thermalwidget, vicious.widgets.thermal, "$1°C", 5, {"thermal_zone0", "sys"})
+--local thermalwidget = widget({ type = "textbox" })
+--local cpuinfo_widget = widget({ type = "textbox" })
+--vicious.register(thermalwidget, vicious.widgets.thermal, "$1°C", 5, {"thermal_zone0", "sys"})
 --vicious.register(cpuinfo_widget, vicious.widgets.cpufreq, "|$2G/$3mv/$5", 5, "cpu0")
-vicious.register(cpuinfo_widget, vicious.widgets.cpufreq, "|$2G", 5, "cpu0")
+--vicious.register(cpuinfo_widget, vicious.widgets.cpufreq, "|$2G", 5, "cpu0")
 
 
-local thermalwidget1 = widget({ type = "textbox" })
-local cpuinfo_widget1 = widget({ type = "textbox" })
+--local thermalwidget1 = widget({ type = "textbox" })
+--local cpuinfo_widget1 = widget({ type = "textbox" })
 
-if cpu_counts > 1 then
-    vicious.register(thermalwidget1, vicious.widgets.thermal, "/$1°C", 5, {"thermal_zone1", "sys"})
-    vicious.register(cpuinfo_widget1, vicious.widgets.cpufreq, "/$2G", 5, "cpu1")
-end
+--if cpu_counts > 1 then
+    --vicious.register(thermalwidget1, vicious.widgets.thermal, "/$1°C", 5, {"thermal_zone1", "sys"})
+    --vicious.register(cpuinfo_widget1, vicious.widgets.cpufreq, "/$2G", 5, "cpu1")
+--end
+
+local wx_text_thermal0 = widget({ type = "textbox" })
+local wx_text_thermal2 = widget({ type = "textbox" })
+
+
+vicious.register(wx_text_thermal0, vicious.contrib.sensors, "$1°C", 5, "0")
+vicious.register(wx_text_thermal2, vicious.contrib.sensors, "/$1°C", 5, "0")
+
 
 local thermalicon = widget({ type = "imagebox" })
 thermalicon.image = image(icon_path.."temp.png")
@@ -390,11 +417,16 @@ function (widget, args)
   if args == 'N/A' then
       text = text .. args
   else
-      for i = 0, #args do
+      for i = 0, 0 do
           if args[i] then
               text = text .. args[i] .. " " 
           end
       end
+      --for i = 0, #args do
+          --if args[i] then
+              --text = text .. args[i] .. " " 
+          --end
+      --end
   end
   return text
 end)
@@ -559,10 +591,14 @@ for s = 1, screen.count() do
     mystatusbox[s] = awful.wibox({ position = "bottom", screen = s })
 
     mystatusbox[s].widgets = {
-        thermalicon, thermalwidget,
-        cpu_counts > 1 and thermalwidget1,
-        cpuinfo_widget,
-        cpu_counts > 1 and cpuinfo_widget1,
+        thermalicon,
+        --thermalwidget,
+        --cpu_counts > 1 and thermalwidget1,
+        wx_text_thermal0,
+        wx_text_thermal2,
+        wx_text_cpu_freq,
+        --cpuinfo_widget,
+        --cpu_counts > 1 and cpuinfo_widget1,
         baticon, batwidget, batbar.widget, 
         ac_text,
         wifiicon,wifiwidget,
@@ -734,6 +770,7 @@ awful.rules.rules = {
     { rule = { class = "Google-chrome" }, properties = { tag = tags[1][3] } },
     { rule = { class = "Terminator" }, properties = { tag = tags[1][1] } },
     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
+    { rule = { class = "Dolphin" }, properties = { tag = tags[1][9] } },
     { rule = { class = "Acroread" }, properties = { tag = tags[1][8] } },
     { rule = { class = "Evince" }, properties = { tag = tags[1][8] } },
     { rule = { class = "VirtualBox" }, properties = { tag = tags[1][7] } },

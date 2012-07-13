@@ -72,7 +72,7 @@ autorun_items =
     --"xrandr --output VBOX1 --right-of VBOX0",
     --"xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
     --"xrandr --output LVDS1 --mode 1366x768 --output VGA1 --mode auto  --left-of LVDS1",
-    "xrandr --output VGA1 --mode 1280x1024 --right-of LVDS1",
+    --"xrandr --output VGA1 --mode 1280x1024 --right-of LVDS1",
     "/usr/bin/python2.7 /mnt/share/tools/all/goagent_nop/local/proxy.py",
     --"for m in vbox{drv,netadp,netflt}; do modprobe $m; done",
     --"pcmanfm"

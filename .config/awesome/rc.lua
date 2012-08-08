@@ -15,7 +15,7 @@ require("plugins/revelation")
 require("plugins/lognotify")
 require("cal")
 require("markup")
-require("iwlist")
+--require("iwlist")
 require("util")
 -- }}} 
 
@@ -64,11 +64,12 @@ autorun_items =
 {
     "terminator", 
     --"VBoxClient-all",
-    "gvim",
-    --"/opt/bin/VirtualBox",
+--    "gvim",
+--    "/opt/bin/VirtualBox",
     --"ibus-daemon -d -x",
     "fcitx",
     "google-chrome",
+    "dolphin",
     --"xrandr --output VBOX1 --right-of VBOX0",
     --"xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
     --"xrandr --output LVDS1 --mode 1366x768 --output VGA1 --mode auto  --left-of LVDS1",
@@ -254,9 +255,7 @@ local batwidget = widget({ type = "textbox" })
 local baticon   = widget({ type = "imagebox"})
 baticon.image   = image(icon_path.."bat.png")
 local batbar    = awful.widget.progressbar()
--- }}}
 
--- {{{Progressbar properties
 batbar:set_width(8)
 batbar:set_height(20)
 batbar:set_vertical(true)
@@ -266,8 +265,8 @@ batbar:set_gradient_colors({ '#FF5656', '#88A175', '#AECF96'})
 awful.widget.layout.margins[batbar.widget] = { top = 2, bottom = 2, left = 1, right = 2 }
 
 vicious.cache(vicious.widgets.bat)
-vicious.register(batbar, vicious.widgets.bat, "$2",  11, "BAT0")
-vicious.register(batwidget, vicious.widgets.bat, "$1$2% $3h", 11, "BAT0")
+vicious.register(batbar, vicious.widgets.bat, "$2",  11, "BAT1")
+vicious.register(batwidget, vicious.widgets.bat, "$1$2% $3h", 11, "BAT1")
 -- }}}
 
 
@@ -774,6 +773,8 @@ awful.rules.rules = {
     { rule = { class = "Dolphin" }, properties = { tag = tags[1][9] } },
     { rule = { class = "Acroread" }, properties = { tag = tags[1][8] } },
     { rule = { class = "Evince" }, properties = { tag = tags[1][8] } },
+    { rule = { class = "Okular" }, properties = { tag = tags[1][8] } },
+    { rule = { class = "Soffice" }, properties = { tag = tags[1][8] } },
     { rule = { class = "VirtualBox" }, properties = { tag = tags[1][7] } },
 }
 -- }}}

@@ -18,8 +18,8 @@ Bundle 'gmarik/vundle'
 
 
 "ruby
-Bundle 'tpope/vim-rails'
-Bundle 'vim-ruby/vim-ruby'
+"Bundle 'tpope/vim-rails'
+"Bundle 'vim-ruby/vim-ruby'
 "Bundle 'astashov/vim-ruby-debugger'
 "ruby-debug
 "unmap <Leader>m
@@ -38,31 +38,39 @@ Bundle 'kien/ctrlp.vim'
 "Bundle 'vim-scripts/FuzzyFinder'
 
 Bundle 'scrooloose/nerdtree'
-Bundle 'VOoM'
+Bundle 'jistr/vim-nerdtree-tabs'
 
-Bundle 'scrooloose/nerdcommenter'
+"VOoM (Vim Outliner of Markers) is a plugin for Vim that emulates a two-pane text outliner.         
+"Bundle 'VOoM'
+
+"Bundle 'scrooloose/nerdcommenter'
+Bundle 'EnhCommentify.vim'
 
 "Bundle 'fholgado/minibufexpl.vim'  
-Bundle 'sjbach/lusty'
+"Bundle 'sjbach/lusty'
 
 
 Bundle 'tpope/vim-surround'
+"Bundle 'tpope/vim-repeat'
 
 Bundle 'Lokaltog/vim-easymotion'
 
-Bundle 'tpope/vim-unimpaired'
+" key mapping , xml etc encoding decodeing......
+"Bundle 'tpope/vim-unimpaired'
  
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
 "Bundle 'vim-scripts/AutoComplPop'
-Bundle 'cmdline-completion'
 Bundle 'Shougo/neocomplcache'
+
+" This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode. 
+Bundle 'cmdline-completion'
 
 Bundle 'mileszs/ack.vim'
 
 "Bundle 'vim-scripts/VimIM'
 "Bundle 'vimim/vimim'
 
-Bundle 'vim-scripts/AutoClose'
+"Bundle 'vim-scripts/AutoClose'
 "Bundle 'Raimondi/delimitMate'
 "Bundle 'tpope/vim-endwise'
 "Bundle 'jiangmiao/auto-pairs'
@@ -71,6 +79,7 @@ Bundle 'vim-scripts/AutoClose'
 
 Bundle 'YankRing.vim'
 
+" extend %
 Bundle 'matchit.zip'
 
 Bundle 'majutsushi/tagbar'
@@ -94,43 +103,57 @@ Bundle 'Railscasts-Theme-GUIand256color'
 "Bundle 'a.vim'
 
 
-Bundle 'vim-scripts/ZoomWin'
+" show only window
+"Bundle 'vim-scripts/ZoomWin'
 
+"Narrowing means focussing on a region and making the rest inaccessible. 
 Bundle 'chrisbra/NrrwRgn'
 
+"Buffergator is a plugin for listing, navigating between, and selecting buffers to edit. 
 Bundle 'jeetsukumaran/vim-buffergator'
 
-Bundle 'sjl/gundo.vim'
+"Gundo is a plugin to make browsing this ridiculously powerful undo tree less painful.
+"Bundle 'sjl/gundo.vim'
 
-Bundle 'michaeljsmith/vim-indent-object'
+"This plugin defines a new text object, based on indentation levels. This is 
+"very useful in languages such as Python, in which the syntax defines scope in 
+"terms of indentation.
+"Bundle 'michaeljsmith/vim-indent-object'
 
+"Keep Window on Buffer Delete - Improved
 Bundle 'rgarver/Kwbd.vim'
+map <Leader>bd :Kwbd<CR>
 
 "Bundle 'Gist.vim'
 
 "Bundle 'Conque-Shell'
 
-Bundle 'rson/vim-conque'
+"Bundle 'rson/vim-conque'
 
 "Bundle 'Lokaltog/vim-powerline'
 
-Bundle 'DrawIt'
+"DrawIt is a plugin which allows one to draw lines left, right, up, down, and along both slants. 
+"Bundle 'DrawIt'
 
 "Bundle 'calendar.vim'
 
-Bundle 'tpope/vim-repeat'
 
-Bundle 'xuhdev/SingleCompile'
-" Langs
-Bundle 'tpope/vim-haml'
-Bundle 'pangloss/vim-javascript'
+"This plugin is aimed at making it more convenient to compile or run a single
+"source file without leaving vim.
+"Bundle 'xuhdev/SingleCompile'
+
+
+
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Langs
+"Bundle 'tpope/vim-haml'
+"Bundle 'pangloss/vim-javascript'
 "Bundle 'jsbeautify'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'itspriddle/vim-jquery'
-Bundle 'leshill/vim-json'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'mmalecki/vim-node.js'
-Bundle 'skammer/vim-css-color'
+"Bundle 'kchmck/vim-coffee-script'
+"Bundle 'itspriddle/vim-jquery'
+"Bundle 'leshill/vim-json'
+"Bundle 'kchmck/vim-coffee-script'
+"Bundle 'mmalecki/vim-node.js'
+"Bundle 'skammer/vim-css-color'
 "vim-liquid
 
 "md, rdoc, textile
@@ -139,23 +162,28 @@ Bundle 'greyblake/vim-preview'
 "textile
 
 
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'kana/vim-textobj-user'
+"Bundle 'nelstrom/vim-textobj-rubyblock'
+"Bundle 'kana/vim-textobj-user'
 
 
 "html,xml
-Bundle 'tpope/vim-ragtag'
+"Bundle 'tpope/vim-ragtag'
 
 "C
 Bundle 'std_c.zip'
+
+"When you type '(' after a function name                 
+               "in insert mode, the function declaration                 
+               "will be displayed in the command line                   
+               "automatically.
 Bundle 'echofunc.vim'
 
 "lua
-Bundle 'lua-support'
+"Bundle 'lua-support'
 "Auto reload ctags
 "Bundle 'xolox/vim-easytags' 
 
-Bundle 'bash-support.vim'
+"Bundle 'bash-support.vim'
 
 "Bundle 'tpope/vim-speeddating'
 
@@ -225,12 +253,21 @@ set wildmenu
 "search ignore case
 set ignorecase
 
+" only one file
+set backup
+
 set showmode
+
+" Show (partial) command in the last line of the screen.
 set showcmd
+
 "When .vimrc is edited, reload it
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
-set fileencodings=ucs-bom,utf-8,chinese,big5,latin1
+"set fileencodings=ucs-bom,utf-8,cp936,euc-cn,chinese,big5,latin1
+"set fileencodings=ucs-bom,utf-8,cp936,euc-cn,chinese,latin1
+set fileencodings=ucs-bom,utf-8,euc-cn,cp936,latin1
+"set fileencodings=ucs-bom,utf-8,cp936,euc-cn,chinese
 
 syntax on
 "set number
@@ -258,7 +295,10 @@ set cwh=25
 "remove toobar
 set go-=T
 
-autocmd BufRead,BufNewFile *.conf		setfiletype c
+autocmd BufRead,BufNewFile *.conf setfiletype c
+autocmd BufRead,BufNewFile *.md  setfiletype markdown
+autocmd BufRead,BufNewFile *.c   syntax region Comment start="#if 0" end="#endif"
+"autocmd BufRead,BufNewFile *.c   syntax region Comment start=".*#if .*OS_FREERTOS" end="#endif"
 
 
 set listchars=tab:▸\ ,eol:¬
@@ -288,8 +328,9 @@ if bufwinnr(1)
   map <kMultiply> <c-w>>
 endif
 
-map <F7> eb"tye k /<C-R>t<CR>
-map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
+"map <F7> eb"tye k /<C-R>t<CR>
+"map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
+map <F12> :!ctags <CR>
 map <Leader>h *#
 " In case I forget to start as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
@@ -446,7 +487,7 @@ let NERDTreeShowBookmarks = 1
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "autocmd vimenter * NERDTree
 
-
+let g:neocomplcache_enable_auto_select = 1
 
 "Tagbar
 map <F6> :TagbarToggle<CR>
@@ -470,26 +511,8 @@ let g:indent_guides_enable_on_vim_startup = 1
 " syntastic
 let g:syntastic_echo_current_error=0
 let g:syntastic_enable_signs=0
-"
 
-"----------------------status line----------------------
-set laststatus=2
-"syntastic
-set statusline=
-set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
-set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
-
-
-
-
-hi User2 guifg=red guibg=lightblue
-
-
-"--------------------------------"
-
+let g:neocomplcache_enable_at_startup = 1
 
 " MiniBufExpl Colors
 hi MBEVisibleActive guifg=#A6DB29 guibg=fg
@@ -514,3 +537,15 @@ nmap <Leader>x <Plug>ToggleAutoCloseMappings
 "
 nmap <Leader>yr :YRShow<CR>
 
+"----------------------status line----------------------
+set laststatus=2
+"syntastic
+set statusline=
+set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
+set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
+
+
+hi User2 guifg=red guibg=lightblue

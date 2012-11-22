@@ -4,8 +4,9 @@
 [profiles]
   [[default]]
     copy_on_selection = True
-    use_system_font = False
+    scroll_on_output = False
     font = Monospace 10.5
+    use_system_font = False
     scrollback_infinite = True
 [layouts]
   [[default]]

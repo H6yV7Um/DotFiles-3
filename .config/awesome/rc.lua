@@ -68,7 +68,8 @@ autorun_items =
 --    "/opt/bin/VirtualBox",
     --"ibus-daemon -d -x",
     "fcitx",
-    "google-chrome",
+--    "google-chrome",
+--    "firefox-bin",
     "dolphin",
     --"xrandr --output VBOX1 --right-of VBOX0",
     --"xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
@@ -123,12 +124,19 @@ layouts =
 
 -- {{{ Tags
 tags = {
-    names  = { "1:term", "2:gvim", "3:Chrome", 4, 5, 6, "7:Win", "8:Reading", "9:FileManager" },
+    names  = { "1:term", "2:gvim", "3:web", "4:remote", "5:fun", 6, "7:win", "8:reading", "9:file_manager" },
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
-for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag(tags.names, s, tags.layout)
+
+tags_new = {
+    names  = { "1", "2", "3", "4", "5", 6, "7", "8", "9" },
+    layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
+}
+
+tags[1] = awful.tag(tags.names, 1, tags.layout)
+
+for s = 2, screen.count() do
+    tags[s] = awful.tag(tags_new.names, s, tags_new.layout)
 end
 -- }}}
 
@@ -370,16 +378,16 @@ volbar:set_color(beautiful.fg_widget)
 volbar:set_gradient_colors({ '#AECF96', '#88A175', '#FF5656' })
 awful.widget.layout.margins[volbar.widget] = { top = 2, bottom = 2, left = 2 }
 
-vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "Master")
+vicious.register(volbar,    vicious.widgets.volume,  "$1",  1, "Master")
 volbar.widget:buttons(awful.util.table.join(
    awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle") end),
-   awful.button({ }, 4, function () awful.util.spawn("amixer -q set Master 10%+") end),
-   awful.button({ }, 5, function () awful.util.spawn("amixer -q set Master 10%-") end)
+   awful.button({ }, 4, function () awful.util.spawn("amixer -q set Master 1%+") end),
+   awful.button({ }, 5, function () awful.util.spawn("amixer -q set Master 1%-") end)
 )) -- Register assigned buttons
 
 
 volwidget = widget({ type = "textbox" })
-vicious.register(volwidget, vicious.widgets.volume, "$1%", 2, "Master")
+vicious.register(volwidget, vicious.widgets.volume, "$2$1%", 2, "Master")
 --vicious.register(volwidget, vicious.widgets.volume, function (widget, args)
     --if args[1] == 0 then
         --vol_icon.image = image(icon_path.."volume-mute.png")
@@ -687,8 +695,8 @@ awful.key({                   }, "Print", function  ()
 end),
 awful.key({ modkey,           }, "z",     function () awful.util.spawn("slock") end),
 awful.key({ modkey            }, "e",     revelation),
-awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 10%+") end),
-awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 10%-") end)
+awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 1%+") end),
+awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 1%-") end)
 --awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
 )
 
@@ -774,7 +782,7 @@ awful.rules.rules = {
     { rule = { class = "Acroread" }, properties = { tag = tags[1][8] } },
     { rule = { class = "Evince" }, properties = { tag = tags[1][8] } },
     { rule = { class = "Okular" }, properties = { tag = tags[1][8] } },
-    { rule = { class = "Soffice" }, properties = { tag = tags[1][8] } },
+    { rule = { class = "Soffice.bin" }, properties = { tag = tags[1][8] } },
     { rule = { class = "VirtualBox" }, properties = { tag = tags[1][7] } },
 }
 -- }}}

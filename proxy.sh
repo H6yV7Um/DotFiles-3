@@ -9,7 +9,7 @@
 
 #export lllllkkkk=$proxy
 if [ $# -lt 1 ]; then
-    echo "Usage: . ./proxy.sh on|off|show xxx.xxx.com:1234"
+    echo "Usage: . ./proxy.sh on|off|show xxx.xxx.com:1234|gae"
 fi
 
 if [ $1 = on ]; then
@@ -31,12 +31,12 @@ if [ $1 = on ]; then
     export ftp_proxy=$proxy
     echo -e "Proxy environment variable set."
 
-    if [ $2 = "gae" ]; then
-        echo -e "Starting proxy...."
-        cd /mnt/sharedisk/tools/phus-goagent-f2ada31/local/
-        python proxy.py 2>/dev/null 1>/dev/null &
-        cd -
-    fi
+#    if [ $2 = "gae" ]; then
+#        echo -e "Starting proxy...."
+#        cd /mnt/sharedisk/tools/phus-goagent-f2ada31/local/
+#        python proxy.py 2>/dev/null 1>/dev/null &
+#        cd -
+#    fi
 
 elif [ $1 = off ]; then
     unset HTTP_PROXY

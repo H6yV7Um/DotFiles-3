@@ -81,8 +81,7 @@ theme.titlebar_maximized_button_focus_active  = configdir .. "/themes/default/ti
 
 -- You can use your own command to set your wallpaper
 --theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/default/background.png" }
-theme.wallpaper_cmd = { "" }
-
+theme.wallpaper_cmd = { "DISPLAY=:0.0 awsetbg -a /mnt/share/mine/pic/bk.JPG " }
 -- You can use your own layout icons like this:
 theme.layout_fairh = configdir .. "/themes/default/layouts/fairhw.png"
 theme.layout_fairv = configdir .. "/themes/default/layouts/fairvw.png"

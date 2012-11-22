@@ -38,10 +38,11 @@ Bundle 'kien/ctrlp.vim'
 "Bundle 'vim-scripts/FuzzyFinder'
 
 Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
+"Bundle 'jistr/vim-nerdtree-tabs'
 
 "VOoM (Vim Outliner of Markers) is a plugin for Vim that emulates a two-pane text outliner.         
-"Bundle 'VOoM'
+Bundle 'VOoM'
+"Bundle 'h1mesuke/unite-outline'
 
 "Bundle 'scrooloose/nerdcommenter'
 Bundle 'EnhCommentify.vim'
@@ -85,8 +86,17 @@ Bundle 'matchit.zip'
 Bundle 'majutsushi/tagbar'
 "taglist
 
-Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/snipmate-snippets'
+
+"snipmate & deps
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle "jinleileiking/snipmate-snippets"
+Bundle "garbas/vim-snipmate"
+
+"Bundle 'scrooloose/snipmate-snippets'
+
+"Bundle 'honza/snipmate-snippets'
+"Bundle 'msanders/snipmate.vim'// not maintained
 
 Bundle 'nathanaelkane/vim-indent-guides'
 
@@ -457,8 +467,25 @@ map <F3> :cs f 3 <C-R><C-W><CR>
 map <F2> :cs add cscope.out<CR>
 map <F4> :cs f t <C-R><C-W><CR>
 
+"----------------------status line----------------------
+set laststatus=2
+"syntastic
+set statusline=
+set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
+set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
+
+
+hi User2 guifg=red guibg=lightblue
 
 "------------------------plugins------------------------"
+
+" voom
+
+
+let g:voom_tree_placement = "right"
 
 "ack 
 map <C-H><C-H> eb :Ack <C-R><C-W><CR>
@@ -537,15 +564,3 @@ nmap <Leader>x <Plug>ToggleAutoCloseMappings
 "
 nmap <Leader>yr :YRShow<CR>
 
-"----------------------status line----------------------
-set laststatus=2
-"syntastic
-set statusline=
-set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
-set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
-
-
-hi User2 guifg=red guibg=lightblue

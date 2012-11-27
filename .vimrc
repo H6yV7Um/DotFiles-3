@@ -348,11 +348,12 @@ map <Leader>y "+y<CR>
 map <Leader>p "+gP<CR>
 colorscheme railscasts
 
-highlight Pmenu                     guifg=white guibg=DarkGray
-highlight PmenuSel                  guifg=white guibg=red
+"highlight Pmenu                     guifg=white guibg=DarkGray
+"highlight PmenuSel                  guifg=white guibg=red
+highlight Pmenu                     guifg=white guibg=darkblue
+highlight PmenuSel                  guifg=yellow guibg=blue
 highlight Comment                   guifg=#404040 gui=none
 hi        Search                    guibg=yellow guifg=red gui=none
-
 
 "fold
 set foldenable
@@ -375,7 +376,7 @@ hi LineNr guifg=#404040 guibg=#181818
 
 
 " Cursor line
-set cursorline
+"set cursorline
 highlight CursorLine guibg=#222222
 
 
@@ -514,7 +515,22 @@ let NERDTreeShowBookmarks = 1
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "autocmd vimenter * NERDTree
 
+
+
+" neocomplete
 let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_disable_auto_complete = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_max_list = 10
+let g:neocomplcache_manual_completion_start_length = 100
+let g:neocomplcache_auto_completion_start_length = 5
+"let g:neocomplcache_min_keyword_length = 5
+"let g:neocomplcache_min_syntax_length = 5
+" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+
+
 
 "Tagbar
 map <F6> :TagbarToggle<CR>
@@ -539,7 +555,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:syntastic_echo_current_error=0
 let g:syntastic_enable_signs=0
 
-let g:neocomplcache_enable_at_startup = 1
 
 " MiniBufExpl Colors
 hi MBEVisibleActive guifg=#A6DB29 guibg=fg
@@ -558,7 +573,7 @@ map <Leader>ft :CtrlPTag<CR>
 
 
 "Autoclose
-nmap <Leader>x <Plug>ToggleAutoCloseMappings
+"nmap <Leader>x <Plug>ToggleAutoCloseMappings
 
 "Yankring
 "

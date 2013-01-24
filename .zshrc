@@ -42,6 +42,9 @@ export PATH="${PATH}:/opt/crosstools/bin"
 export PATH="${PATH}:/home/jinleileiking/crosstools/angstrom/usr/local/angstrom/arm/bin"
 export PATH="${PATH}:/mnt/share/tools/all/you-get"
 
+export CDPATH="${CDPATH}:/mnt/win/work/project/r2k/code"
+
+
 #export
 #PATH=$TOOL_PATH/android-sdk-linux_x86/tools:$TOOL_PATH/android-sdk-linux_x86/platform-tools:$PATH
 #export PATH=$TOOL_PATH/jdk1.6.0_25/bin:$PATH
@@ -67,6 +70,5 @@ alias eqf='equery f'
 alias gentoo32='sudo xhost local:localhost;sudo linux32 chroot /mnt/gentoo32 /bin/bash'
 alias pdfexchange='sudo xhost local:localhost;sudo linux32 chroot /mnt/gentoo32 wine /mnt/share/Program\ Files/Tracker\ Software/PDF\ Viewer/PDFXCview.exe &'
 alias rmm='trash-put'
-alias rm='rm -i'
+# alias rm='rm -i'
 
-QMAKESPEC=/home/jinleileiking/work/xp/ti-sdk-am335x-evm-05.04.01.00/linux-devkit/arm-arago-linux-gnueabi/usr/share/qtopia/mkspecs/linux-g++;export QMAKESPEC; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - AB1C36D0-2B62-930A-B1CF-1B15CF69BE47 B957DC1C-F53D-CF79-1BEB-0FCFF601B65F

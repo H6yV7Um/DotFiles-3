@@ -1,4 +1,5 @@
 --recurse
 --languages=-javascript
 --langmap=ruby:+.rake.builder.rjs
+--langmap=c:+.inc
 --fields=+lS

@@ -41,7 +41,7 @@ Bundle 'scrooloose/nerdtree'
 "Bundle 'jistr/vim-nerdtree-tabs'
 
 "VOoM (Vim Outliner of Markers) is a plugin for Vim that emulates a two-pane text outliner.         
-Bundle 'VOoM'
+"Bundle 'VOoM'
 "Bundle 'h1mesuke/unite-outline'
 
 "Bundle 'scrooloose/nerdcommenter'
@@ -51,10 +51,10 @@ Bundle 'EnhCommentify.vim'
 "Bundle 'sjbach/lusty'
 
 
-Bundle 'tpope/vim-surround'
+"Bundle 'tpope/vim-surround'
 "Bundle 'tpope/vim-repeat'
 
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 
 " key mapping , xml etc encoding decodeing......
 "Bundle 'tpope/vim-unimpaired'
@@ -64,7 +64,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Shougo/neocomplcache'
 
 " This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode. 
-Bundle 'cmdline-completion'
+"Bundle 'cmdline-completion'
 
 Bundle 'mileszs/ack.vim'
 
@@ -81,17 +81,17 @@ Bundle 'mileszs/ack.vim'
 Bundle 'YankRing.vim'
 
 " extend %
-Bundle 'matchit.zip'
+"Bundle 'matchit.zip'
 
 Bundle 'majutsushi/tagbar'
 "taglist
 
 
 "snipmate & deps
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle "jinleileiking/snipmate-snippets"
-Bundle "garbas/vim-snipmate"
+"Bundle 'MarcWeber/vim-addon-mw-utils'
+"Bundle 'tomtom/tlib_vim'
+"Bundle 'jinleileiking/snipmate-snippets'
+"Bundle 'garbas/vim-snipmate'
 
 "Bundle 'scrooloose/snipmate-snippets'
 
@@ -101,10 +101,10 @@ Bundle "garbas/vim-snipmate"
 Bundle 'nathanaelkane/vim-indent-guides'
 
 "git
-Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-fugitive'
 
 "align
-Bundle 'godlygeek/tabular'
+"Bundle 'godlygeek/tabular'
 
 "Highlight what you want
 Bundle 'Mark--Karkat'
@@ -120,7 +120,7 @@ Bundle 'Railscasts-Theme-GUIand256color'
 Bundle 'chrisbra/NrrwRgn'
 
 "Buffergator is a plugin for listing, navigating between, and selecting buffers to edit. 
-Bundle 'jeetsukumaran/vim-buffergator'
+"Bundle 'jeetsukumaran/vim-buffergator'
 
 "Gundo is a plugin to make browsing this ridiculously powerful undo tree less painful.
 "Bundle 'sjl/gundo.vim'
@@ -131,8 +131,8 @@ Bundle 'jeetsukumaran/vim-buffergator'
 "Bundle 'michaeljsmith/vim-indent-object'
 
 "Keep Window on Buffer Delete - Improved
-Bundle 'rgarver/Kwbd.vim'
-map <Leader>bd :Kwbd<CR>
+"Bundle 'rgarver/Kwbd.vim'
+"map <Leader>bd :Kwbd<CR>
 
 "Bundle 'Gist.vim'
 
@@ -180,16 +180,20 @@ Bundle 'greyblake/vim-preview'
 "Bundle 'tpope/vim-ragtag'
 
 "C
-Bundle 'std_c.zip'
+"Bundle 'std_c.zip'
+"Bundle 'cg433n/better-c'
+"Bundle 'davidxia/vim-c'
+Bundle 'TagHighlight'
 
 "When you type '(' after a function name                 
                "in insert mode, the function declaration                 
                "will be displayed in the command line                   
                "automatically.
-Bundle 'echofunc.vim'
+"Bundle 'echofunc.vim'
 
 "lua
 "Bundle 'lua-support'
+
 "Auto reload ctags
 "Bundle 'xolox/vim-easytags' 
 
@@ -233,7 +237,8 @@ Bundle 'echofunc.vim'
 "camelcasemotion
 "hammer
 "mru
-"omnicppcomplete
+"Bundle 'OmniCppComplete'
+"Bundle 'ifdef-highlighting'
 "simplefold
 "vim-abolish
 "vim-colors-solarized
@@ -306,8 +311,9 @@ set cwh=25
 set go-=T
 
 autocmd BufRead,BufNewFile *.conf setfiletype c
+autocmd BufRead,BufNewFile *.inc setfiletype c
 autocmd BufRead,BufNewFile *.md  setfiletype markdown
-autocmd BufRead,BufNewFile *.c   syntax region Comment start="#if 0" end="#endif"
+"autocmd BufRead,BufNewFile *.c   syntax region Comment start="#if 0" end="#endif"
 "autocmd BufRead,BufNewFile *.c   syntax region Comment start=".*#if .*OS_FREERTOS" end="#endif"
 
 
@@ -344,14 +350,14 @@ map <F12> :!ctags <CR>
 map <Leader>h *#
 " In case I forget to start as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
-map <Leader>y "+y<CR>
-map <Leader>p "+gP<CR>
+map <Leader>y "+y
+map <Leader>p "+gP
 colorscheme railscasts
 
 "highlight Pmenu                     guifg=white guibg=DarkGray
 "highlight PmenuSel                  guifg=white guibg=red
 highlight Pmenu                     guifg=white guibg=darkblue
-highlight PmenuSel                  guifg=yellow guibg=blue
+highlight PmenuSel                  guifg=red guibg=blue
 highlight Comment                   guifg=#404040 gui=none
 hi        Search                    guibg=yellow guifg=red gui=none
 
@@ -468,6 +474,13 @@ map <F3> :cs f 3 <C-R><C-W><CR>
 map <F2> :cs add cscope.out<CR>
 map <F4> :cs f t <C-R><C-W><CR>
 
+
+"Marks
+
+map <F5> mA
+map <C-F5> `A
+map <F11> :noh<CR>
+
 "----------------------status line----------------------
 set laststatus=2
 "syntastic
@@ -480,6 +493,9 @@ set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
 
 
 hi User2 guifg=red guibg=lightblue
+
+
+set complete=.,w,b,u,t
 
 "------------------------plugins------------------------"
 
@@ -524,18 +540,20 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_max_list = 10
 let g:neocomplcache_manual_completion_start_length = 100
 let g:neocomplcache_auto_completion_start_length = 5
-"let g:neocomplcache_min_keyword_length = 5
-"let g:neocomplcache_min_syntax_length = 5
+let g:neocomplcache_min_keyword_length = 10
+let g:neocomplcache_min_syntax_length = 10
+let g:neocomplcache_disable_caching_file_path_pattern = "out*.*"
 " <TAB>: completion.
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 
 
 
 "Tagbar
 map <F6> :TagbarToggle<CR>
 let g:tagbar_sort = 0
-let g:tagbar_width = 20
+let g:tagbar_width = 40
+"let g:tagbar_foldlevel = 0
 autocmd FileType c,cpp,rb,vim nested :TagbarOpen
 
 "std_c plugin

@@ -307,7 +307,7 @@ set go-=T
 
 autocmd BufRead,BufNewFile *.conf setfiletype c
 autocmd BufRead,BufNewFile *.md  setfiletype markdown
-autocmd BufRead,BufNewFile *.c   syntax region Comment start="#if 0" end="#endif"
+"autocmd BufRead,BufNewFile *.c   syntax region Comment start="#if 0" end="#endif"
 "autocmd BufRead,BufNewFile *.c   syntax region Comment start=".*#if .*OS_FREERTOS" end="#endif"
 
 

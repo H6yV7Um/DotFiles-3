@@ -69,4 +69,6 @@ alias pdfexchange='sudo xhost local:localhost;sudo linux32 chroot /mnt/gentoo32 
 alias rmm='trash-put'
 alias rm='rm -i'
 
+export LANG="en_US.UTF-8"
+
 QMAKESPEC=/home/jinleileiking/work/xp/ti-sdk-am335x-evm-05.04.01.00/linux-devkit/arm-arago-linux-gnueabi/usr/share/qtopia/mkspecs/linux-g++;export QMAKESPEC; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - AB1C36D0-2B62-930A-B1CF-1B15CF69BE47 B957DC1C-F53D-CF79-1BEB-0FCFF601B65F

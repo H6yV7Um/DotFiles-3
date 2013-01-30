@@ -3,6 +3,8 @@
 #export GTK_IM_MODULE="ibus"
 #export QT_IM_MODULE="xim"
 
+export LANG="en_US.UTF-8"
+
 xrdb ~/.Xresources
 
 export XMODIFIERS=@im=fcitx

@@ -5,6 +5,14 @@ servers = (
     port = "6666";
     use_ssl = "no";
     ssl_verify = "no";
+  },
+  {
+    address = "chat.freenode.net";
+    chatnet = "freenode";
+    port = "6666";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
   }
 );
 

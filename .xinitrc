@@ -19,7 +19,8 @@ xrandr --output LVDS1 --primary --mode 1366x768 --output VGA1 --mode 1280x1024 -
 #bumblebeed --daemon
 #exec ck-launch-session dbus-launch --sh-syntax --exit-with-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
 #exec ck-launch-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
-exec ck-launch-session dbus-launch --sh-syntax --exit-with-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
+#exec ck-launch-session dbus-launch --sh-syntax --exit-with-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
+exec subtle
 
 #exec awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
 

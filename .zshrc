@@ -42,7 +42,7 @@ export PATH="${PATH}:/opt/crosstools/bin"
 export PATH="${PATH}:/home/jinleileiking/crosstools/angstrom/usr/local/angstrom/arm/bin"
 export PATH="${PATH}:/mnt/share/tools/all/you-get"
 
-export CDPATH="${CDPATH}:/mnt/win/work/project/r2k/code"
+export CDPATH="${CDPATH}:/mnt/share/work/project/r2k/code"
 
 
 #export

@@ -96,8 +96,8 @@ set :skip_urgent_warp, false
 #
 
 screen 1 do
-  top    [ :views, :separator, :title, :spacer, :keychain, :spacer, :tray, :clock]
-  bottom [:cpu, :memory]
+  top    [ :views, :separator, :title, :tasks, :spacer, :keychain, :spacer, :tray, :brightness, :battery, :volume, :clock2, :layout, :notify, :betternotify]
+  bottom [:cpu, :freq, :memory, :spacer,  :wifi, :nettraffic, :ipaddr, :spacer,   :uptime ]#, :sublets]
 #   :sublets ]
 end 
 
@@ -448,6 +448,43 @@ grab "S-F3" do
   puts Subtlext::VERSION
 end
 
+
+
+
+
+
+
+
+
+
+#:TODO
+#
+#
+#
+#  grab "A-Tab" do
+#    clients = Subtlext::Client.visible
+#  
+#    clients.last.instance_eval do
+#      focus
+#      raise
+#    end
+#  end
+#  
+#  grab "A-S-Tab" do 
+#  clients = Subtlext::Client.visible
+#  
+#    clients.first.instance_eval do                                                 
+#      lower                                                                        
+#    end
+#    clients.first.instance_eval do
+#      focus
+#    end                                                                            
+#  end
+#
+
+
+
+
 #
 # == Tags
 #
@@ -782,11 +819,17 @@ view "eclipse",   "eclipse"
 # http://subforge.org/projects/subtle/wiki/Sublets
 #
 
-sublet :clock do
-  interval      30
-  format_string "%H:%M %m-%d"
-end
+# sublet :clock do
+#   interval      30
+#   format_string "%H:%M %m-%d"
+# end
 
+sublet :clock2 do
+  interval      30
+  time_format "%H:%M"
+  time_color "yellow"
+  date_format "%y-%m-%d"
+end
 
 sublet :cpu do
   interval      2
@@ -802,10 +845,10 @@ end
 ##   title         "nat"
 # end
 
-# sublet :arbi_net do
-#   interval      2
-#   interfaces        ["enp0s3", "enp0s8"]
-# end
+sublet :arbi_net do
+  interval      2
+  interfaces        ["eth0", "wlan0"]
+end
 #
 # == Hooks
 #
@@ -844,7 +887,7 @@ on :start do
    Subtlext::Subtle.spawn "VBoxClient-all" 
    Subtlext::Subtle.spawn "terminator" 
    Subtlext::Subtle.spawn "gvim" 
-   Subtlext::Subtle.spawn "firefox" 
+   Subtlext::Subtle.spawn "firefox-bin" 
    Subtlext::Subtle.spawn "fcitx" 
 end
 

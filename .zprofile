@@ -9,7 +9,7 @@ export PATH
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
   #exec startx -- vt01
-  exec startx 
+#   exec startx 
   # Could use xinit instead of startx
   #exec xinit -- /usr/bin/X -nolisten tcp vt7
 fi

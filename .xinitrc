@@ -20,7 +20,23 @@ xrandr --output LVDS1 --primary --mode 1366x768 --output VGA1 --mode 1280x1024 -
 #exec ck-launch-session dbus-launch --sh-syntax --exit-with-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
 #exec ck-launch-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
 #exec ck-launch-session dbus-launch --sh-syntax --exit-with-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
+#feh /mnt/share/mine/baby.jpg --bg-max
 exec subtle
+#exec subtle &
+#PID=$!
+#sleep 2
+#   VBoxClient-all 
+#   terminator
+#   urxvt -name irssi -e irssi
+#   gvim
+#   firefox-bin
+#   fcitx
+#   deadbeef 
+#   smplayer2 
+#   pidgin
+#   wine '/home/jinleileiking/.wine/drive_c/Program\ Files/Tracker\ Software/PDF\ Viewer/PDFXCview.exe'
+#wait $PID
+
 
 #exec awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
 

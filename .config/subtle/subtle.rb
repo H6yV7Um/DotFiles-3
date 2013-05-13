@@ -96,7 +96,7 @@ set :skip_urgent_warp, false
 #
 
 screen 1 do
-  top    [ :views, :separator, :title, :tasks, :spacer, :keychain, :spacer, :tray, :brightness, :battery, :volume, :clock2, :layout, :notify, :betternotify]
+  top    [ :views, :separator, :tasks, :title, :spacer, :keychain, :spacer, :tray, :brightness, :battery, :volume, :clock2, :layout, :notify, :betternotify]
   bottom [:cpu, :freq, :memory, :spacer,  :wifi, :nettraffic, :ipaddr, :spacer,   :uptime ]#, :sublets]
 #   :sublets ]
 end 
@@ -354,6 +354,13 @@ grab "W-1", :ViewSwitch1
 grab "W-2", :ViewSwitch2
 grab "W-3", :ViewSwitch3
 grab "W-4", :ViewSwitch4
+grab "W-5", :ViewSwitch5
+grab "W-6", :ViewSwitch6
+grab "W-7", :ViewSwitch7
+grab "W-8", :ViewSwitch8
+grab "W-9", :ViewSwitch9
+grab "W-0", :ViewSwitch10
+grab "W-C-1", :ViewSwitch11
 
 # Select next and prev view */
 grab "KP_Add",      :ViewNext
@@ -362,8 +369,14 @@ grab "KP_Subtract", :ViewPrev
 # Move mouse to screen1, screen2, ...
 grab "W-A-1", :ScreenJump1
 grab "W-A-2", :ScreenJump2
-grab "W-A-3", :ScreenJump3
-grab "W-A-4", :ScreenJump4
+# grab "W-A-3", :ScreenJump3
+# grab "W-A-4", :ScreenJump4
+# grab "W-A-5", :ScreenJump5
+# grab "W-A-6", :ScreenJump6
+# grab "W-A-7", :ScreenJump7
+# grab "W-A-8", :ScreenJump8
+# grab "W-A-9", :ScreenJump9
+# grab "W-A-0", :ScreenJump10
 
 # Force reload of config and sublets
 grab "W-C-r", :SubtleReload
@@ -387,7 +400,7 @@ grab "W-f", :WindowFloat
 grab "W-space", :WindowFull
 
 # Toggle sticky mode of window (will be visible on all views)
-grab "W-s", :WindowStick
+# grab "W-s", :WindowStick
 
 # Toggle zaphod mode of window (will span across all screens)
 grab "W-equal", :WindowZaphod
@@ -408,36 +421,37 @@ grab "W-Right", :WindowRight
 grab "W-S-k", :WindowKill
 
 # Cycle between given gravities
-grab "W-KP_7", [ :top_left,     :top_left66,     :top_left33     ]
-grab "W-KP_8", [ :top,          :top66,          :top33          ]
-grab "W-KP_9", [ :top_right,    :top_right66,    :top_right33    ]
-grab "W-KP_4", [ :left,         :left66,         :left33         ]
-grab "W-KP_5", [ :center,       :center66,       :center33       ]
-grab "W-KP_6", [ :right,        :right66,        :right33        ]
-grab "W-KP_1", [ :bottom_left,  :bottom_left66,  :bottom_left33  ]
-grab "W-KP_2", [ :bottom,       :bottom66,       :bottom33       ]
-grab "W-KP_3", [ :bottom_right, :bottom_right66, :bottom_right33 ]
+# grab "W-KP_7", [ :top_left,     :top_left66,     :top_left33     ]
+# grab "W-KP_8", [ :top,          :top66,          :top33          ]
+# grab "W-KP_9", [ :top_right,    :top_right66,    :top_right33    ]
+# grab "W-KP_4", [ :left,         :left66,         :left33         ]
+# grab "W-KP_5", [ :center,       :center66,       :center33       ]
+# grab "W-KP_6", [ :right,        :right66,        :right33        ]
+# grab "W-KP_1", [ :bottom_left,  :bottom_left66,  :bottom_left33  ]
+# grab "W-KP_2", [ :bottom,       :bottom66,       :bottom33       ]
+# grab "W-KP_3", [ :bottom_right, :bottom_right66, :bottom_right33 ]
 
 # In case no numpad is available e.g. on notebooks
-#grab "W-q", [ :top_left,     :top_left66,     :top_left33     ]
-#grab "W-w", [ :top,          :top66,          :top33          ]
-#grab "W-e", [ :top_right,    :top_right66,    :top_right33    ]
-#grab "W-a", [ :left,         :left66,         :left33         ]
-#grab "W-s", [ :center,       :center66,       :center33       ]
-#grab "W-d", [ :right,        :right66,        :right33        ]
+grab "W-q", [ :top_left,     :top_left66,     :top_left33     ]
+grab "W-w", [ :top,          :top66,          :top33          ]
+grab "W-e", [ :top_right,    :top_right66,    :top_right33    ]
+grab "W-a", [ :left,         :left66,         :left33         ]
+grab "W-s", [ :center,       :center66,       :center33       ]
+grab "W-d", [ :right,        :right66,        :right33        ]
 #
 # QUERTZ
 #grab "W-y", [ :bottom_left,  :bottom_left66,  :bottom_left33  ]
 #
 # QWERTY
-#grab "W-z", [ :bottom_left,  :bottom_left66,  :bottom_left33  ]
+grab "W-z", [ :bottom_left,  :bottom_left66,  :bottom_left33  ]
 #
-#grab "W-x", [ :bottom,       :bottom66,       :bottom33       ]
-#grab "W-c", [ :bottom_right, :bottom_right66, :bottom_right33 ]
+grab "W-x", [ :bottom,       :bottom66,       :bottom33       ]
+grab "W-c", [ :bottom_right, :bottom_right66, :bottom_right33 ]
 
 # Exec programs
-grab "W-Return", "terminator"
-grab "W-r", "dmenu"
+# grab "W-Return", "terminator"
+# grab "W-Return", "terminator"
+grab "W-Return", "dmenu_run"
 
 # Run Ruby lambdas
 grab "S-F2" do |c|
@@ -648,10 +662,32 @@ end
 #
 
 # Simple tags
-tag "terms",   "xterm|[u]?rxvt|terminator"
 tag "browser", "uzbl|opera|firefox|navigator"
 # tag "irc", "irssi"
 tag "eclipse", "eclipse"
+tag "audio", "deadbeef"
+tag "video", ".*mplayer"
+tag "vm", "VirtualBox"
+
+tag "pidgin" do
+  match "pidgin"
+  gravity :left33
+end
+
+tag "irssi" do
+  match :instance => "irssi" 
+end
+
+tag "qq" do
+  match ".*IQQ.*"
+  resize true
+#   gravity :right33
+end
+
+
+tag "terms",   "terminator"
+# tag "terms",   "xterm|[u]?rxvt|terminator"
+tag "read", ".*PDFXCview.*"
 
 # Placement
 tag "editor" do
@@ -686,24 +722,24 @@ tag "float" do
 end
 
 # Gimp
-tag "gimp_image" do
-  match   :role => "gimp-image-window"
-  gravity :gimp_image
-end
+# tag "gimp_image" do
+#   match   :role => "gimp-image-window"
+#   gravity :gimp_image
+# end
 
-tag "gimp_toolbox" do
-  match   :role => "gimp-toolbox$"
-  gravity :gimp_toolbox
-end
+# tag "gimp_toolbox" do
+#   match   :role => "gimp-toolbox$"
+#   gravity :gimp_toolbox
+# end
 
-tag "gimp_dock" do
-  match   :role => "gimp-dock"
-  gravity :gimp_dock
-end
+# tag "gimp_dock" do
+#   match   :role => "gimp-dock"
+#   gravity :gimp_dock
+# end
 
-tag "gimp_scum" do
-  match role: "gimp-.*|screenshot"
-end
+# tag "gimp_scum" do
+#   match role: "gimp-.*|screenshot"
+# end
 
 #
 # == Views
@@ -766,12 +802,24 @@ end
 # http://subforge.org/projects/subtle/wiki/Tagging
 #
 
-view "term", "terms|default"
-view "www",   "browser"
+view "1:term", "terms"
+view "2:www",   "browser"
 # view "gimp",  "gimp_.*"
-view "gvim",   "editor"
+view "3:gvim",   "editor"
 # view "irc",   "irc"
-view "eclipse",   "eclipse"
+view "4:read",   "read"
+view "5:win",   "vm"
+view "6:audio",   "audio"
+view "7:video",   "video"
+view "8:eclipse",   "eclipse"
+
+view "9:im"  do
+  match "pidgin|qq"
+end
+
+view "0:default",   "default"
+
+view "i:irssi",   "irssi"
 
 #
 # == Sublets
@@ -886,9 +934,15 @@ end
 on :start do
    Subtlext::Subtle.spawn "VBoxClient-all" 
    Subtlext::Subtle.spawn "terminator" 
+   Subtlext::Subtle.spawn "urxvt -name irssi -e irssi" 
    Subtlext::Subtle.spawn "gvim" 
    Subtlext::Subtle.spawn "firefox-bin" 
    Subtlext::Subtle.spawn "fcitx" 
+   Subtlext::Subtle.spawn "deadbeef" 
+   Subtlext::Subtle.spawn "smplayer2" 
+   Subtlext::Subtle.spawn "pidgin" 
+   Subtlext::Subtle.spawn "wine /home/jinleileiking/.wine/drive_c/Program\ Files/Tracker\ Software/PDF\ Viewer/PDFXCview.exe" 
+   Subtlext::Subtle.spawn "feh /mnt/share/mine/baby.jpg --bg-max"
 end
 
 # === Link

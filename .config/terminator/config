@@ -1,6 +1,12 @@
 [global_config]
   enabled_plugins = CustomCommandsMenu, TestPlugin, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
 [keybindings]
+ new_tab = <Ctrl>T
+ toggle_zoom = <Ctrl>X
+ move_tab_next = <Ctrl>L
+ split_horiz = <Ctrl>H
+ split_vert = <Ctrl>V
+ close_term = <Ctrl>Q
 [profiles]
   [[default]]
     copy_on_selection = True

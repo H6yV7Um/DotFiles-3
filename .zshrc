@@ -71,6 +71,8 @@ alias gentoo32='sudo xhost local:localhost;sudo linux32 chroot /mnt/gentoo32 /bi
 alias pdfexchange='sudo xhost local:localhost;sudo linux32 chroot /mnt/gentoo32 wine /mnt/share/Program\ Files/Tracker\ Software/PDF\ Viewer/PDFXCview.exe &'
 alias rmm='trash-put'
 # alias rm='rm -i'
+#
+alias pdf='wine ~/.wine/drive_c/Program\ Files/Tracker\ Software/PDF\ Viewer/PDFXCview.exe &'
 
 export LANG="en_US.UTF-8"
 

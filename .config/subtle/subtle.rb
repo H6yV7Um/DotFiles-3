@@ -48,7 +48,7 @@ set :skip_pointer_warp, false
 set :skip_urgent_warp, false
 
 # Set the WM_NAME of subtle (Java quirk)
-# set :wmname, "LG3D"
+set :wmname, "LG3D"
 
 #
 # == Screen
@@ -96,8 +96,8 @@ set :skip_urgent_warp, false
 #
 
 screen 1 do
-  top    [ :views, :separator, :tasks, :title, :spacer, :keychain, :spacer, :tray, :brightness, :battery, :volume, :clock2, :layout, :notify, :betternotify]
-  bottom [:cpu, :freq, :memory, :spacer,  :wifi, :nettraffic, :ipaddr, :spacer,   :uptime ]#, :sublets]
+  top    [ :views, :separator, :tasks, :title, :spacer, :keychain, :spacer, :tray, :lk_brightness,  :volume, :lk_clock, :layout, :notify, :betternotify]
+  bottom [:lk_cpu, :lk_freq, :lk_mem, :lk_temp, :spacer,  :lk_wifi, :lk_net, :ipaddr, :spacer,  :battery, :lk_uptime ]#, :sublets]
 #   :sublets ]
 end 
 
@@ -452,6 +452,7 @@ grab "W-c", [ :bottom_right, :bottom_right66, :bottom_right33 ]
 # grab "W-Return", "terminator"
 # grab "W-Return", "terminator"
 grab "W-Return", "dmenu_run"
+# grab "W-m", "urxvt -e slock"
 
 # Run Ruby lambdas
 grab "S-F2" do |c|
@@ -681,11 +682,11 @@ end
 tag "qq" do
   match ".*IQQ.*"
   resize true
-#   gravity :right33
+  gravity :right33
 end
 
 
-tag "terms",   "terminator"
+tag "terms",   "terminator|subtle"
 # tag "terms",   "xterm|[u]?rxvt|terminator"
 tag "read", ".*PDFXCview.*"
 
@@ -872,7 +873,7 @@ view "i:irssi",   "irssi"
 #   format_string "%H:%M %m-%d"
 # end
 
-sublet :clock2 do
+sublet :lk_clock do
   interval      30
   time_format "%H:%M"
   time_color "yellow"
@@ -880,12 +881,25 @@ sublet :clock2 do
 end
 
 sublet :cpu do
+  interval      1
+end
+
+sublet :lk_freq do
   interval      2
 end
 
 sublet :memory do
-  interval      2
+  interval      3
 end
+
+
+grab "XF86AudioRaiseVolume", :VolumeRaise
+grab "XF86AudioLowerVolume", :VolumeLower
+grab "XF86AudioMute", :VolumeToggle
+grab "XF86KbdBrightnessUp", :BrightUp
+grab "XF86KbdBrightnessDown", :BrightDown
+grab "XF86MonBrightnessUp", :BrightUp
+grab "XF86MonBrightnessDown", :BrightDown
 
 # sublet :netchart do
 #   interval      2
@@ -893,10 +907,10 @@ end
 ##   title         "nat"
 # end
 
-sublet :arbi_net do
-  interval      2
-  interfaces        ["eth0", "wlan0"]
-end
+# sublet :arbi_net do
+#   interval      2
+#   interfaces        ["eth0", "wlan0"]
+# end
 #
 # == Hooks
 #
@@ -932,12 +946,13 @@ end
 #
 
 on :start do
-   Subtlext::Subtle.spawn "VBoxClient-all" 
+    Subtlext::Subtle.spawn "VBoxClient-all" 
+   Subtlext::Subtle.spawn "fcitx" 
+#     Subtlext::Subtle.spawn "xmodmap ~/.Xmodmap" 
    Subtlext::Subtle.spawn "terminator" 
    Subtlext::Subtle.spawn "urxvt -name irssi -e irssi" 
    Subtlext::Subtle.spawn "gvim" 
    Subtlext::Subtle.spawn "firefox-bin" 
-   Subtlext::Subtle.spawn "fcitx" 
    Subtlext::Subtle.spawn "deadbeef" 
    Subtlext::Subtle.spawn "smplayer2" 
    Subtlext::Subtle.spawn "pidgin" 

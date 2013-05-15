@@ -6,6 +6,7 @@
 export LANG="en_US.UTF-8"
 
 xrdb ~/.Xresources
+xmodmap ~/.Xmodmap
 
 export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx # 或者是xim，取决于你是否编译了对应的输入法模块
@@ -21,7 +22,7 @@ xrandr --output LVDS1 --primary --mode 1366x768 --output VGA1 --mode 1280x1024 -
 #exec ck-launch-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
 #exec ck-launch-session dbus-launch --sh-syntax --exit-with-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
 #feh /mnt/share/mine/baby.jpg --bg-max
-exec subtle
+exec subtle > ~/.subtle_stdout 2> ~/.subtle_stderr
 #exec subtle &
 #PID=$!
 #sleep 2

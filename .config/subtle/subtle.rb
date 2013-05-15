@@ -873,6 +873,21 @@ view "i:irssi",   "irssi"
 #   format_string "%H:%M %m-%d"
 # end
 
+require "pathname"
+wlan_interface = "wlan0"
+
+if Pathname.new("/sys/class/net/wlp3s0").exist?
+  wlan_interface = "wlp3s0"
+end
+
+sublet :lk_net do
+    iface_name  wlan_interface
+end
+
+sublet :lk_wifi do
+    device  wlan_interface
+end
+
 sublet :lk_clock do
   interval      30
   time_format "%H:%M"

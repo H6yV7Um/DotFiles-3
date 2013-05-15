@@ -895,6 +895,13 @@ sublet :lk_clock do
   date_format "%y-%m-%d"
 end
 
+
+sublet :lk_temp do
+  if Pathname.new("/sys/class/hwmon/hwmon2/device/temp2_input").exist?
+    core  [ "/sys/class/hwmon/hwmon2/device/temp2_input", "/sys/class/hwmon/hwmon2/device/temp3_input"]
+  end
+end
+
 sublet :cpu do
   interval      1
 end

@@ -527,6 +527,8 @@ let g:voom_tree_placement = "right"
  
 "ack
 map <C-H><C-H> eb :Ack <C-R><C-W><CR>
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
  
 "MBF
 let g:miniBufExplMapWindowNavVim = 1

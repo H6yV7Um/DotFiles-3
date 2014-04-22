@@ -34,8 +34,12 @@ Bundle 'gmarik/vundle'
  
  
 "Bundle 'wincent/Command-T'
-"Bundle 'kien/ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/unite.vim'
+"Bundle 'tsukkee/unite-tag'
+Bundle 'h1mesuke/unite-outline'
+
 "Bundle 'vim-scripts/FuzzyFinder'
  
 Bundle 'scrooloose/nerdtree'
@@ -61,12 +65,14 @@ Bundle 'tpope/vim-surround'
 "Bundle 'tpope/vim-unimpaired'
 "Bundle 'ervandew/supertab'
 "Bundle 'vim-scripts/AutoComplPop'
-Bundle 'Shougo/neocomplcache'
+"Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplete'
  
 " This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
 "Bundle 'cmdline-completion'
  
 Bundle 'mileszs/ack.vim'
+Bundle 'tpope/vim-dispatch'
  
 "Bundle 'vim-scripts/VimIM'
 "Bundle 'vimim/vimim'
@@ -301,6 +307,8 @@ set hlsearch
 " 通过使用: commands命令，告诉我们文件的哪一行被改变过
 set report=0
  
+
+set autoread
 set hidden
 "C
 set shiftwidth=4
@@ -315,7 +323,9 @@ set cwh=25
  
 "remove toobar
 set go-=T
- 
+
+" set the column to check weather you write a lot of codes.
+"set cc=110
  
 "au BufWinLeave *.c mkview
 "au BufWinEnter *.c silent loadview
@@ -323,7 +333,7 @@ set go-=T
 set listchars=tab:▸\ ,eol:¬
 set list
  
-"set guifont=DejaVu\ Sans\ Mono\ 10.5
+"set guifont=DejaVu\ Sans\ Mono\ 10
 set guifont=Ubuntu\ Mono\ 12
 "set guifont=DejaVu\ Sans\ Mono\ 10
  
@@ -339,7 +349,9 @@ set shortmess+=A
  
 set undofile
 set ul=500
- 
+
+map <leader>bn :bn<CR>
+
 if bufwinnr(1)
 map <kPlus> <C-W>+
 map <kMinus> <C-W>-
@@ -350,7 +362,7 @@ endif
 "map <F7> eb"tye k /<C-R>t<CR>
 "map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
 "map <F12> :!ctags <CR>
-map <F12> :!ctags <CR> :UpdateTypesFile<CR>
+map <F12> :!ctags <CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
 map <Leader>h *#
 " In case I forget to start as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
@@ -491,17 +503,27 @@ command! -nargs=+ -complete=command CmdPutInTab call TabMessage(<q-args>)
 set tags=tags;
  
 "Cscope
-map <F3> :cs f 3 <C-R><C-W><CR>
-map <F2> :cs add cscope.out<CR>
-map <F4> :cs f t <C-R><C-W><CR>
+map <leader>jc :cs f c <C-R><C-W><CR>
+"map <F4> :cs f t <C-R><C-W><CR>
+map <leader>cs :cs add cscope.out<CR>
  
  
 "Marks
  
 map <F5> mA
 map <C-F5> `A
+
+"map <F3> :Unite tag<CR>
 map <F11> :noh<CR>
- 
+map <F10> :UpdateTypesFile<CR>
+call unite#custom#source( 'buffer', ['converter_file_directory']) 
+
+"nnoremap <leader>u :<C-u>Unite tag -start-insert file_rec/async:!<CR>
+"map <leader>ff :<C-u>Unite file_rec -start-insert file_rec/async:!<CR>
+map <leader>ff :<C-u>Unite file_rec<CR>
+map <leader>ub :<C-u>Unite buffer<CR>
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
+
 "----------------------status line----------------------
 set laststatus=2
 "syntastic
@@ -547,9 +569,9 @@ let Tlist_Use_Right_Window = 1
  
 "nerdtree
 map <F8> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.o$','\.a$', '\~$', 'cscope\.', 'tags$']
+let NERDTreeIgnore=['\.o$','\.a$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$']
 let NERDTreeChDirMode = 2
-let NERDTreeWinSize = 25
+let NERDTreeWinSize = 30
 let NERDTreeShowBookmarks = 1
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "autocmd vimenter * NERDTree
@@ -609,8 +631,10 @@ let g:miniBufExplSplitBelow=0 " Put new window above
  
  
 "Leader P
-let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+"let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+let g:ctrlp_extensions = ['tag']
 map <Leader>ft :CtrlPTag<CR>
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:40,results:40'
  
  
 "Autoclose

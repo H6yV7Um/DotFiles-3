@@ -20,7 +20,8 @@ export ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in
 # ~/.oh-my-zsh/plugins/*) Example format: plugins=(rails git textmate ruby
 # lighthouse)
-plugins=(archlinux bundler extract gnu-utils rails3 redis-cli rvm vundle git rails ruby)
+#plugins=(archlinux bundler extract gnu-utils rails3 redis-cli rvm vundle git rails ruby)
+plugins=(extract gnu-utils vundle)
 #plugins=(archlinux bundler extract gnu-utils rails3 redis-cli rvm vundle
 #rails ruby)
 
@@ -40,6 +41,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$PATH
 export PATH="${PATH}:/opt/crosstools/bin"
 export PATH="${PATH}:/home/jinleileiking/crosstools/angstrom/usr/local/angstrom/arm/bin"
+export PATH="${PATH}:/home/jinleileiking/crosstools/linaro/gcc-linaro-arm-linux-gnueabihf-4.8-2014.02_linux/arm-linux-gnueabihf/bin"
 export PATH="${PATH}:/mnt/share/tools/all/you-get"
 
 export CDPATH="${CDPATH}:/mnt/share/work/project/r2k/code"

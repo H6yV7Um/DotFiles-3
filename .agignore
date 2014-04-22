@@ -1,0 +1,10 @@
+*.lst
+*.tags
+ctags
+*.s
+tags
+*.taghl
+*.map
+*.log
+*.*~
+*.i

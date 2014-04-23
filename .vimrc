@@ -4,6 +4,19 @@ filetype off " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
  
+if(has('mac'))
+    map <F> <C>
+    set guifont=Menlo:h12
+    " map ctrl to command
+elseif
+    "set guifont=DejaVu\ Sans\ Mono\ 10
+    set guifont=Ubuntu\ Mono\ 12
+    "set guifont=DejaVu\ Sans\ Mono\ 10
+     
+    "set guifont=Droid\ Sans\ Mono\ 10.5
+    "set linespace=2 "The fucking underscore problem
+endif
+
 Bundle 'gmarik/vundle'
  
 "
@@ -333,12 +346,6 @@ set go-=T
 set listchars=tab:▸\ ,eol:¬
 set list
  
-"set guifont=DejaVu\ Sans\ Mono\ 10
-set guifont=Ubuntu\ Mono\ 12
-"set guifont=DejaVu\ Sans\ Mono\ 10
- 
-"set guifont=Droid\ Sans\ Mono\ 10.5
-"set linespace=2 "The fucking underscore problem
  
 set bsdir=last
 set shortmess+=A
@@ -362,7 +369,7 @@ endif
 "map <F7> eb"tye k /<C-R>t<CR>
 "map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
 "map <F12> :!ctags <CR>
-map <F12> :!ctags <CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
+map <Leader>tg :!ctags <CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
 map <Leader>h *#
 " In case I forget to start as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
@@ -516,7 +523,7 @@ map <C-F5> `A
 "map <F3> :Unite tag<CR>
 map <F11> :noh<CR>
 map <F10> :UpdateTypesFile<CR>
-call unite#custom#source( 'buffer', ['converter_file_directory']) 
+call unite#custom#source( 'buffer', 'converters', ['converter_file_directory'])
 
 "nnoremap <leader>u :<C-u>Unite tag -start-insert file_rec/async:!<CR>
 "map <leader>ff :<C-u>Unite file_rec -start-insert file_rec/async:!<CR>

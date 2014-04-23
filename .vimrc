@@ -8,7 +8,7 @@ if(has('mac'))
     map <F> <C>
     set guifont=Menlo:h12
     " map ctrl to command
-elseif
+elif
     "set guifont=DejaVu\ Sans\ Mono\ 10
     set guifont=Ubuntu\ Mono\ 12
     "set guifont=DejaVu\ Sans\ Mono\ 10

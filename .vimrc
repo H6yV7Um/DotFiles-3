@@ -1,22 +1,9 @@
+"------------------------------Vundle---------------------------------
 set nocompatible " be iMproved
 filetype off " required!
- 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
- 
-if(has('mac'))
-    map <F> <C>
-    set guifont=Menlo:h12
-    " map ctrl to command
-elif
-    "set guifont=DejaVu\ Sans\ Mono\ 10
-    set guifont=Ubuntu\ Mono\ 12
-    "set guifont=DejaVu\ Sans\ Mono\ 10
-     
-    "set guifont=Droid\ Sans\ Mono\ 10.5
-    "set linespace=2 "The fucking underscore problem
-endif
-
+filetype plugin indent on " required!
 Bundle 'gmarik/vundle'
  
 "
@@ -26,9 +13,6 @@ Bundle 'gmarik/vundle'
 "Bundle 'FuzzyFinder'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
- 
- 
- 
  
 "ruby
 "Bundle 'tpope/vim-rails'
@@ -44,7 +28,6 @@ Bundle 'gmarik/vundle'
  
 "由于映射原因,暂不使用
 "Bundle 'janx/vim-rubytest'
- 
  
 "Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
@@ -276,8 +259,54 @@ Bundle 'TagHighlight'
  
  
  
-filetype plugin indent on " required!
  
+ 
+
+"-----------------------Tools-------------------------------------------
+"Shell
+"Cmd
+
+
+" Get :cmd output to a buffer :TabMessage
+function! TabMessage(cmd)
+redir => message
+silent execute a:cmd
+redir END
+new
+silent put=message
+set nomodified
+endfunction
+command! -nargs=+ -complete=command Cmd call TabMessage(<q-args>)
+ 
+" Execute a cmd in a shell :Shell xxxx
+function! s:ExecuteInShell(command)
+let command = join(map(split(a:command), 'expand(v:val)'))
+let winnr = bufwinnr('^' . command . '$')
+silent! execute winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+echo 'Execute ' . command . '...'
+silent! execute 'silent %!'. command
+silent! execute 'resize ' . line('$')
+silent! redraw
+silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+echo 'Shell command ' . command . ' executed.'
+endfunction
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+
+"-------------------------vim settings------------------------------------
+ 
+ 
+if(has('mac'))
+    set guifont=Menlo:h12
+    " map ctrl to fn use mac key map tool
+elif
+    set guifont=Ubuntu\ Mono\ 12
+    "set guifont=DejaVu\ Sans\ Mono\ 10
+     
+    "set guifont=Droid\ Sans\ Mono\ 10.5
+    "set linespace=2 "The fucking underscore problem
+endif
  
  
  
@@ -358,6 +387,36 @@ set shortmess+=A
 set undofile
 set ul=500
 
+
+
+"------------------------color----------------------------
+colorscheme railscasts
+"highlight Pmenu guifg=white guibg=DarkGray
+"highlight PmenuSel guifg=white guibg=red
+highlight Pmenu guifg=white guibg=darkblue
+highlight PmenuSel guifg=red guibg=blue
+highlight Comment guifg=#404040 gui=none
+hi Search guibg=yellow guifg=red gui=none
+highlight return guifg=red guibg=darkblue
+
+"------------------------filetype----------------------------
+
+autocmd BufRead,BufNewFile *.conf setfiletype c
+autocmd BufRead,BufNewFile *.inc setfiletype c
+autocmd BufRead,BufNewFile *.md setfiletype markdown
+"autocmd BufRead,BufNewFile *.c syntax region Comment start="#if 0" end="#endif"
+"autocmd BufRead,BufNewFile *.c syntax region Comment start=".*#if .*OS_FREERTOS" end="#endif"
+"autocmd BufRead,BufNewFile *.c syntax region Comment start=".*#if .*OS_FREERTOS" end="#endif"
+autocmd BufRead,BufNewFile *.c syntax keyword return return
+
+
+
+
+
+
+
+
+"----------------------------map------------------------------
 map <leader>bn :bn<CR>
 
 if bufwinnr(1)
@@ -379,25 +438,10 @@ map <Leader>p "+gP
 map <Leader>wp ve"0p
 map vp "cp
 map vy "cy
-colorscheme railscasts
  
-autocmd BufRead,BufNewFile *.conf setfiletype c
-autocmd BufRead,BufNewFile *.inc setfiletype c
-autocmd BufRead,BufNewFile *.md setfiletype markdown
-"autocmd BufRead,BufNewFile *.c syntax region Comment start="#if 0" end="#endif"
-"autocmd BufRead,BufNewFile *.c syntax region Comment start=".*#if .*OS_FREERTOS" end="#endif"
-"autocmd BufRead,BufNewFile *.c syntax region Comment start=".*#if .*OS_FREERTOS" end="#endif"
-autocmd BufRead,BufNewFile *.c syntax keyword return return
 "guibg=darkblue
  
  
-"highlight Pmenu guifg=white guibg=DarkGray
-"highlight PmenuSel guifg=white guibg=red
-highlight Pmenu guifg=white guibg=darkblue
-highlight PmenuSel guifg=red guibg=blue
-highlight Comment guifg=#404040 gui=none
-hi Search guibg=yellow guifg=red gui=none
-highlight return guifg=red guibg=darkblue
  
  
  
@@ -431,41 +475,41 @@ set showtabline=2
  
  
 function! ShortTabLine()
-let ret = ''
-for i in range(tabpagenr('$'))
-" select the color group for highlighting active tab
-if i + 1 == tabpagenr()
-let ret .= '%#errorMsg#'
-else
-let ret .= '%#TabLine#'
-endif
- 
-" find the buffername for the tablabel
-let buflist = tabpagebuflist(i+1)
-let winnr = tabpagewinnr(i+1)
-let buffername = bufname(buflist[winnr - 1])
-let filename = fnamemodify(buffername,':t')
-" check if there is no name
-if filename == ''
-let filename = 'noname'
-endif
-" only show the first 6 letters of the name and
-" .. if the filename is more than 8 letters long
-let maxlen = 15
-if strlen(filename) >= maxlen
-let ret .= '[' . filename[0:maxlen - 1] . '..]'
-else
-let ret .= '[' . filename . ']'
-endif
-endfor
-" after the last tab fill with TabLineFill and reset tab page #
-let ret .= '%#TabLineFill#%T'
-return ret
+    let ret = ''
+    for i in range(tabpagenr('$'))
+        " select the color group for highlighting active tab
+        if i + 1 == tabpagenr()
+            let ret .= '%#errorMsg#'
+        else
+            let ret .= '%#TabLine#'
+        endif
+
+        " find the buffername for the tablabel
+        let buflist = tabpagebuflist(i+1)
+        let winnr = tabpagewinnr(i+1)
+        let buffername = bufname(buflist[winnr - 1])
+        let filename = fnamemodify(buffername,':t')
+        " check if there is no name
+        if filename == ''
+            let filename = 'noname'
+        endif
+        " only show the first 6 letters of the name and
+        " .. if the filename is more than 8 letters long
+        let maxlen = 15
+        if strlen(filename) >= maxlen
+            let ret .= '[' . filename[0:maxlen - 1] . '..]'
+        else
+            let ret .= '[' . filename . ']'
+        endif
+    endfor
+    " after the last tab fill with TabLineFill and reset tab page #
+    let ret .= '%#TabLineFill#%T'
+    return ret
 endfunction
- 
+
 "set guitablabel=%!ShortTabLine()
 set guitablabel=%m%t
- 
+
 "function! InfoGuiTooltip()
 ""get window count
 "let wincount = tabpagewinnr(tabpagenr(),'$')
@@ -476,62 +520,25 @@ set guitablabel=%m%t
 "endfor
 "return bufname($).' windows: ' . wincount .' ' . bufferlist. ' '
 "endfunction
- 
+
 "set guitabtooltip=%!InfoGuiTooltip()
- 
-" Execute a cmd in a shell :Shell xxxx
-function! s:ExecuteInShell(command)
-let command = join(map(split(a:command), 'expand(v:val)'))
-let winnr = bufwinnr('^' . command . '$')
-silent! execute winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
-setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
-echo 'Execute ' . command . '...'
-silent! execute 'silent %!'. command
-silent! execute 'resize ' . line('$')
-silent! redraw
-silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
-echo 'Shell command ' . command . ' executed.'
-endfunction
-command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
- 
-" Get :cmd output to a buffer :TabMessage
-function! TabMessage(cmd)
-redir => message
-silent execute a:cmd
-redir END
-new
-silent put=message
-set nomodified
-endfunction
-command! -nargs=+ -complete=command CmdPutInTab call TabMessage(<q-args>)
- 
- 
 "ctags
 set tags=tags;
- 
+
 "Cscope
 map <leader>jc :cs f c <C-R><C-W><CR>
 "map <F4> :cs f t <C-R><C-W><CR>
 map <leader>cs :cs add cscope.out<CR>
- 
- 
+
+
+
 "Marks
- 
+
 map <F5> mA
 map <C-F5> `A
 
-"map <F3> :Unite tag<CR>
 map <F11> :noh<CR>
-map <F10> :UpdateTypesFile<CR>
-call unite#custom#source( 'buffer', 'converters', ['converter_file_directory'])
 
-"nnoremap <leader>u :<C-u>Unite tag -start-insert file_rec/async:!<CR>
-"map <leader>ff :<C-u>Unite file_rec -start-insert file_rec/async:!<CR>
-map <leader>ff :<C-u>Unite file_rec<CR>
-map <leader>b :<C-u>Unite buffer<CR>
-map <leader>r :<C-u>Unite file_mru<CR>
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
 
 "----------------------status line----------------------
 set laststatus=2
@@ -542,41 +549,41 @@ set statusline+=%#warningmsg#
 set statusline+=%*
 set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
 set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
- 
- 
-hi User2 guifg=red guibg=lightblue
- 
- 
-set complete=.,w,b,u,t
- 
-"------------------------plugins------------------------"
- 
-" voom
- 
- 
-let g:voom_tree_placement = "right"
- 
-"ack
-map <C-H><C-H> eb :Ack <C-R><C-W><CR>
 
+
+hi User2 guifg=red guibg=lightblue
+
+
+set complete=.,w,b,u,t
+
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""plugins""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"-----------------------taghighlight-----------------------------
+map <F10> :UpdateTypesFile<CR>
+
+
+
+"-------------------------unite-------------------------
+"nnoremap <leader>u :<C-u>Unite tag -start-insert file_rec/async:!<CR>
+"map <leader>ff :<C-u>Unite file_rec -start-insert file_rec/async:!<CR>
+map <leader>ff :<C-u>Unite file_rec<CR>
+map <leader>b :<C-u>Unite buffer<CR>
+map <leader>r :<C-u>Unite file_mru<CR>
+call unite#custom#source( 'buffer', 'converters', ['converter_file_directory'])
+
+"---------------------ack-----------------------
+map <C-H><C-H> eb :Ack <C-R><C-W><CR>
 let g:ackprg = 'ag --nogroup --nocolor --column'
- 
-"MBF
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplMaxHeight = 1
- 
- 
-"taglist
-let Tlist_Auto_Open=1
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1
-"map <F7> :TlistToggle<CR>
- 
-"nerdtree
+
+
+"-----------------------nerdtree---------------------
 map <F8> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.o$','\.a$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$']
 let NERDTreeChDirMode = 2
@@ -584,10 +591,9 @@ let NERDTreeWinSize = 30
 let NERDTreeShowBookmarks = 1
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "autocmd vimenter * NERDTree
- 
- 
- 
-" neocomplete
+
+
+" ----------------neocomplete--------------------
 let g:neocomplcache_enable_auto_select = 1
 let g:neocomplcache_disable_auto_complete = 0
 let g:neocomplcache_enable_at_startup = 1
@@ -600,81 +606,90 @@ let g:neocomplcache_disable_caching_file_path_pattern = "out*.*"
 " <TAB>: completion.
 "inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
- 
- 
- 
-"Tagbar
+
+
+
+"-----------------------Tagbar--------------------
 map <F6> :TagbarToggle<CR>
 let g:tagbar_sort = 0
 let g:tagbar_width = 40
 "let g:tagbar_foldlevel = 0
 autocmd FileType c,cpp,rb,vim nested :TagbarOpen
 
-
-
-
-
 " add a definition for Objective-C to tagbar
 let g:tagbar_type_objc = {
-    \ 'ctagstype' : 'ObjectiveC',
-    \ 'kinds'     : [
-        \ 'i:interface',
-        \ 'I:implementation',
-        \ 'p:Protocol',
-        \ 'm:Object_method',
-        \ 'c:Class_method',
-        \ 'v:Global_variable',
-        \ 'F:Object field',
-        \ 'f:function',
-        \ 'p:property',
-        \ 't:type_alias',
-        \ 's:type_structure',
-        \ 'e:enumeration',
-        \ 'M:preprocessor_macro',
-    \ ],
-    \ 'sro'        : ' ',
-    \ 'kind2scope' : {
-        \ 'i' : 'interface',
-        \ 'I' : 'implementation',
-        \ 'p' : 'Protocol',
-        \ 's' : 'type_structure',
-        \ 'e' : 'enumeration'
-    \ },
-    \ 'scope2kind' : {
-        \ 'interface'      : 'i',
-        \ 'implementation' : 'I',
-        \ 'Protocol'       : 'p',
-        \ 'type_structure' : 's',
-        \ 'enumeration'    : 'e'
-    \ }
-\ }
+            \ 'ctagstype' : 'ObjectiveC',
+            \ 'kinds'     : [
+            \ 'i:interface',
+            \ 'I:implementation',
+            \ 'p:Protocol',
+            \ 'm:Object_method',
+            \ 'c:Class_method',
+            \ 'v:Global_variable',
+            \ 'F:Object field',
+            \ 'f:function',
+            \ 'p:property',
+            \ 't:type_alias',
+            \ 's:type_structure',
+            \ 'e:enumeration',
+            \ 'M:preprocessor_macro',
+            \ ],
+            \ 'sro'        : ' ',
+            \ 'kind2scope' : {
+            \ 'i' : 'interface',
+            \ 'I' : 'implementation',
+            \ 'p' : 'Protocol',
+            \ 's' : 'type_structure',
+            \ 'e' : 'enumeration'
+            \ },
+            \ 'scope2kind' : {
+            \ 'interface'      : 'i',
+            \ 'implementation' : 'I',
+            \ 'Protocol'       : 'p',
+            \ 'type_structure' : 's',
+            \ 'enumeration'    : 'e'
+            \ }
+            \ }
 
-
-
-
-
-
-
-
-
-"std_c plugin
-let c_C99=1
- 
-"syntastic
-let g:syntastic_c_check_header = 1
- 
-" Indent guides
+"-----------------------Indent guides--------------
 let g:indent_guides_auto_colors = 1
 let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
- 
- 
-" syntastic
-let g:syntastic_echo_current_error=0
-let g:syntastic_enable_signs=0
- 
- 
+
+"------------------------ctrlp-------------------------
+"let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+let g:ctrlp_extensions = ['tag']
+map <Leader>ft :CtrlPTag<CR>
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
+
+"------------------------Yankring-----------------------
+let g:yankring_paste_using_g = 0
+nmap <Leader>yr :YRShow<CR>
+
+
+
+
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""no use""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+"----------------------Autoclose---------------------
+"nmap <Leader>x <Plug>ToggleAutoCloseMappings
+
+"-------------------MBF-------------------------
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+let g:miniBufExplMaxHeight = 1
 " MiniBufExpl Colors
 hi MBEVisibleActive guifg=#A6DB29 guibg=fg
 hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
@@ -684,19 +699,26 @@ hi MBEChanged guifg=#CD5907 guibg=fg
 hi MBENormal guifg=#808080 guibg=fg
 let g:miniBufExplorerMoreThanOne=0
 let g:miniBufExplSplitBelow=0 " Put new window above
- 
- 
-"Leader P
-"let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
-let g:ctrlp_extensions = ['tag']
-map <Leader>ft :CtrlPTag<CR>
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:40,results:40'
- 
- 
-"Autoclose
-"nmap <Leader>x <Plug>ToggleAutoCloseMappings
- 
-"Yankring
-"
-let g:yankring_paste_using_g = 0
-nmap <Leader>yr :YRShow<CR>
+
+
+"----------------------taglist-----------------------
+let Tlist_Auto_Open=1
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Use_Right_Window = 1
+"map <F7> :TlistToggle<CR>
+
+
+
+"--------------------syntastic-----------------
+let g:syntastic_c_check_header = 1
+let g:syntastic_echo_current_error=0
+let g:syntastic_enable_signs=0
+
+
+
+"------------------------------std_c---------------
+let c_C99=1
+
+"--------------------voom-----------------------
+let g:voom_tree_placement = "right"

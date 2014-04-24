@@ -300,7 +300,7 @@ command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 if(has('mac'))
     set guifont=Menlo:h12
     " map ctrl to fn use mac key map tool
-elif
+else
     set guifont=Ubuntu\ Mono\ 12
     "set guifont=DejaVu\ Sans\ Mono\ 10
      

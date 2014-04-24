@@ -37,6 +37,7 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/neomru.vim'
 "Bundle 'tsukkee/unite-tag'
 Bundle 'h1mesuke/unite-outline'
 
@@ -521,7 +522,8 @@ call unite#custom#source( 'buffer', ['converter_file_directory'])
 "nnoremap <leader>u :<C-u>Unite tag -start-insert file_rec/async:!<CR>
 "map <leader>ff :<C-u>Unite file_rec -start-insert file_rec/async:!<CR>
 map <leader>ff :<C-u>Unite file_rec<CR>
-map <leader>ub :<C-u>Unite buffer<CR>
+map <leader>b :<C-u>Unite buffer<CR>
+map <leader>r :<C-u>Unite file_mru<CR>
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
 
 "----------------------status line----------------------

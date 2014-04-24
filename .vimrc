@@ -4,6 +4,19 @@ filetype off " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
  
+if(has('mac'))
+    map <F> <C>
+    set guifont=Menlo:h12
+    " map ctrl to command
+elif
+    "set guifont=DejaVu\ Sans\ Mono\ 10
+    set guifont=Ubuntu\ Mono\ 12
+    "set guifont=DejaVu\ Sans\ Mono\ 10
+     
+    "set guifont=Droid\ Sans\ Mono\ 10.5
+    "set linespace=2 "The fucking underscore problem
+endif
+
 Bundle 'gmarik/vundle'
  
 "
@@ -334,12 +347,6 @@ set go-=T
 set listchars=tab:▸\ ,eol:¬
 set list
  
-"set guifont=DejaVu\ Sans\ Mono\ 10
-set guifont=Ubuntu\ Mono\ 12
-"set guifont=DejaVu\ Sans\ Mono\ 10
- 
-"set guifont=Droid\ Sans\ Mono\ 10.5
-"set linespace=2 "The fucking underscore problem
  
 set bsdir=last
 set shortmess+=A
@@ -363,7 +370,7 @@ endif
 "map <F7> eb"tye k /<C-R>t<CR>
 "map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
 "map <F12> :!ctags <CR>
-map <F12> :!ctags <CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
+map <Leader>tg :!ctags <CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
 map <Leader>h *#
 " In case I forget to start as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
@@ -517,7 +524,7 @@ map <C-F5> `A
 "map <F3> :Unite tag<CR>
 map <F11> :noh<CR>
 map <F10> :UpdateTypesFile<CR>
-call unite#custom#source( 'buffer', ['converter_file_directory']) 
+call unite#custom#source( 'buffer', 'converters', ['converter_file_directory'])
 
 "nnoremap <leader>u :<C-u>Unite tag -start-insert file_rec/async:!<CR>
 "map <leader>ff :<C-u>Unite file_rec -start-insert file_rec/async:!<CR>
@@ -602,7 +609,54 @@ let g:tagbar_sort = 0
 let g:tagbar_width = 40
 "let g:tagbar_foldlevel = 0
 autocmd FileType c,cpp,rb,vim nested :TagbarOpen
- 
+
+
+
+
+
+" add a definition for Objective-C to tagbar
+let g:tagbar_type_objc = {
+    \ 'ctagstype' : 'ObjectiveC',
+    \ 'kinds'     : [
+        \ 'i:interface',
+        \ 'I:implementation',
+        \ 'p:Protocol',
+        \ 'm:Object_method',
+        \ 'c:Class_method',
+        \ 'v:Global_variable',
+        \ 'F:Object field',
+        \ 'f:function',
+        \ 'p:property',
+        \ 't:type_alias',
+        \ 's:type_structure',
+        \ 'e:enumeration',
+        \ 'M:preprocessor_macro',
+    \ ],
+    \ 'sro'        : ' ',
+    \ 'kind2scope' : {
+        \ 'i' : 'interface',
+        \ 'I' : 'implementation',
+        \ 'p' : 'Protocol',
+        \ 's' : 'type_structure',
+        \ 'e' : 'enumeration'
+    \ },
+    \ 'scope2kind' : {
+        \ 'interface'      : 'i',
+        \ 'implementation' : 'I',
+        \ 'Protocol'       : 'p',
+        \ 'type_structure' : 's',
+        \ 'enumeration'    : 'e'
+    \ }
+\ }
+
+
+
+
+
+
+
+
+
 "std_c plugin
 let c_C99=1
  

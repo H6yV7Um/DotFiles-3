@@ -573,9 +573,14 @@ map <F10> :UpdateTypesFile<CR>
 "-------------------------unite-------------------------
 "nnoremap <leader>u :<C-u>Unite tag -start-insert file_rec/async:!<CR>
 "map <leader>ff :<C-u>Unite file_rec -start-insert file_rec/async:!<CR>
-map <leader>ff :<C-u>Unite file_rec<CR>
+"map <leader>ff :<C-u>Unite file_rec<CR>
+"map <leader>ff :<C-u>Unite file_rec/async<CR>
 map <leader>b :<C-u>Unite buffer<CR>
 map <leader>r :<C-u>Unite file_mru<CR>
+
+
+let g:unite_source_rec_max_cache_files = 100000
+
 call unite#custom#source( 'buffer', 'converters', ['converter_file_directory'])
 
 "---------------------ack-----------------------
@@ -661,7 +666,9 @@ let g:indent_guides_enable_on_vim_startup = 1
 "let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
 let g:ctrlp_extensions = ['tag']
 map <Leader>ft :CtrlPTag<CR>
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:40,results:40'
+let g:ctrlp_working_path_mode = 'r'
+map <leader>ff :CtrlP<CR>
 
 "------------------------Yankring-----------------------
 let g:yankring_paste_using_g = 0

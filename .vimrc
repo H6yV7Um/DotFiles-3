@@ -106,7 +106,7 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'Yggdroot/indentLine.git'
  
-Bundle 'ShowMarks'
+"Bundle 'ShowMarks'
  
 "git
 "Bundle 'tpope/vim-fugitive'
@@ -176,8 +176,11 @@ Bundle 'chrisbra/NrrwRgn'
 "vim-liquid
  
 "md, rdoc, textile
-Bundle 'greyblake/vim-preview'
+"Bundle 'greyblake/vim-preview'
 "vim-markdown
+Bundle 'godlygeek/tabular'
+Bundle 'plasticboy/vim-markdown'
+
 "textile
  
  
@@ -302,7 +305,7 @@ if(has('mac'))
     " map ctrl to fn use mac key map tool
 else
     set guifont=Ubuntu\ Mono\ 12
-    "set guifont=DejaVu\ Sans\ Mono\ 10
+"    set guifont=DejaVu\ Sans\ Mono\ 10.5
      
     "set guifont=Droid\ Sans\ Mono\ 10.5
     "set linespace=2 "The fucking underscore problem

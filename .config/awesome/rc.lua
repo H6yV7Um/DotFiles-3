@@ -12,11 +12,11 @@ require("beautiful")
 -- Notification library
 require("naughty")
 require("plugins/revelation")
-require("plugins/lognotify")
+--require("plugins/lognotify")
 require("cal")
 require("markup")
 --require("iwlist")
-require("util")
+--require("util")
 -- }}} 
 
 --  {{{Theme
@@ -64,18 +64,19 @@ autorun_items =
 {
     "terminator", 
     --"VBoxClient-all",
---    "gvim",
+    "gvim",
 --    "/opt/bin/VirtualBox",
     --"ibus-daemon -d -x",
     "fcitx",
---    "google-chrome",
---    "firefox-bin",
-    "dolphin",
+--    "google-chrome-stable",
+    "firefox-bin",
+--    "dolphin",
+--      "xrandr --output VGA1 --primary  --output HDMI1  --right-of VGA1",
     --"xrandr --output VBOX1 --right-of VBOX0",
     --"xrandr --output LVDS1 --auto --output VGA1 --mode 1680x1050  --left-of LVDS1",
     --"xrandr --output LVDS1 --mode 1366x768 --output VGA1 --mode auto  --left-of LVDS1",
     --"xrandr --output VGA1 --mode 1280x1024 --right-of LVDS1",
-    "/usr/bin/python2.7 /mnt/share/tools/all/goagent_nop/local/proxy.py",
+--    "/usr/bin/python2.7 /mnt/share/tools/all/goagent_nop/local/proxy.py",
     --"for m in vbox{drv,netadp,netflt}; do modprobe $m; done",
     --"pcmanfm"
 }
@@ -99,7 +100,8 @@ term_cmd = terminal .. " -e "
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
-local cpu_counts = util.get_cpu_counts()
+--local cpu_counts = util.get_cpu_counts()
+local cpu_counts = 4
 local icon_path = awful.util.getdir("config").."/icons/"
 -- }}}
 
@@ -220,17 +222,17 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- }}}
 
 -- {{{ Naughty log notify
-print("[awesome] Enable naughty log notify")
-ilog = lognotify{
-   logs = {
-      emerge_fetch = { file = "/var/log/emerge_fetch.log", },
-      emerge = { file = "/var/log/emerge.log", },
-      elog = { file = "/var/log/portage/elog/summary.log", },
-   },
-   interval = 1,
-   naughty_timeout = 15
-}
-ilog:start()
+--print("[awesome] Enable naughty log notify")
+--ilog = lognotify{
+--   logs = {
+--      emerge_fetch = { file = "/var/log/emerge_fetch.log", },
+--      emerge = { file = "/var/log/emerge.log", },
+--      elog = { file = "/var/log/portage/elog/summary.log", },
+--   },
+--   interval = 1,
+--   naughty_timeout = 15
+--}
+--ilog:start()
 -- }}}
 
 
@@ -350,44 +352,44 @@ end)
     --vicious.register(cpuinfo_widget1, vicious.widgets.cpufreq, "/$2G", 5, "cpu1")
 --end
 
-local wx_text_thermal0 = widget({ type = "textbox" })
-local wx_text_thermal2 = widget({ type = "textbox" })
+--local wx_text_thermal0 = widget({ type = "textbox" })
+--local wx_text_thermal2 = widget({ type = "textbox" })
 
 
-vicious.register(wx_text_thermal0, vicious.contrib.sensors, "$1°C", 5, "0")
-vicious.register(wx_text_thermal2, vicious.contrib.sensors, "/$1°C", 5, "2")
+--vicious.register(wx_text_thermal0, vicious.contrib.sensors, "$1°C", 5, "0")
+--vicious.register(wx_text_thermal2, vicious.contrib.sensors, "/$1°C", 5, "2")
 
 
-local thermalicon = widget({ type = "imagebox" })
-thermalicon.image = image(icon_path.."temp.png")
+--local thermalicon = widget({ type = "imagebox" })
+--thermalicon.image = image(icon_path.."temp.png")
 -- }}}
 
 -- {{{ Volume level
-local vol_icon = widget({ type = "imagebox" }); vol_icon.image = image(icon_path.."volume.png")
+--local vol_icon = widget({ type = "imagebox" }); vol_icon.image = image(icon_path.."volume.png")
 
-vicious.cache(vicious.widgets.volume)
+--vicious.cache(vicious.widgets.volume)
 
 
-volbar = awful.widget.progressbar()
-volbar:set_width(8)
-volbar:set_height(20)
-volbar:set_vertical(true)
-volbar:set_background_color(beautiful.fg_off_widget)
-volbar:set_color(beautiful.fg_widget)
+--volbar = awful.widget.progressbar()
+--volbar:set_width(8)
+--volbar:set_height(20)
+--volbar:set_vertical(true)
+--volbar:set_background_color(beautiful.fg_off_widget)
+--volbar:set_color(beautiful.fg_widget)
 -- Bar from green to red
-volbar:set_gradient_colors({ '#AECF96', '#88A175', '#FF5656' })
-awful.widget.layout.margins[volbar.widget] = { top = 2, bottom = 2, left = 2 }
+--volbar:set_gradient_colors({ '#AECF96', '#88A175', '#FF5656' })
+--awful.widget.layout.margins[volbar.widget] = { top = 2, bottom = 2, left = 2 }
 
-vicious.register(volbar,    vicious.widgets.volume,  "$1",  1, "Master")
-volbar.widget:buttons(awful.util.table.join(
-   awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle") end),
-   awful.button({ }, 4, function () awful.util.spawn("amixer -q set Master 1%+") end),
-   awful.button({ }, 5, function () awful.util.spawn("amixer -q set Master 1%-") end)
-)) -- Register assigned buttons
+--vicious.register(volbar,    vicious.widgets.volume,  "$1",  1, "Master")
+--volbar.widget:buttons(awful.util.table.join(
+--   awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle") end),
+--   awful.button({ }, 4, function () awful.util.spawn("amixer -q set Master 1%+") end),
+--   awful.button({ }, 5, function () awful.util.spawn("amixer -q set Master 1%-") end)
+--)) -- Register assigned buttons
 
 
-volwidget = widget({ type = "textbox" })
-vicious.register(volwidget, vicious.widgets.volume, "$2$1%", 2, "Master")
+--volwidget = widget({ type = "textbox" })
+--vicious.register(volwidget, vicious.widgets.volume, "$2$1%", 2, "Master")
 --vicious.register(volwidget, vicious.widgets.volume, function (widget, args)
     --if args[1] == 0 then
         --vol_icon.image = image(icon_path.."volume-mute.png")
@@ -397,21 +399,21 @@ vicious.register(volwidget, vicious.widgets.volume, "$2$1%", 2, "Master")
     --return args[1]
 --end, 2, "Master")
 
-volwidget:buttons(volbar.widget:buttons())
+--volwidget:buttons(volbar.widget:buttons())
 -- }}}
 
 
 
 -- {{{Wifi
-local wifiwidget = widget({ type = "textbox" })
-local wifiicon   = widget({ type = "imagebox" })
+--local wifiwidget = widget({ type = "textbox" })
+--local wifiicon   = widget({ type = "imagebox" })
 
-local wifitooltip= awful.tooltip({})
-wifitooltip:add_to_object(wifiwidget)
+--local wifitooltip= awful.tooltip({})
+--wifitooltip:add_to_object(wifiwidget)
 
-wifiicon.image = image(icon_path.."wifi.png")
+--wifiicon.image = image(icon_path.."wifi.png")
 
-vicious.register(wifiwidget, vicious.contrib.wpa, "$1($4):$2% $3", 7, "wlan0")
+--vicious.register(wifiwidget, vicious.contrib.wpa, "$1($4):$2% $3", 7, "wlan0")
 -- }}}
 
 
@@ -454,8 +456,8 @@ function getNet()
     end
 
     for index, item in ipairs(nets) do
-        if item == "eth0" then
-            net_found["eth0"] = true
+        if item == "eno1" then
+            net_found["eno1"] = true
         end
         if item == "wlan0" then
             net_found["wlan0"] = true
@@ -463,12 +465,12 @@ function getNet()
     end
 
     if net_found ~= nil then 
-        if net_found["eth0"] == true then
+        if net_found["eno1"] == true then
             if net_found["wlan0"] == nil then 
-                return "eth0"
+                return "eno1"
             else
                 if net_found["wlan0"] == false then
-                    return "eth0"
+                    return "eno1"
                 end
             end
         end
@@ -589,7 +591,7 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         datewidget, clockicon,
-        volbar.widget,volwidget,vol_icon,
+--        volbar.widget,volwidget,vol_icon,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -775,7 +777,7 @@ awful.rules.rules = {
     -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { class = "Gvim" }, properties = { tag = tags[1][2] } },
     { rule = { class = "Chromium" }, properties = { tag = tags[1][3] } },
-    { rule = { class = "Google-chrome" }, properties = { tag = tags[1][3] } },
+    { rule = { class = "Google-chrome-stable" }, properties = { tag = tags[1][3] } },
     { rule = { class = "Terminator" }, properties = { tag = tags[1][1] } },
     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
     { rule = { class = "Dolphin" }, properties = { tag = tags[1][9] } },

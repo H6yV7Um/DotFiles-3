@@ -68,8 +68,10 @@ autorun_items =
 --    "/opt/bin/VirtualBox",
     --"ibus-daemon -d -x",
     "fcitx",
---    "google-chrome-stable",
-    "firefox-bin",
+    "google-chrome-stable",
+    "synergys",
+    "firefox",
+    "kdiff3",
 --    "dolphin",
 --      "xrandr --output VGA1 --primary  --output HDMI1  --right-of VGA1",
     --"xrandr --output VBOX1 --right-of VBOX0",
@@ -126,12 +128,13 @@ layouts =
 
 -- {{{ Tags
 tags = {
-    names  = { "1:term", "2:gvim", "3:web", "4:remote", "5:fun", 6, "7:win", "8:reading", "9:file_manager" },
+--    names  = { "1:term", "2:gvim", "3:chrome", "4:firefox", "5:diff", 6, "7:win", "8:reading", "9:file_manager" },
+    names  = { "1:term", "2:gvim", "3:chrome", "4:firefox", "5:diff", 6, 7, 8, 9 },
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 
 tags_new = {
-    names  = { "1", "2", "3", "4", "5", 6, "7", "8", "9" },
+    names  = { "1:term", "2", "3", "4", "5", 6, "7", "8", "9" },
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 
@@ -639,7 +642,7 @@ globalkeys = awful.util.table.join(
 awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
 awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
 awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
-awful.key({ modkey,           }, "j", function ()
+awful.key({ modkey, "Control" }, "j", function ()
     awful.client.focus.byidx( 1)
     if client.focus then client.focus:raise() end
 end),
@@ -654,7 +657,7 @@ awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=tr
 -- Layout manipulation
 awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
 awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
+awful.key({ modkey,           }, "j", function () awful.screen.focus_relative( 1) end),
 awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
 awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
 
@@ -774,10 +777,11 @@ awful.rules.rules = {
     { rule = { class = "MPlayer" }, properties = { floating = true } },
     { rule = { class = "pinentry" }, properties = { floating = true } },
     { rule = { class = "gimp" }, properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { class = "Gvim" }, properties = { tag = tags[1][2] } },
     { rule = { class = "Chromium" }, properties = { tag = tags[1][3] } },
     { rule = { class = "Google-chrome-stable" }, properties = { tag = tags[1][3] } },
+    { rule = { class = "Firefox" }, properties = { tag = tags[1][4] } },
+    { rule = { class = "Kdiff3" }, properties = { tag = tags[1][5] } },
     { rule = { class = "Terminator" }, properties = { tag = tags[1][1] } },
     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
     { rule = { class = "Dolphin" }, properties = { tag = tags[1][9] } },

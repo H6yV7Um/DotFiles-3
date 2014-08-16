@@ -454,7 +454,13 @@ endif
 "map <F7> eb"tye k /<C-R>t<CR>
 "map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
 "map <F12> :!ctags <CR>
-map <Leader>tg :!ctags <CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
+
+if(has('mac'))
+    map <Leader>tg :!/usr/local/bin/ctags -R<CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
+else
+    map <Leader>tg :!ctags -R<CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
+endif
+
 map <Leader>h *#
 " In case I forget to start as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>

@@ -1,9 +1,11 @@
 [user]
-	email = jinleileiking@gmail.com
-	name = jinleileiking
+	email = jinlei04@baidu.com
+	name = jinlei04
 [color]
 	diff = auto
 	status = auto
 	branch = auto
 	interactive = auto
 	ui = auto
+[alias]
+	ll = log --graph --all --pretty=format:'%Cred%h %Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative

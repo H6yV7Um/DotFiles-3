@@ -12,6 +12,7 @@
     font = Monospace 10.5
     background_image = None
     scroll_on_output = False
+    login_shell = True
     copy_on_selection = True
     scrollback_infinite = True
 [layouts]

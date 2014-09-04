@@ -605,7 +605,7 @@ map <F10> :UpdateTypesFile<CR>
 "nnoremap <leader>u :<C-u>Unite tag -start-insert file_rec/async:!<CR>
 "map <leader>ff :<C-u>Unite file_rec -start-insert file_rec/async:!<CR>
 "map <leader>ff :<C-u>Unite file_rec<CR>
-"map <leader>ff :<C-u>Unite file_rec/async<CR>
+map <leader>ff :<C-u>Unite file_rec/async<CR>
 map <leader>b :<C-u>Unite buffer<CR>
 map <leader>r :<C-u>Unite file_mru<CR>
 
@@ -699,7 +699,7 @@ let g:ctrlp_extensions = ['tag']
 map <Leader>ft :CtrlPTag<CR>
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:40,results:40'
 let g:ctrlp_working_path_mode = 'r'
-map <leader>ff :CtrlP<CR>
+"map <leader>ff :CtrlP<CR>
 
 "------------------------Yankring-----------------------
 let g:yankring_paste_using_g = 0

@@ -78,3 +78,4 @@ alias pdf='wine ~/.wine/drive_c/Program\ Files/Tracker\ Software/PDF\ Viewer/PDF
 
 export LANG="en_US.UTF-8"
 
+rvm use default

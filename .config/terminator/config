@@ -1,9 +1,9 @@
 [global_config]
-  enabled_plugins = CustomCommandsMenu, TestPlugin, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  enabled_plugins = CustomCommandsMenu, TestPlugin, TerminalShot, APTURLHandler, MavenPluginURLHandler, LaunchpadBugURLHandler
 [keybindings]
   toggle_zoom = <Ctrl>X
-  close_term = <Ctrl>Q
-  split_vert = <Ctrl>V
+  close_term = <Primary><Alt>KP_3
+  split_vert = KP_Add
   split_horiz = <Ctrl>H
   new_tab = <Ctrl>T
 [profiles]

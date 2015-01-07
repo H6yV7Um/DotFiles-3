@@ -12,3 +12,5 @@
 [core]
 	editor = vim
 	excludesfile = /home/jinleileiking/.gitignore
+[diff]
+	tool = meld

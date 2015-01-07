@@ -65,13 +65,16 @@ autorun_items =
     "terminator", 
     --"VBoxClient-all",
     "gvim",
+    "VirtualBox",
 --    "/opt/bin/VirtualBox",
     --"ibus-daemon -d -x",
     "fcitx",
     "google-chrome-stable",
     "synergys",
-    "firefox",
-    "kdiff3",
+--    "firefox",
+--    "kdiff3",
+    "meld",
+    "thunderbird-bin",
 --    "dolphin",
 --      "xrandr --output VGA1 --primary  --output HDMI1  --right-of VGA1",
     --"xrandr --output VBOX1 --right-of VBOX0",
@@ -129,7 +132,7 @@ layouts =
 -- {{{ Tags
 tags = {
 --    names  = { "1:term", "2:gvim", "3:chrome", "4:firefox", "5:diff", 6, "7:win", "8:reading", "9:file_manager" },
-    names  = { "1:term", "2:gvim", "3:chrome", "4:firefox", "5:diff", 6, 7, 8, 9 },
+    names  = { "1:term", "2:gvim", "3:chrome", "4:firefox", "5:diff", "6:win", "7:mail", 8, 9 },
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 
@@ -782,6 +785,7 @@ awful.rules.rules = {
     { rule = { class = "Google-chrome-stable" }, properties = { tag = tags[1][3] } },
     { rule = { class = "Firefox" }, properties = { tag = tags[1][4] } },
     { rule = { class = "Kdiff3" }, properties = { tag = tags[1][5] } },
+    { rule = { class = "Meld" }, properties = { tag = tags[1][5] } },
     { rule = { class = "Terminator" }, properties = { tag = tags[1][1] } },
     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
     { rule = { class = "Dolphin" }, properties = { tag = tags[1][9] } },
@@ -789,7 +793,8 @@ awful.rules.rules = {
     { rule = { class = "Evince" }, properties = { tag = tags[1][8] } },
     { rule = { class = "Okular" }, properties = { tag = tags[1][8] } },
     { rule = { class = "Soffice.bin" }, properties = { tag = tags[1][8] } },
-    { rule = { class = "VirtualBox" }, properties = { tag = tags[1][7] } },
+    { rule = { class = "VirtualBox" }, properties = { tag = tags[1][6] } },
+    { rule = { class = "thunderbird-bin" }, properties = { tag = tags[1][7] } },
 }
 -- }}}
 

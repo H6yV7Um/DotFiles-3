@@ -8,3 +8,8 @@ tags
 *.log
 *.*~
 *.i
+cscope
+cscope.out
+*.taghl
+*.c~
+types_c.taghl

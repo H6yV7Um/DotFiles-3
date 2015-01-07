@@ -36,7 +36,8 @@ Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/neomru.vim'
 "Bundle 'tsukkee/unite-tag'
 Bundle 'h1mesuke/unite-outline'
-Bundle 'bandit.vim'
+Bundle 'jinleileiking/bandit.vim'
+"Bundle 'szw/vim-ctrlspace'
 
 "Bundle 'vim-scripts/FuzzyFinder'
  
@@ -82,7 +83,7 @@ Bundle 'tpope/vim-dispatch'
  
 "Bundle 'scrooloose/syntastic'
  
-"Bundle 'YankRing.vim'
+Bundle 'YankRing.vim'
  
 " extend %
 "Bundle 'matchit.zip'
@@ -300,14 +301,14 @@ command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
-" Type z/ to toggle highlighting on/off.
-nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
+" Type h/ to toggle highlighting on/off.
+nnoremap <Leader>z :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 function! AutoHighlightToggle()
     let @/ = ''
     if exists('#auto_highlight')
         au! auto_highlight
         augroup! auto_highlight
-        setl updatetime=4000
+        setl updatetime=5000
         echo 'Highlight current word: off'
         return 0
     else
@@ -590,7 +591,9 @@ map <F10> :UpdateTypesFile<CR>
 "nnoremap <leader>u :<C-u>Unite tag -start-insert file_rec/async:!<CR>
 "map <leader>ff :<C-u>Unite file_rec -start-insert file_rec/async:!<CR>
 "map <leader>ff :<C-u>Unite file_rec<CR>
-"map <leader>ff :<C-u>Unite file_rec/async<CR>
+"map <leader>ft :<C-u>Unite tag -start-insert file_rec/async:!<CR>
+"map <leader>t :<C-u>Unite tag<CR>
+map <leader>ff :<C-u>Unite file_rec/async<CR>
 map <leader>b :<C-u>Unite buffer<CR>
 map <leader>r :<C-u>Unite file_mru<CR>
 
@@ -628,7 +631,9 @@ let g:neocomplcache_disable_caching_file_path_pattern = "out*.*"
 "inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 
-
+"-----------------------unite tags--------------------
+let g:unite_source_tag_max_name_length = 40
+let g:unite_source_tag_max_fname_length = 80
 
 "-----------------------Tagbar--------------------
 map <F6> :TagbarToggle<CR>
@@ -681,10 +686,10 @@ let g:indent_guides_enable_on_vim_startup = 1
 "------------------------ctrlp-------------------------
 "let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
 let g:ctrlp_extensions = ['tag']
-map <Leader>ft :CtrlPTag<CR>
+map <Leader>t :CtrlPTag<CR>
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:40,results:40'
 let g:ctrlp_working_path_mode = 'r'
-map <leader>ff :CtrlP<CR>
+"map <leader>ff :CtrlP<CR>
 
 "------------------------Yankring-----------------------
 let g:yankring_paste_using_g = 0

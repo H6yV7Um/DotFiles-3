@@ -36,6 +36,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/neomru.vim'
 "Bundle 'tsukkee/unite-tag'
 Bundle 'h1mesuke/unite-outline'
+Bundle 'bandit.vim'
 
 "Bundle 'vim-scripts/FuzzyFinder'
  
@@ -415,14 +416,7 @@ set ul=500
 
 
 "------------------------color----------------------------
-colorscheme railscasts
-"highlight Pmenu guifg=white guibg=DarkGray
-"highlight PmenuSel guifg=white guibg=red
-highlight Pmenu guifg=white guibg=darkblue
-highlight PmenuSel guifg=red guibg=blue
-highlight Comment guifg=#404040 gui=none
-hi Search guibg=yellow guifg=red gui=none
-highlight return guifg=red guibg=darkblue
+colorscheme bandit.vim
 
 "------------------------filetype----------------------------
 
@@ -483,22 +477,14 @@ set foldmethod=syntax
 set foldlevel=0
 set foldcolumn=2
 set foldnestmax=2
-"hi FoldColumn guifg=white guibg=#660000
-"hi FoldColumn guifg=white guibg=darkblue
-hi FoldColumn guifg=white guibg=#181818
-"hi Folded guifg=darkgray guibg=#141414
-hi Folded guifg=darkgrey guibg=#141414
  
 "number
 set nu
 set nuw=2
-"hi LineNr guifg=darkgray guibg=#181818
-hi LineNr guifg=#404040 guibg=#181818
  
  
 " Cursor line
 "set cursorline
-highlight CursorLine guibg=#222222
  
  
 "tab
@@ -582,7 +568,6 @@ set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
 set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
 
 
-hi User2 guifg=red guibg=lightblue
 
 
 set complete=.,w,b,u,t

@@ -119,7 +119,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 "Highlight what you want
 Bundle 'Mark--Karkat'
  
-Bundle 'Railscasts-Theme-GUIand256color'
+"Bundle 'Railscasts-Theme-GUIand256color'
 "Bundle 'a.vim'
  
  
@@ -417,7 +417,7 @@ set ul=500
 
 
 "------------------------color----------------------------
-colorscheme bandit.vim
+colorscheme bandit
 
 "------------------------filetype----------------------------
 

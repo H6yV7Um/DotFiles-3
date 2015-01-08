@@ -1,23 +1,32 @@
+
+
 "------------------------------Vundle---------------------------------
+"
+"
+" FIX: PluginUpdate => git pull: git-sh-setup: No such file or directory in MacVim (OK in non-GUI version of Vim)
+if has("gui_macvim")
+    set shell=/bin/bash\ -l
+endif
+
 set nocompatible " be iMproved
 filetype off " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-filetype plugin indent on " required!
-Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
  
 "
 " original repos on github
-"Bundle 'tpope/vim-repeat'
+"Plugin 'tpope/vim-repeat'
 " vim-scripts repos
-"Bundle 'FuzzyFinder'
+"Plugin 'FuzzyFinder'
 " non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
+"Plugin 'git://git.wincent.com/command-t.git'
  
 "ruby
-"Bundle 'tpope/vim-rails'
-"Bundle 'vim-ruby/vim-ruby'
-"Bundle 'astashov/vim-ruby-debugger'
+"Plugin 'tpope/vim-rails'
+"Plugin 'vim-ruby/vim-ruby'
+"Plugin 'astashov/vim-ruby-debugger'
 "ruby-debug
 "unmap <Leader>m
 "map <Leader>M :call g:RubyDebugger.open_breakpoints()<CR>
@@ -27,223 +36,224 @@ Bundle 'gmarik/vundle'
 "map <Leader>N :call g:RubyDebugger.next()<CR>
  
 "由于映射原因,暂不使用
-"Bundle 'janx/vim-rubytest'
+"Plugin 'janx/vim-rubytest'
  
-"Bundle 'wincent/Command-T'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/neomru.vim'
-"Bundle 'tsukkee/unite-tag'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'jinleileiking/bandit.vim'
-"Bundle 'szw/vim-ctrlspace'
+"Plugin 'wincent/Command-T'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/neomru.vim'
+"Plugin 'tsukkee/unite-tag'
+Plugin 'h1mesuke/unite-outline'
+Plugin 'jinleileiking/bandit.vim'
+"Plugin 'szw/vim-ctrlspace'
 
-"Bundle 'vim-scripts/FuzzyFinder'
+"Plugin 'vim-scripts/FuzzyFinder'
  
-Bundle 'scrooloose/nerdtree'
-"Bundle 'jistr/vim-nerdtree-tabs'
+Plugin 'scrooloose/nerdtree'
+"Plugin 'jistr/vim-nerdtree-tabs'
  
 "VOoM (Vim Outliner of Markers) is a plugin for Vim that emulates a two-pane text outliner.
-"Bundle 'VOoM'
-"Bundle 'h1mesuke/unite-outline'
+"Plugin 'VOoM'
+"Plugin 'h1mesuke/unite-outline'
  
-"Bundle 'scrooloose/nerdcommenter'
-Bundle 'EnhCommentify.vim'
+"Plugin 'scrooloose/nerdcommenter'
+Plugin 'EnhCommentify.vim'
  
-"Bundle 'fholgado/minibufexpl.vim'
-"Bundle 'sjbach/lusty'
+"Plugin 'fholgado/minibufexpl.vim'
+"Plugin 'sjbach/lusty'
  
  
-Bundle 'tpope/vim-surround'
-"Bundle 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-repeat'
  
-"Bundle 'Lokaltog/vim-easymotion'
+"Plugin 'Lokaltog/vim-easymotion'
  
 " key mapping , xml etc encoding decodeing......
-"Bundle 'tpope/vim-unimpaired'
-"Bundle 'ervandew/supertab'
-"Bundle 'vim-scripts/AutoComplPop'
-"Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neocomplete'
+"Plugin 'tpope/vim-unimpaired'
+"Plugin 'ervandew/supertab'
+"Plugin 'vim-scripts/AutoComplPop'
+"Plugin 'Shougo/neocomplcache'
+Plugin 'Shougo/neocomplete'
  
 " This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
-"Bundle 'cmdline-completion'
+"Plugin 'cmdline-completion'
  
-Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-dispatch'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-dispatch'
  
-"Bundle 'vim-scripts/VimIM'
-"Bundle 'vimim/vimim'
+"Plugin 'vim-scripts/VimIM'
+"Plugin 'vimim/vimim'
  
-"Bundle 'vim-scripts/AutoClose'
-"Bundle 'Raimondi/delimitMate'
-"Bundle 'tpope/vim-endwise'
-"Bundle 'jiangmiao/auto-pairs'
+"Plugin 'vim-scripts/AutoClose'
+"Plugin 'Raimondi/delimitMate'
+"Plugin 'tpope/vim-endwise'
+"Plugin 'jiangmiao/auto-pairs'
  
-"Bundle 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
  
-Bundle 'YankRing.vim'
+Plugin 'YankRing.vim'
  
 " extend %
-"Bundle 'matchit.zip'
+"Plugin 'matchit.zip'
  
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 "taglist
  
  
 "snipmate & deps
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
  
-Bundle 'jinleileiking/snipmate-snippets'
+Plugin 'jinleileiking/snipmate-snippets'
  
-"Bundle 'scrooloose/snipmate-snippets'
+"Plugin 'scrooloose/snipmate-snippets'
  
-"Bundle 'honza/snipmate-snippets'
-"Bundle 'msanders/snipmate.vim'// not maintained
+"Plugin 'honza/snipmate-snippets'
+"Plugin 'msanders/snipmate.vim'// not maintained
  
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'nathanaelkane/vim-indent-guides'
-"Bundle 'Yggdroot/indentLine.git'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'nathanaelkane/vim-indent-guides'
+"Plugin 'Yggdroot/indentLine.git'
  
-"Bundle 'ShowMarks'
+"Plugin 'ShowMarks'
  
 "git
-"Bundle 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
  
 "align
-"Bundle 'godlygeek/tabular'
+"Plugin 'godlygeek/tabular'
  
 "Highlight what you want
-Bundle 'Mark--Karkat'
+Plugin 'Mark--Karkat'
  
-"Bundle 'Railscasts-Theme-GUIand256color'
-"Bundle 'a.vim'
+"Plugin 'Railscasts-Theme-GUIand256color'
+"Plugin 'a.vim'
  
  
 " show only window
-"Bundle 'vim-scripts/ZoomWin'
+"Plugin 'vim-scripts/ZoomWin'
  
 "Narrowing means focussing on a region and making the rest inaccessible.
-Bundle 'chrisbra/NrrwRgn'
+Plugin 'chrisbra/NrrwRgn'
  
 "Buffergator is a plugin for listing, navigating between, and selecting buffers to edit.
-"Bundle 'jeetsukumaran/vim-buffergator'
+"Plugin 'jeetsukumaran/vim-buffergator'
  
 "Gundo is a plugin to make browsing this ridiculously powerful undo tree less painful.
-"Bundle 'sjl/gundo.vim'
+"Plugin 'sjl/gundo.vim'
  
 "This plugin defines a new text object, based on indentation levels. This is
 "very useful in languages such as Python, in which the syntax defines scope in
 "terms of indentation.
-"Bundle 'michaeljsmith/vim-indent-object'
+"Plugin 'michaeljsmith/vim-indent-object'
  
 "Keep Window on Buffer Delete - Improved
-"Bundle 'rgarver/Kwbd.vim'
+"Plugin 'rgarver/Kwbd.vim'
 "map <Leader>bd :Kwbd<CR>
  
-"Bundle 'Gist.vim'
+"Plugin 'Gist.vim'
  
-"Bundle 'Conque-Shell'
+"Plugin 'Conque-Shell'
  
-"Bundle 'rson/vim-conque'
+"Plugin 'rson/vim-conque'
  
-"Bundle 'Lokaltog/vim-powerline'
+"Plugin 'Lokaltog/vim-powerline'
  
 "DrawIt is a plugin which allows one to draw lines left, right, up, down, and along both slants.
-"Bundle 'DrawIt'
+"Plugin 'DrawIt'
  
-"Bundle 'calendar.vim'
+"Plugin 'calendar.vim'
  
  
 "This plugin is aimed at making it more convenient to compile or run a single
 "source file without leaving vim.
-"Bundle 'xuhdev/SingleCompile'
+"Plugin 'xuhdev/SingleCompile'
  
  
-"Bundle 'jcf/vim-latex'
+"Plugin 'jcf/vim-latex'
  
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Langs
-"Bundle 'tpope/vim-haml'
-"Bundle 'pangloss/vim-javascript'
-"Bundle 'jsbeautify'
-"Bundle 'kchmck/vim-coffee-script'
-"Bundle 'itspriddle/vim-jquery'
-"Bundle 'leshill/vim-json'
-"Bundle 'kchmck/vim-coffee-script'
-"Bundle 'mmalecki/vim-node.js'
-"Bundle 'skammer/vim-css-color'
+"Plugin 'tpope/vim-haml'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'jsbeautify'
+"Plugin 'kchmck/vim-coffee-script'
+"Plugin 'itspriddle/vim-jquery'
+"Plugin 'leshill/vim-json'
+"Plugin 'kchmck/vim-coffee-script'
+"Plugin 'mmalecki/vim-node.js'
+"Plugin 'skammer/vim-css-color'
 "vim-liquid
  
 "md, rdoc, textile
-"Bundle 'greyblake/vim-preview'
+"Plugin 'greyblake/vim-preview'
 "vim-markdown
-Bundle 'godlygeek/tabular'
-Bundle 'plasticboy/vim-markdown'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 "textile
  
  
-"Bundle 'nelstrom/vim-textobj-rubyblock'
-"Bundle 'kana/vim-textobj-user'
+"Plugin 'nelstrom/vim-textobj-rubyblock'
+"Plugin 'kana/vim-textobj-user'
  
  
 "html,xml
-"Bundle 'tpope/vim-ragtag'
+"Plugin 'tpope/vim-ragtag'
  
 "C
-"Bundle 'std_c.zip'
-"Bundle 'cg433n/better-c'
-"Bundle 'davidxia/vim-c'
-Bundle 'TagHighlight'
- 
+"Plugin 'std_c.zip'
+"Plugin 'cg433n/better-c'
+"Plugin 'davidxia/vim-c'
+"Plugin 'TagHighlight'
+Plugin 'jinleileiking/taghighlight-automirror'
 "When you type '(' after a function name
 "in insert mode, the function declaration
 "will be displayed in the command line
 "automatically.
-"Bundle 'echofunc.vim'
+"Plugin 'echofunc.vim'
  
 "lua
-"Bundle 'lua-support'
+"Plugin 'lua-support'
  
 "Auto reload ctags
-"Bundle 'xolox/vim-easytags'
+"Plugin 'xolox/vim-easytags'
  
-"Bundle 'bash-support.vim'
+"Plugin 'bash-support.vim'
  
-"Bundle 'tpope/vim-speeddating'
- 
+"Plugin 'tpope/vim-speeddating'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-lua-inspect' 
  
  
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
  
 " Navigation
-"Bundle 'mutewinter/bufpos'
-"Bundle 'spiiph/vim-space'
-"Bundle 'mutewinter/LustyJuggler'
+"Plugin 'mutewinter/bufpos'
+"Plugin 'spiiph/vim-space'
+"Plugin 'mutewinter/LustyJuggler'
  
 " UI Additions
-"Bundle 'dickeytk/status.vim'
-"Bundle 'mutewinter/ir_black_mod'
-"Bundle 'godlygeek/csapprox'
+"Plugin 'dickeytk/status.vim'
+"Plugin 'mutewinter/ir_black_mod'
+"Plugin 'godlygeek/csapprox'
  
 " OS Integration
-"Bundle 'mkitt/browser-refresh.vim'
-"Bundle 'hexHighlight.vim'
+"Plugin 'mkitt/browser-refresh.vim'
+"Plugin 'hexHighlight.vim'
  
 " Automatic Helpers
-"Bundle 'IndexedSearch'
-"Bundle 'xolox/vim-session'
+"Plugin 'IndexedSearch'
+"Plugin 'xolox/vim-session'
  
 " Language Additions
-"Bundle 'mutewinter/taskpaper.vim'
-"Bundle 'msanders/cocoa.vim'
+"Plugin 'mutewinter/taskpaper.vim'
+"Plugin 'msanders/cocoa.vim'
  
 " Libraries
-"Bundle 'L9'
+"Plugin 'L9'
  
  
  
@@ -251,8 +261,8 @@ Bundle 'TagHighlight'
 "camelcasemotion
 "hammer
 "mru
-"Bundle 'OmniCppComplete'
-"Bundle 'ifdef-highlighting'
+"Plugin 'OmniCppComplete'
+"Plugin 'ifdef-highlighting'
 "simplefold
 "vim-abolish
 "vim-colors-solarized
@@ -263,6 +273,8 @@ Bundle 'TagHighlight'
 "zencoding-vim
  
  
+call vundle#end()
+filetype plugin indent on
  
  
  
@@ -455,6 +467,10 @@ if(has('mac'))
 else
     map <Leader>tg :!ctags -R<CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
 endif
+
+map <Leader>tagg  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>/^<CR><F12>
+map <Leader>tag  :so tags.vim<CR>
+
 
 map <Leader>h *#
 " In case I forget to start as root

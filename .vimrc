@@ -14,7 +14,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
- 
+
+
+Plugin 'xolox/vim-session'
 "
 " original repos on github
 "Plugin 'tpope/vim-repeat'
@@ -206,8 +208,12 @@ Plugin 'plasticboy/vim-markdown'
 "Plugin 'std_c.zip'
 "Plugin 'cg433n/better-c'
 "Plugin 'davidxia/vim-c'
+
 "Plugin 'TagHighlight'
 Plugin 'jinleileiking/taghighlight-automirror'
+"Auto reload ctags
+"Plugin 'xolox/vim-easytags'
+
 "When you type '(' after a function name
 "in insert mode, the function declaration
 "will be displayed in the command line
@@ -217,8 +223,6 @@ Plugin 'jinleileiking/taghighlight-automirror'
 "lua
 "Plugin 'lua-support'
  
-"Auto reload ctags
-"Plugin 'xolox/vim-easytags'
  
 "Plugin 'bash-support.vim'
  
@@ -759,7 +763,10 @@ let g:syntastic_c_check_header = 1
 let g:syntastic_echo_current_error=0
 let g:syntastic_enable_signs=0
 
+"--------------------lua-inspect---------------
 
+
+highlight link luaInspectFieldUndefined  Member
 
 "------------------------------std_c---------------
 let c_C99=1

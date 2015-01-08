@@ -67,7 +67,7 @@ Plugin 'EnhCommentify.vim'
 Plugin 'tpope/vim-surround'
 "Plugin 'tpope/vim-repeat'
  
-"Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
  
 " key mapping , xml etc encoding decodeing......
 "Plugin 'tpope/vim-unimpaired'

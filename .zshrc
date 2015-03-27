@@ -76,6 +76,11 @@ alias rmm='trash-put'
 #
 alias pdf='wine ~/.wine/drive_c/Program\ Files/Tracker\ Software/PDF\ Viewer/PDFXCview.exe &'
 
-export LANG="en_US.UTF-8"
+LANG="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+LC_ALL="en_US.UTF-8"
 
+autoload -U compinit && compinit
+autoload -U bashcompinit && bashcompinit
+[[ -s "/home/users/jinlei04/.jumbo/etc/bashrc" ]] && source "/home/users/jinlei04/.jumbo/etc/bashrc"
 rvm use default

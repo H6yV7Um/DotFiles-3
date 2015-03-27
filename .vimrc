@@ -352,8 +352,8 @@ if(has('mac'))
     set guifont=Menlo:h12
     " map ctrl to fn use mac key map tool
 else
-    set guifont=Ubuntu\ Mono\ 12
-"    set guifont=DejaVu\ Sans\ Mono\ 10.5
+"    set guifont=Ubuntu\ Mono\ 12
+    set guifont=DejaVu\ Sans\ Mono\ 10.5
      
     "set guifont=Droid\ Sans\ Mono\ 10.5
     "set linespace=2 "The fucking underscore problem

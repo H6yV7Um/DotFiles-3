@@ -193,6 +193,8 @@ Plugin 'chrisbra/NrrwRgn'
 "vim-markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'rayburgemeestre/phpfolding.vim'
 
 "textile
  

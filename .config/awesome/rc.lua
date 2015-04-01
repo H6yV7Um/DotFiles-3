@@ -64,17 +64,17 @@ autorun_items =
 {
     "terminator", 
     --"VBoxClient-all",
-    "gvim",
-    "VirtualBox",
+--    "gvim",
+--    "VirtualBox",
 --    "/opt/bin/VirtualBox",
     --"ibus-daemon -d -x",
     "fcitx",
-    "google-chrome-stable",
+--    "google-chrome-stable",
     "synergys",
 --    "firefox",
 --    "kdiff3",
-    "meld",
-    "thunderbird-bin",
+--    "meld",
+--    "thunderbird-bin",
 --    "dolphin",
 --      "xrandr --output VGA1 --primary  --output HDMI1  --right-of VGA1",
     --"xrandr --output VBOX1 --right-of VBOX0",
@@ -143,7 +143,11 @@ tags_new = {
 
 tags[1] = awful.tag(tags.names, 1, tags.layout)
 
+print("=======================")
+print(screen.count())
+print("=======================")
 for s = 2, screen.count() do
+--for s = 2, 4 do
     tags[s] = awful.tag(tags_new.names, s, tags_new.layout)
 end
 -- }}}
@@ -777,24 +781,24 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { }, properties = { border_width = beautiful.border_width, border_color = beautiful.border_normal, focus = true, keys = clientkeys, buttons = clientbuttons } },
-    { rule = { class = "MPlayer" }, properties = { floating = true } },
-    { rule = { class = "pinentry" }, properties = { floating = true } },
-    { rule = { class = "gimp" }, properties = { floating = true } },
-    { rule = { class = "Gvim" }, properties = { tag = tags[1][2] } },
-    { rule = { class = "Chromium" }, properties = { tag = tags[1][3] } },
-    { rule = { class = "Google-chrome-stable" }, properties = { tag = tags[1][3] } },
-    { rule = { class = "Firefox" }, properties = { tag = tags[1][4] } },
-    { rule = { class = "Kdiff3" }, properties = { tag = tags[1][5] } },
-    { rule = { class = "Meld" }, properties = { tag = tags[1][5] } },
-    { rule = { class = "Terminator" }, properties = { tag = tags[1][1] } },
-    { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
-    { rule = { class = "Dolphin" }, properties = { tag = tags[1][9] } },
-    { rule = { class = "Acroread" }, properties = { tag = tags[1][8] } },
-    { rule = { class = "Evince" }, properties = { tag = tags[1][8] } },
-    { rule = { class = "Okular" }, properties = { tag = tags[1][8] } },
-    { rule = { class = "Soffice.bin" }, properties = { tag = tags[1][8] } },
-    { rule = { class = "VirtualBox" }, properties = { tag = tags[1][6] } },
-    { rule = { class = "thunderbird-bin" }, properties = { tag = tags[1][7] } },
+--    { rule = { class = "MPlayer" }, properties = { floating = true } },
+--    { rule = { class = "pinentry" }, properties = { floating = true } },
+--    { rule = { class = "gimp" }, properties = { floating = true } },
+--    { rule = { class = "Gvim" }, properties = { tag = tags[1][2] } },
+--    { rule = { class = "Chromium" }, properties = { tag = tags[1][3] } },
+--    { rule = { class = "Google-chrome-stable" }, properties = { tag = tags[1][3] } },
+--    { rule = { class = "Firefox" }, properties = { tag = tags[1][4] } },
+--    { rule = { class = "Kdiff3" }, properties = { tag = tags[1][5] } },
+--    { rule = { class = "Meld" }, properties = { tag = tags[1][5] } },
+--    { rule = { class = "Terminator" }, properties = { tag = tags[1][1] } },
+--    { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
+--    { rule = { class = "Dolphin" }, properties = { tag = tags[1][9] } },
+--    { rule = { class = "Acroread" }, properties = { tag = tags[1][8] } },
+--    { rule = { class = "Evince" }, properties = { tag = tags[1][8] } },
+--    { rule = { class = "Okular" }, properties = { tag = tags[1][8] } },
+--    { rule = { class = "Soffice.bin" }, properties = { tag = tags[1][8] } },
+--    { rule = { class = "VirtualBox" }, properties = { tag = tags[1][6] } },
+--    { rule = { class = "thunderbird-bin" }, properties = { tag = tags[1][7] } },
 }
 -- }}}
 

@@ -1,26 +1,44 @@
 [global_config]
-  enabled_plugins = CustomCommandsMenu, TestPlugin, TerminalShot, APTURLHandler, MavenPluginURLHandler, LaunchpadBugURLHandler
+  enabled_plugins = ,
+  title_transmit_bg_color = "#d30102"
+  focus = system
 [keybindings]
   toggle_zoom = <Ctrl>X
+  split_horiz = <Primary><Alt>h
   close_term = <Primary><Alt>KP_3
-  split_vert = KP_Add
-  split_horiz = <Ctrl>H
-  new_tab = <Ctrl>T
+  split_vert = <Primary><Alt>v
+  new_tab = <Primary><Alt>t
+  copy = <Primary><Alt>c
 [profiles]
   [[default]]
     use_system_font = False
     font = Monospace 10.5
     background_image = None
+    cursor_color = "#ffffff"
     scroll_on_output = False
     login_shell = True
     copy_on_selection = True
     scrollback_infinite = True
+  [[solarized-dark]]
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    background_image = None
+    use_system_font = False
+    cursor_color = "#ffffff"
+    foreground_color = "#eee8d5"
+    font = Monospace 13
+    background_color = "#002b36"
+  [[solarized-light]]
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    background_color = "#eee8d5"
+    background_image = None
+    cursor_color = "#002b36"
+    foreground_color = "#002b36"
 [layouts]
   [[default]]
     [[[child1]]]
       type = Terminal
       parent = window0
-      profile = default
+      profile = solarized-dark
     [[[window0]]]
       type = Window
       parent = ""

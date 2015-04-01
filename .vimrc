@@ -353,7 +353,7 @@ if(has('mac'))
     " map ctrl to fn use mac key map tool
 else
 "    set guifont=Ubuntu\ Mono\ 12
-    set guifont=DejaVu\ Sans\ Mono\ 10.5
+    set guifont=DejaVu\ Sans\ Mono\ 12
      
     "set guifont=Droid\ Sans\ Mono\ 10.5
     "set linespace=2 "The fucking underscore problem
@@ -468,6 +468,7 @@ autocmd BufRead,BufNewFile *.c syntax keyword return return
 
 "----------------------------map------------------------------
 map <leader>bn :bn<CR>
+map <leader>v "0p
 
 if bufwinnr(1)
 map <kPlus> <C-W>+

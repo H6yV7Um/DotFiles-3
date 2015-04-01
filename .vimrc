@@ -16,7 +16,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 
-Plugin 'xolox/vim-session'
+"Plugin 'xolox/vim-session'
 "
 " original repos on github
 "Plugin 'tpope/vim-repeat'
@@ -46,10 +46,13 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/neomru.vim'
 "Plugin 'tsukkee/unite-tag'
-Plugin 'h1mesuke/unite-outline'
-Plugin 'jinleileiking/bandit.vim'
+"Plugin 'h1mesuke/unite-outline'
+"Plugin 'jinleileiking/bandit.vim'
 "Plugin 'szw/vim-ctrlspace'
 
+"Plugin 'tomasr/molokai'
+"let g:solarized_termcolors=256
+Plugin 'altercation/vim-colors-solarized'
 "Plugin 'vim-scripts/FuzzyFinder'
  
 Plugin 'scrooloose/nerdtree'
@@ -57,7 +60,6 @@ Plugin 'scrooloose/nerdtree'
  
 "VOoM (Vim Outliner of Markers) is a plugin for Vim that emulates a two-pane text outliner.
 "Plugin 'VOoM'
-"Plugin 'h1mesuke/unite-outline'
  
 "Plugin 'scrooloose/nerdcommenter'
 Plugin 'EnhCommentify.vim'
@@ -196,6 +198,12 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'rayburgemeestre/phpfolding.vim'
 
+
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'rayburgemeestre/phpfolding.vim'
+
+
+
 "textile
  
  
@@ -229,8 +237,8 @@ Plugin 'jinleileiking/taghighlight-automirror'
 "Plugin 'bash-support.vim'
  
 "Plugin 'tpope/vim-speeddating'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-lua-inspect' 
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-lua-inspect' 
  
  
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -346,8 +354,8 @@ if(has('mac'))
     set guifont=Menlo:h12
     " map ctrl to fn use mac key map tool
 else
-    set guifont=Ubuntu\ Mono\ 12
-"    set guifont=DejaVu\ Sans\ Mono\ 10.5
+"    set guifont=Ubuntu\ Mono\ 12
+    set guifont=DejaVu\ Sans\ Mono\ 12
      
     "set guifont=Droid\ Sans\ Mono\ 10.5
     "set linespace=2 "The fucking underscore problem
@@ -360,7 +368,8 @@ endif
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
  
-set mouse=a
+set mouse=v
+"set mouse=a
 "set vb t_vb=
 set novb
 set wildmenu
@@ -435,7 +444,12 @@ set ul=500
 
 
 "------------------------color----------------------------
-colorscheme bandit
+"
+"let g:rehash256 = 1
+"colorscheme molokai
+
+set background=dark
+colorscheme solarized
 
 "------------------------filetype----------------------------
 
@@ -456,6 +470,7 @@ autocmd BufRead,BufNewFile *.c syntax keyword return return
 
 "----------------------------map------------------------------
 map <leader>bn :bn<CR>
+map <leader>v "0p
 
 if bufwinnr(1)
 map <kPlus> <C-W>+

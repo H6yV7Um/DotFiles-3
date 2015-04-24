@@ -39,12 +39,14 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$PATH
-export PATH="${PATH}:/opt/crosstools/bin"
-export PATH="${PATH}:/home/jinleileiking/crosstools/angstrom/usr/local/angstrom/arm/bin"
-export PATH="${PATH}:/home/jinleileiking/crosstools/linaro/gcc-linaro-arm-linux-gnueabihf-4.8-2014.02_linux/arm-linux-gnueabihf/bin"
-export PATH="${PATH}:/mnt/share/tools/all/you-get"
+# export PATH="${PATH}:/opt/crosstools/bin"
+# export PATH="${PATH}:/home/jinleileiking/crosstools/angstrom/usr/local/angstrom/arm/bin"
+# export PATH="${PATH}:/home/jinleileiking/crosstools/linaro/gcc-linaro-arm-linux-gnueabihf-4.8-2014.02_linux/arm-linux-gnueabihf/bin"
+# export PATH="${PATH}:/mnt/share/tools/all/you-get"
+export PATH="${PATH}:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:/home/users/jinlei04/store/php/bin"
+export PATH="/home/users/jinlei04/store/php/bin:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:{$PATH}"
 
-export CDPATH="${CDPATH}:/mnt/share/work/project/r2k/code"
+# export CDPATH="${CDPATH}:/mnt/share/work/project/r2k/code"
 
 
 #export
@@ -83,4 +85,7 @@ LC_ALL="en_US.UTF-8"
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
 [[ -s "/home/users/jinlei04/.jumbo/etc/bashrc" ]] && source "/home/users/jinlei04/.jumbo/etc/bashrc"
+
+
+
 rvm use default

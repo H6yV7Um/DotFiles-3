@@ -20,3 +20,8 @@ This is my gentoo dotfiles, other distribution is **maybe** okay.
 # ScreenShot
 
 ![ScreenShot](https://github.com/jinleileiking/DotFiles/raw/master/awesome_screenshot.png)
+
+
+# awesome
+
+cp ~/lk.zsh-theme ~/.oh-my-zsh/custom

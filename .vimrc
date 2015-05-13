@@ -5,7 +5,7 @@
 "
 " FIX: PluginUpdate => git pull: git-sh-setup: No such file or directory in MacVim (OK in non-GUI version of Vim)
 if has("gui_macvim")
-    set shell=/bin/bash\ -l
+    set shell=/bin/bash\ -l 
 endif
 
 set nocompatible " be iMproved
@@ -78,7 +78,8 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'ervandew/supertab'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'Shougo/neocomplcache'
-Plugin 'Shougo/neocomplete'
+"Plugin 'Shougo/neocomplete'
+Plugin 'Valloric/YouCompleteMe'
  
 " This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
 "Plugin 'cmdline-completion'
@@ -468,6 +469,7 @@ autocmd BufRead,BufNewFile *.c syntax keyword return return
 "----------------------------map------------------------------
 map <leader>bn :bn<CR>
 map <leader>v "0p
+map <leader>q <C-W>_
 
 if bufwinnr(1)
 map <kPlus> <C-W>+

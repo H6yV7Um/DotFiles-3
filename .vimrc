@@ -62,13 +62,13 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'VOoM'
  
 "Plugin 'scrooloose/nerdcommenter'
-Plugin 'EnhCommentify.vim'
+"Plugin 'EnhCommentify.vim'
+Plugin 'tomtom/tcomment_vim'
  
 "Plugin 'fholgado/minibufexpl.vim'
 "Plugin 'sjbach/lusty'
  
  
-Plugin 'tpope/vim-surround'
 "Plugin 'tpope/vim-repeat'
  
 Plugin 'Lokaltog/vim-easymotion'
@@ -95,16 +95,21 @@ Plugin 'tpope/vim-dispatch'
 "Plugin 'tpope/vim-endwise'
 "Plugin 'jiangmiao/auto-pairs'
  
-"Plugin 'scrooloose/syntastic'
- 
+Plugin 'scrooloose/syntastic'
+
 Plugin 'YankRing.vim'
  
 " extend %
-"Plugin 'matchit.zip'
- 
+" 默认的% 只能匹配简单的比如括号, 这个扩展了一些
+Plugin 'matchit.zip'
+
+"  'hello world' -> (hello world)
+Plugin 'tpope/vim-surround'
+
 Plugin 'majutsushi/tagbar'
 "taglist
  
+Plugin 'pbrisbin/vim-mkdir'
  
 "snipmate & deps
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -128,7 +133,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 "Plugin 'tpope/vim-fugitive'
  
 "align
-"Plugin 'godlygeek/tabular'
+Plugin 'godlygeek/tabular'
  
 "Highlight what you want
 Plugin 'Mark--Karkat'
@@ -194,7 +199,6 @@ Plugin 'chrisbra/NrrwRgn'
 "md, rdoc, textile
 "Plugin 'greyblake/vim-preview'
 "vim-markdown
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
 Plugin 'shawncplus/phpcomplete.vim'
@@ -485,7 +489,8 @@ endif
 if(has('mac'))
     map <Leader>tg :!/usr/local/bin/ctags -R<CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
 else
-    map <Leader>tg :!ctags -R<CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
+"    map <Leader>tg :!ctags -R<CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
+    map <Leader>tg :!ctags -R<CR>
 endif
 
 map <Leader>tagg  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>/^<CR><F12>
@@ -599,7 +604,7 @@ set laststatus=2
 "syntastic
 set statusline=
 set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
 set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
@@ -773,7 +778,8 @@ let Tlist_Use_Right_Window = 1
 "map <F7> :TlistToggle<CR>
 
 
-
+"-----------------------tcomment--------------------
+" let g:tcommentMapLeaderOp1 = \c
 "--------------------syntastic-----------------
 let g:syntastic_c_check_header = 1
 let g:syntastic_echo_current_error=0

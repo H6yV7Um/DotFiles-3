@@ -44,10 +44,12 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/ga
 # export PATH="${PATH}:/home/jinleileiking/crosstools/angstrom/usr/local/angstrom/arm/bin"
 # export PATH="${PATH}:/home/jinleileiking/crosstools/linaro/gcc-linaro-arm-linux-gnueabihf-4.8-2014.02_linux/arm-linux-gnueabihf/bin"
 # export PATH="${PATH}:/mnt/share/tools/all/you-get"
-export PATH="${PATH}:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:/home/users/jinlei04/store/php/bin"
-export PATH="/home/users/jinlei04/store/php/bin:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:{$PATH}"
+#export PATH="${PATH}:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:/home/users/jinlei04/store/php/bin"
+#export PATH="/home/users/jinlei04/store/php/bin:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:{$PATH}"
 # export PATH="/opt/compiler/gcc-4.8.2/bin:{$PATH}"
 export PATH="${JUMBO_ROOT}/opt/gcc46/bin:{$PATH}"
+export PATH="/home/users/jinlei04/tools/php/bin:{$PATH}"
+export PATH="/home/users/jinlei04/store/php/bin:{$PATH}"
 
 # export CDPATH="${CDPATH}:/mnt/share/work/project/r2k/code"
 

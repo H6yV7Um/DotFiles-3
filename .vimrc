@@ -61,9 +61,11 @@ Plugin 'scrooloose/nerdtree'
 "VOoM (Vim Outliner of Markers) is a plugin for Vim that emulates a two-pane text outliner.
 "Plugin 'VOoM'
  
+"------------------------------------comment-------------------
 "Plugin 'scrooloose/nerdcommenter'
 "Plugin 'EnhCommentify.vim'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-commentary'
  
 "Plugin 'fholgado/minibufexpl.vim'
 "Plugin 'sjbach/lusty'
@@ -79,7 +81,7 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'Shougo/neocomplcache'
 "Plugin 'Shougo/neocomplete'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
  
 " This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
 "Plugin 'cmdline-completion'
@@ -97,7 +99,9 @@ Plugin 'tpope/vim-dispatch'
  
 Plugin 'scrooloose/syntastic'
 
+"----------------------------clipboard----------------
 Plugin 'YankRing.vim'
+"Plugin 'svermeulen/vim-easyclip'
  
 " extend %
 " 默认的% 只能匹配简单的比如括号, 这个扩展了一些
@@ -169,6 +173,7 @@ Plugin 'chrisbra/NrrwRgn'
  
 "Plugin 'rson/vim-conque'
  
+"---------------------------statusline-------------------------------------
 "Plugin 'Lokaltog/vim-powerline'
  
 "DrawIt is a plugin which allows one to draw lines left, right, up, down, and along both slants.
@@ -182,13 +187,13 @@ Plugin 'chrisbra/NrrwRgn'
 "Plugin 'xuhdev/SingleCompile'
  
  
-"Plugin 'jcf/vim-latex'
  
-"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Langs
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Langs~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "Plugin 'tpope/vim-haml'
 "Plugin 'pangloss/vim-javascript'
 "Plugin 'jsbeautify'
 "Plugin 'kchmck/vim-coffee-script'
+"Plugin 'jcf/vim-latex'
 "Plugin 'itspriddle/vim-jquery'
 "Plugin 'leshill/vim-json'
 "Plugin 'kchmck/vim-coffee-script'
@@ -779,8 +784,8 @@ let Tlist_Use_Right_Window = 1
 
 
 "-----------------------tcomment--------------------
-" let g:tcommentMapLeaderOp1 = \c
-"--------------------syntastic-----------------
+" let g:tcommentMapLeaderOp2 = '<Leader>c'
+" --------------------syntastic-----------------
 let g:syntastic_c_check_header = 1
 let g:syntastic_echo_current_error=0
 let g:syntastic_enable_signs=0

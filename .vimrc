@@ -81,7 +81,7 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'Shougo/neocomplcache'
 "Plugin 'Shougo/neocomplete'
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
  
 " This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
 "Plugin 'cmdline-completion'
@@ -206,7 +206,7 @@ Plugin 'chrisbra/NrrwRgn'
 "vim-markdown
 Plugin 'plasticboy/vim-markdown'
 
-Plugin 'shawncplus/phpcomplete.vim'
+" Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'rayburgemeestre/phpfolding.vim'
 
 
@@ -663,19 +663,6 @@ let NERDTreeShowBookmarks = 1
 "autocmd vimenter * NERDTree
 
 
-" ----------------neocomplete--------------------
-let g:neocomplcache_enable_auto_select = 1
-let g:neocomplcache_disable_auto_complete = 0
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_max_list = 10
-let g:neocomplcache_manual_completion_start_length = 100
-let g:neocomplcache_auto_completion_start_length = 5
-let g:neocomplcache_min_keyword_length = 10
-let g:neocomplcache_min_syntax_length = 10
-let g:neocomplcache_disable_caching_file_path_pattern = "out*.*"
-" <TAB>: completion.
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 
 "-----------------------unite tags--------------------
 let g:unite_source_tag_max_name_length = 40
@@ -746,7 +733,22 @@ nmap <Leader>yr :YRShow<CR>
 
 
 
+"-----------------------tcomment--------------------
+" let g:tcommentMapLeaderOp2 = '<Leader>c'
 
+" --------------------syntastic-----------------
+" let g:syntastic_c_check_header = 1
+" let g:syntastic_echo_current_error=0
+" let g:syntastic_enable_signs=0
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_quiet_messages = { "type": "style" }
+
+let g:syntastic_enable_signs = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -775,20 +777,8 @@ let g:miniBufExplorerMoreThanOne=0
 let g:miniBufExplSplitBelow=0 " Put new window above
 
 
-"----------------------taglist-----------------------
-let Tlist_Auto_Open=1
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1
-"map <F7> :TlistToggle<CR>
 
 
-"-----------------------tcomment--------------------
-" let g:tcommentMapLeaderOp2 = '<Leader>c'
-" --------------------syntastic-----------------
-let g:syntastic_c_check_header = 1
-let g:syntastic_echo_current_error=0
-let g:syntastic_enable_signs=0
 
 "--------------------lua-inspect---------------
 
@@ -800,3 +790,24 @@ let c_C99=1
 
 "--------------------voom-----------------------
 let g:voom_tree_placement = "right"
+
+"----------------------taglist-----------------------
+let Tlist_Auto_Open=1
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Use_Right_Window = 1
+"map <F7> :TlistToggle<CR>
+
+" ----------------neocomplete--------------------
+let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_disable_auto_complete = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_max_list = 10
+let g:neocomplcache_manual_completion_start_length = 100
+let g:neocomplcache_auto_completion_start_length = 5
+let g:neocomplcache_min_keyword_length = 10
+let g:neocomplcache_min_syntax_length = 10
+let g:neocomplcache_disable_caching_file_path_pattern = "out*.*"
+" <TAB>: completion.
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"

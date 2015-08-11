@@ -19,7 +19,7 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin 'xolox/vim-session'
 "
 " original repos on github
-"Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-repeat'
 " vim-scripts repos
 "Plugin 'FuzzyFinder'
 " non github repos
@@ -81,7 +81,7 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'Shougo/neocomplcache'
 "Plugin 'Shougo/neocomplete'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
  
 " This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
 "Plugin 'cmdline-completion'
@@ -100,7 +100,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/syntastic'
 
 "----------------------------clipboard----------------
-Plugin 'YankRing.vim'
+" Plugin 'YankRing.vim'
 "Plugin 'svermeulen/vim-easyclip'
  
 " extend %
@@ -208,6 +208,8 @@ Plugin 'plasticboy/vim-markdown'
 
 " Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'rayburgemeestre/phpfolding.vim'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+" Plugin 'bbchung/clighter'
 
 
 
@@ -487,6 +489,7 @@ map <kDivide> <c-w><
 map <kMultiply> <c-w>>
 endif
  
+map <leader>json '<,'>!python -m json.tool
 "map <F7> eb"tye k /<C-R>t<CR>
 "map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
 "map <F12> :!ctags <CR>
@@ -613,6 +616,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
 set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
+"set statusline+=%{tagbar#currenttag('[%s] ','')}
 
 
 
@@ -673,9 +677,21 @@ map <F6> :TagbarToggle<CR>
 let g:tagbar_sort = 0
 let g:tagbar_width = 40
 "let g:tagbar_foldlevel = 0
-autocmd FileType c,cpp,rb,vim nested :TagbarOpen
+autocmd FileType c,cpp,rb,vim,php nested :TagbarOpen
 
 " add a definition for Objective-C to tagbar
+
+let g:tagbar_type_php = {
+    \ 'kinds' : [
+        \ 'i:interfaces:1',
+        \ 'c:classes:1',
+        \ 'd:constant definitions:1:0',
+        \ 'f:functions',
+        \ 'v:variables:1:0',
+        \ 'j:javascript functions:1',
+    \ ],
+\ }
+
 let g:tagbar_type_objc = {
             \ 'ctagstype' : 'ObjectiveC',
             \ 'kinds'     : [
@@ -745,7 +761,7 @@ nmap <Leader>yr :YRShow<CR>
 " let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_php_checkers = ['php']
+let g:syntastic_php_checkers = ['php', 'cc']
 let g:syntastic_quiet_messages = { "type": "style" }
 
 let g:syntastic_enable_signs = 1

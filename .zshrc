@@ -88,9 +88,12 @@ autoload -U bashcompinit && bashcompinit
 # export PATH="${PATH}:/mnt/share/tools/all/you-get"
 #export PATH="${PATH}:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:/home/users/jinlei04/store/php/bin"
 #export PATH="/home/users/jinlei04/store/php/bin:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:{$PATH}"
-export PATH=${JUMBO_ROOT}/opt/gcc49/bin:$PATH
+# export PATH=${JUMBO_ROOT}/opt/gcc49/bin:$PATH
 export PATH=/home/users/jinlei04/tools/php/bin:$PATH
 export PATH=/home/users/jinlei04/store/php/bin:$PATH
 # export PATH="/opt/compiler/gcc-4.8.2/bin:{$PATH}"
 
-rvm use default
+source ${JUMBO_ROOT}/opt/sun-java8/sun-java8.sh
+
+
+#rvm use default

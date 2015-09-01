@@ -399,12 +399,16 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
  
 "set fileencodings=ucs-bom,utf-8,cp936,euc-cn,chinese,big5,latin1
 "set fileencodings=ucs-bom,utf-8,cp936,euc-cn,chinese,latin1
-set fileencodings=ucs-bom,utf-8,euc-cn,cp936,latin1
+set fileencodings=utf-8,eucs-bom,uc-cn,cp936,latin1
+set termencoding=utf-8
+set encoding=utf-8
 "set fileencodings=ucs-bom,utf-8,cp936,euc-cn,chinese
  
 syntax on
 "set number
-set nospell
+" set nospell
+set spell
+set spellfile=vim_spell.utf8.add
 set linebreak
 set showbreak=...
 set nowrap
@@ -761,10 +765,13 @@ nmap <Leader>yr :YRShow<CR>
 " let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_php_checkers = ['php', 'cc']
+" let g:syntastic_php_checkers = ['php', 'cc']
+let g:syntastic_php_checkers = ['php']
 let g:syntastic_quiet_messages = { "type": "style" }
 
 let g:syntastic_enable_signs = 1
+
+let g:syntastic_ignore_files = ['\m\c\.cc$', '\m\c\.h$']
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

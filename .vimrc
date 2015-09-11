@@ -9,7 +9,7 @@ if has("gui_macvim")
 endif
 
 set nocompatible " be iMproved
-filetype off " required!
+filetype off " required!  
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
@@ -79,8 +79,7 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'tpope/vim-unimpaired'
 "Plugin 'ervandew/supertab'
 "Plugin 'vim-scripts/AutoComplPop'
-"Plugin 'Shougo/neocomplcache'
-"Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/neocomplete'
 " Plugin 'Valloric/YouCompleteMe'
  
 " This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
@@ -485,6 +484,7 @@ autocmd BufRead,BufNewFile *.c syntax keyword return return
 map <leader>bn :bn<CR>
 map <leader>v "0p
 map <leader>q <C-W>_
+map <leader>mk :make<CR>botright copen<CR>
 
 if bufwinnr(1)
 map <kPlus> <C-W>+
@@ -663,7 +663,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 "-----------------------nerdtree---------------------
 map <F8> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.o$','\.a$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$']
+let NERDTreeIgnore=['\.o$','\.a$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$']
 let NERDTreeChDirMode = 2
 let NERDTreeWinSize = 30
 let NERDTreeShowBookmarks = 1
@@ -750,6 +750,15 @@ nmap <Leader>yr :YRShow<CR>
 
 
 
+" ------------------------YCM----------------------
+"
+
+let g:ycm_register_as_syntastic_checker = 0
+let g:ycm_min_num_of_chars_for_completion = 10
+let g:ycm_min_num_identifier_candidate_chars = 10
+let g:ycm_filetype_whitelist = { 'cpp': 1 }
+let g:ycm_filetype_specific_completion_to_disable = { 'cpp': 1 }
+let g:ycm_cache_omnifunc = 0
 
 
 

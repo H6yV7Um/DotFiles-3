@@ -9,7 +9,7 @@ if has("gui_macvim")
 endif
 
 set nocompatible " be iMproved
-filetype off " required!
+filetype off " required!  
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
@@ -19,7 +19,7 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin 'xolox/vim-session'
 "
 " original repos on github
-"Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-repeat'
 " vim-scripts repos
 "Plugin 'FuzzyFinder'
 " non github repos
@@ -61,14 +61,16 @@ Plugin 'scrooloose/nerdtree'
 "VOoM (Vim Outliner of Markers) is a plugin for Vim that emulates a two-pane text outliner.
 "Plugin 'VOoM'
  
+"------------------------------------comment-------------------
 "Plugin 'scrooloose/nerdcommenter'
-Plugin 'EnhCommentify.vim'
+"Plugin 'EnhCommentify.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-commentary'
  
 "Plugin 'fholgado/minibufexpl.vim'
 "Plugin 'sjbach/lusty'
  
  
-Plugin 'tpope/vim-surround'
 "Plugin 'tpope/vim-repeat'
  
 Plugin 'Lokaltog/vim-easymotion'
@@ -77,9 +79,8 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'tpope/vim-unimpaired'
 "Plugin 'ervandew/supertab'
 "Plugin 'vim-scripts/AutoComplPop'
-"Plugin 'Shougo/neocomplcache'
-"Plugin 'Shougo/neocomplete'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'Shougo/neocomplete'
+" Plugin 'Valloric/YouCompleteMe'
  
 " This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
 "Plugin 'cmdline-completion'
@@ -95,16 +96,23 @@ Plugin 'tpope/vim-dispatch'
 "Plugin 'tpope/vim-endwise'
 "Plugin 'jiangmiao/auto-pairs'
  
-"Plugin 'scrooloose/syntastic'
- 
-Plugin 'YankRing.vim'
+Plugin 'scrooloose/syntastic'
+
+"----------------------------clipboard----------------
+" Plugin 'YankRing.vim'
+"Plugin 'svermeulen/vim-easyclip'
  
 " extend %
-"Plugin 'matchit.zip'
- 
+" 默认的% 只能匹配简单的比如括号, 这个扩展了一些
+Plugin 'matchit.zip'
+
+"  'hello world' -> (hello world)
+Plugin 'tpope/vim-surround'
+
 Plugin 'majutsushi/tagbar'
 "taglist
  
+Plugin 'pbrisbin/vim-mkdir'
  
 "snipmate & deps
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -128,7 +136,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 "Plugin 'tpope/vim-fugitive'
  
 "align
-"Plugin 'godlygeek/tabular'
+Plugin 'godlygeek/tabular'
  
 "Highlight what you want
 Plugin 'Mark--Karkat'
@@ -164,6 +172,7 @@ Plugin 'chrisbra/NrrwRgn'
  
 "Plugin 'rson/vim-conque'
  
+"---------------------------statusline-------------------------------------
 "Plugin 'Lokaltog/vim-powerline'
  
 "DrawIt is a plugin which allows one to draw lines left, right, up, down, and along both slants.
@@ -177,13 +186,13 @@ Plugin 'chrisbra/NrrwRgn'
 "Plugin 'xuhdev/SingleCompile'
  
  
-"Plugin 'jcf/vim-latex'
  
-"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Langs
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Langs~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "Plugin 'tpope/vim-haml'
 "Plugin 'pangloss/vim-javascript'
 "Plugin 'jsbeautify'
 "Plugin 'kchmck/vim-coffee-script'
+"Plugin 'jcf/vim-latex'
 "Plugin 'itspriddle/vim-jquery'
 "Plugin 'leshill/vim-json'
 "Plugin 'kchmck/vim-coffee-script'
@@ -194,11 +203,12 @@ Plugin 'chrisbra/NrrwRgn'
 "md, rdoc, textile
 "Plugin 'greyblake/vim-preview'
 "vim-markdown
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
-Plugin 'shawncplus/phpcomplete.vim'
+" Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'rayburgemeestre/phpfolding.vim'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+" Plugin 'bbchung/clighter'
 
 
 
@@ -388,12 +398,16 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
  
 "set fileencodings=ucs-bom,utf-8,cp936,euc-cn,chinese,big5,latin1
 "set fileencodings=ucs-bom,utf-8,cp936,euc-cn,chinese,latin1
-set fileencodings=ucs-bom,utf-8,euc-cn,cp936,latin1
+set fileencodings=utf-8,eucs-bom,uc-cn,cp936,latin1
+set termencoding=utf-8
+set encoding=utf-8
 "set fileencodings=ucs-bom,utf-8,cp936,euc-cn,chinese
  
 syntax on
 "set number
-set nospell
+" set nospell
+set spell
+set spellfile=vim_spell.utf8.add
 set linebreak
 set showbreak=...
 set nowrap
@@ -470,6 +484,7 @@ autocmd BufRead,BufNewFile *.c syntax keyword return return
 map <leader>bn :bn<CR>
 map <leader>v "0p
 map <leader>q <C-W>_
+map <leader>mk :make<CR>botright copen<CR>
 
 if bufwinnr(1)
 map <kPlus> <C-W>+
@@ -478,6 +493,7 @@ map <kDivide> <c-w><
 map <kMultiply> <c-w>>
 endif
  
+map <leader>json '<,'>!python -m json.tool
 "map <F7> eb"tye k /<C-R>t<CR>
 "map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
 "map <F12> :!ctags <CR>
@@ -485,7 +501,8 @@ endif
 if(has('mac'))
     map <Leader>tg :!/usr/local/bin/ctags -R<CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
 else
-    map <Leader>tg :!ctags -R<CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
+"    map <Leader>tg :!ctags -R<CR> :UpdateTypesFile<CR> :!cscope -Rbq<CR>
+    map <Leader>tg :!ctags -R<CR>
 endif
 
 map <Leader>tagg  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>/^<CR><F12>
@@ -599,10 +616,11 @@ set laststatus=2
 "syntastic
 set statusline=
 set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
 set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
+"set statusline+=%{tagbar#currenttag('[%s] ','')}
 
 
 
@@ -645,7 +663,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 "-----------------------nerdtree---------------------
 map <F8> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.o$','\.a$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$']
+let NERDTreeIgnore=['\.o$','\.a$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$']
 let NERDTreeChDirMode = 2
 let NERDTreeWinSize = 30
 let NERDTreeShowBookmarks = 1
@@ -653,19 +671,6 @@ let NERDTreeShowBookmarks = 1
 "autocmd vimenter * NERDTree
 
 
-" ----------------neocomplete--------------------
-let g:neocomplcache_enable_auto_select = 1
-let g:neocomplcache_disable_auto_complete = 0
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_max_list = 10
-let g:neocomplcache_manual_completion_start_length = 100
-let g:neocomplcache_auto_completion_start_length = 5
-let g:neocomplcache_min_keyword_length = 10
-let g:neocomplcache_min_syntax_length = 10
-let g:neocomplcache_disable_caching_file_path_pattern = "out*.*"
-" <TAB>: completion.
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 
 "-----------------------unite tags--------------------
 let g:unite_source_tag_max_name_length = 40
@@ -676,9 +681,21 @@ map <F6> :TagbarToggle<CR>
 let g:tagbar_sort = 0
 let g:tagbar_width = 40
 "let g:tagbar_foldlevel = 0
-autocmd FileType c,cpp,rb,vim nested :TagbarOpen
+autocmd FileType c,cpp,rb,vim,php nested :TagbarOpen
 
 " add a definition for Objective-C to tagbar
+
+let g:tagbar_type_php = {
+    \ 'kinds' : [
+        \ 'i:interfaces:1',
+        \ 'c:classes:1',
+        \ 'd:constant definitions:1:0',
+        \ 'f:functions',
+        \ 'v:variables:1:0',
+        \ 'j:javascript functions:1',
+    \ ],
+\ }
+
 let g:tagbar_type_objc = {
             \ 'ctagstype' : 'ObjectiveC',
             \ 'kinds'     : [
@@ -733,10 +750,37 @@ nmap <Leader>yr :YRShow<CR>
 
 
 
+" ------------------------YCM----------------------
+"
+
+let g:ycm_register_as_syntastic_checker = 0
+let g:ycm_min_num_of_chars_for_completion = 10
+let g:ycm_min_num_identifier_candidate_chars = 10
+let g:ycm_filetype_whitelist = { 'cpp': 1 }
+let g:ycm_filetype_specific_completion_to_disable = { 'cpp': 1 }
+let g:ycm_cache_omnifunc = 0
 
 
 
+"-----------------------tcomment--------------------
+" let g:tcommentMapLeaderOp2 = '<Leader>c'
 
+" --------------------syntastic-----------------
+" let g:syntastic_c_check_header = 1
+" let g:syntastic_echo_current_error=0
+" let g:syntastic_enable_signs=0
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+" let g:syntastic_php_checkers = ['php', 'cc']
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_quiet_messages = { "type": "style" }
+
+let g:syntastic_enable_signs = 1
+
+let g:syntastic_ignore_files = ['\m\c\.cc$', '\m\c\.h$']
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -765,19 +809,8 @@ let g:miniBufExplorerMoreThanOne=0
 let g:miniBufExplSplitBelow=0 " Put new window above
 
 
-"----------------------taglist-----------------------
-let Tlist_Auto_Open=1
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1
-"map <F7> :TlistToggle<CR>
 
 
-
-"--------------------syntastic-----------------
-let g:syntastic_c_check_header = 1
-let g:syntastic_echo_current_error=0
-let g:syntastic_enable_signs=0
 
 "--------------------lua-inspect---------------
 
@@ -789,3 +822,24 @@ let c_C99=1
 
 "--------------------voom-----------------------
 let g:voom_tree_placement = "right"
+
+"----------------------taglist-----------------------
+let Tlist_Auto_Open=1
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Use_Right_Window = 1
+"map <F7> :TlistToggle<CR>
+
+" ----------------neocomplete--------------------
+let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_disable_auto_complete = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_max_list = 10
+let g:neocomplcache_manual_completion_start_length = 100
+let g:neocomplcache_auto_completion_start_length = 5
+let g:neocomplcache_min_keyword_length = 10
+let g:neocomplcache_min_syntax_length = 10
+let g:neocomplcache_disable_caching_file_path_pattern = "out*.*"
+" <TAB>: completion.
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"

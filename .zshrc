@@ -4,8 +4,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load.  Look in ~/.oh-my-zsh/themes/ Optionally,
 # if you set this to "random", it'll load a random theme each time that
 # oh-my-zsh is loaded.
-# export ZSH_THEME="robbyrussell"
-export ZSH_THEME="lk"
+export ZSH_THEME="robbyrussell"
+#export ZSH_THEME="lk"
 
 # Set to this to use case-sensitive completion export CASE_SENSITIVE="true"
 
@@ -40,12 +40,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$PATH
-# export PATH="${PATH}:/opt/crosstools/bin"
-# export PATH="${PATH}:/home/jinleileiking/crosstools/angstrom/usr/local/angstrom/arm/bin"
-# export PATH="${PATH}:/home/jinleileiking/crosstools/linaro/gcc-linaro-arm-linux-gnueabihf-4.8-2014.02_linux/arm-linux-gnueabihf/bin"
-# export PATH="${PATH}:/mnt/share/tools/all/you-get"
-export PATH="${PATH}:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:/home/users/jinlei04/store/php/bin"
-export PATH="/home/users/jinlei04/store/php/bin:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:{$PATH}"
 
 # export CDPATH="${CDPATH}:/mnt/share/work/project/r2k/code"
 
@@ -88,5 +82,18 @@ autoload -U bashcompinit && bashcompinit
 [[ -s "/home/users/jinlei04/.jumbo/etc/bashrc" ]] && source "/home/users/jinlei04/.jumbo/etc/bashrc"
 
 
+# export PATH="${PATH}:/opt/crosstools/bin"
+# export PATH="${PATH}:/home/jinleileiking/crosstools/angstrom/usr/local/angstrom/arm/bin"
+# export PATH="${PATH}:/home/jinleileiking/crosstools/linaro/gcc-linaro-arm-linux-gnueabihf-4.8-2014.02_linux/arm-linux-gnueabihf/bin"
+# export PATH="${PATH}:/mnt/share/tools/all/you-get"
+#export PATH="${PATH}:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:/home/users/jinlei04/store/php/bin"
+#export PATH="/home/users/jinlei04/store/php/bin:/home/users/jinlei04/store/php/phplib/phptest/UnitTest/tools:{$PATH}"
+# export PATH=${JUMBO_ROOT}/opt/gcc49/bin:$PATH
+export PATH=/home/users/jinlei04/tools/php/bin:$PATH
+export PATH=/home/users/jinlei04/store/php/bin:$PATH
+# export PATH="/opt/compiler/gcc-4.8.2/bin:{$PATH}"
 
-rvm use default
+source ${JUMBO_ROOT}/opt/sun-java8/sun-java8.sh
+
+
+#rvm use default

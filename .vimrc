@@ -766,7 +766,8 @@ let g:syntastic_enable_signs=0
 "--------------------lua-inspect---------------
 
 
-highlight link luaInspectFieldUndefined  Member
+hi link luaInspectFieldUndefined  Member
+hi link luaInspectLocalMutated LocalVariable
 
 "------------------------------std_c---------------
 let c_C99=1

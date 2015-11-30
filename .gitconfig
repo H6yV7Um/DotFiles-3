@@ -14,3 +14,8 @@
 	excludesfile = /home/jinleileiking/.gitignore
 [diff]
 	tool = meld
+[http]
+	postBuffer = 524288000
+	proxy = http://agent.baidu.com:8118
+[https]
+	proxy = https://agent.baidu.com:8118

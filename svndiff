@@ -1,0 +1,5 @@
+#!/bin/sh
+DIFF="/usr/bin/vim -d --noplugin -u /etc/vimrc"
+LEFT=${6}
+RIGHT=${7}
+$DIFF $LEFT $RIGHT

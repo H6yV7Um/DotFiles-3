@@ -64,17 +64,17 @@ autorun_items =
 {
     "terminator", 
     --"VBoxClient-all",
-    "gvim",
-    "VirtualBox",
+--    "gvim",
+--    "VirtualBox",
 --    "/opt/bin/VirtualBox",
     --"ibus-daemon -d -x",
     "fcitx",
-    "google-chrome-stable",
+--    "google-chrome-stable",
     "synergys",
 --    "firefox",
 --    "kdiff3",
-    "meld",
-    "thunderbird-bin",
+--    "meld",
+--    "thunderbird-bin",
 --    "dolphin",
 --      "xrandr --output VGA1 --primary  --output HDMI1  --right-of VGA1",
     --"xrandr --output VBOX1 --right-of VBOX0",
@@ -143,7 +143,11 @@ tags_new = {
 
 tags[1] = awful.tag(tags.names, 1, tags.layout)
 
+print("=======================")
+print(screen.count())
+print("=======================")
 for s = 2, screen.count() do
+--for s = 2, 4 do
     tags[s] = awful.tag(tags_new.names, s, tags_new.layout)
 end
 -- }}}
@@ -335,7 +339,7 @@ function (widget, args)
     -- append to list
     if i > 0 then text = text.."/"..args["{cpu" .. i .. " ghz}"].."G"
     else text = "|" .. args["{cpu" .. i .. " ghz}"].."G" end
-    print(cpu_counts)
+--    print(cpu_counts)
   end
   return text
 end)
@@ -371,41 +375,41 @@ end)
 -- }}}
 
 -- {{{ Volume level
---local vol_icon = widget({ type = "imagebox" }); vol_icon.image = image(icon_path.."volume.png")
+local vol_icon = widget({ type = "imagebox" }); vol_icon.image = image(icon_path.."volume.png")
 
---vicious.cache(vicious.widgets.volume)
+vicious.cache(vicious.widgets.volume)
 
 
---volbar = awful.widget.progressbar()
---volbar:set_width(8)
---volbar:set_height(20)
---volbar:set_vertical(true)
---volbar:set_background_color(beautiful.fg_off_widget)
---volbar:set_color(beautiful.fg_widget)
+volbar = awful.widget.progressbar()
+volbar:set_width(8)
+volbar:set_height(20)
+volbar:set_vertical(true)
+volbar:set_background_color(beautiful.fg_off_widget)
+volbar:set_color(beautiful.fg_widget)
 -- Bar from green to red
---volbar:set_gradient_colors({ '#AECF96', '#88A175', '#FF5656' })
---awful.widget.layout.margins[volbar.widget] = { top = 2, bottom = 2, left = 2 }
+volbar:set_gradient_colors({ '#AECF96', '#88A175', '#FF5656' })
+awful.widget.layout.margins[volbar.widget] = { top = 2, bottom = 2, left = 2 }
 
---vicious.register(volbar,    vicious.widgets.volume,  "$1",  1, "Master")
---volbar.widget:buttons(awful.util.table.join(
---   awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle") end),
---   awful.button({ }, 4, function () awful.util.spawn("amixer -q set Master 1%+") end),
---   awful.button({ }, 5, function () awful.util.spawn("amixer -q set Master 1%-") end)
---)) -- Register assigned buttons
+vicious.register(volbar,    vicious.widgets.volume,  "$1",  1, "Master")
+volbar.widget:buttons(awful.util.table.join(
+   awful.button({ }, 1, function () awful.util.spawn("amixer -q set Master toggle") end),
+   awful.button({ }, 4, function () awful.util.spawn("amixer -q set Master 1%+") end),
+   awful.button({ }, 5, function () awful.util.spawn("amixer -q set Master 1%-") end)
+)) -- Register assigned buttons
 
 
---volwidget = widget({ type = "textbox" })
---vicious.register(volwidget, vicious.widgets.volume, "$2$1%", 2, "Master")
---vicious.register(volwidget, vicious.widgets.volume, function (widget, args)
-    --if args[1] == 0 then
-        --vol_icon.image = image(icon_path.."volume-mute.png")
-    --else
-        --vol_icon.image = image(icon_path.."volume.png")
-    --end
-    --return args[1]
---end, 2, "Master")
+volwidget = widget({ type = "textbox" })
+vicious.register(volwidget, vicious.widgets.volume, "$2$1%", 2, "Master")
+vicious.register(volwidget, vicious.widgets.volume, function (widget, args)
+    if args[2] == "♫" then
+        vol_icon.image = image(icon_path.."volume.png")
+    else
+        vol_icon.image = image(icon_path.."volume-mute.png")
+    end
+    return args[1]
+end, 2, "Master")
 
---volwidget:buttons(volbar.widget:buttons())
+volwidget:buttons(volbar.widget:buttons())
 -- }}}
 
 
@@ -429,7 +433,7 @@ local dns_widget = widget({ type = "textbox" })
 vicious.register(dns_widget, vicious.contrib.dns,
 function (widget, args)
   local text = " DNS:"
-  print(args)
+--  print(args)
   if args == 'N/A' then
       text = text .. args
   else
@@ -597,7 +601,7 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         datewidget, clockicon,
---        volbar.widget,volwidget,vol_icon,
+        volbar.widget,volwidget,vol_icon,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -777,24 +781,24 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { }, properties = { border_width = beautiful.border_width, border_color = beautiful.border_normal, focus = true, keys = clientkeys, buttons = clientbuttons } },
-    { rule = { class = "MPlayer" }, properties = { floating = true } },
-    { rule = { class = "pinentry" }, properties = { floating = true } },
-    { rule = { class = "gimp" }, properties = { floating = true } },
-    { rule = { class = "Gvim" }, properties = { tag = tags[1][2] } },
-    { rule = { class = "Chromium" }, properties = { tag = tags[1][3] } },
-    { rule = { class = "Google-chrome-stable" }, properties = { tag = tags[1][3] } },
-    { rule = { class = "Firefox" }, properties = { tag = tags[1][4] } },
-    { rule = { class = "Kdiff3" }, properties = { tag = tags[1][5] } },
-    { rule = { class = "Meld" }, properties = { tag = tags[1][5] } },
-    { rule = { class = "Terminator" }, properties = { tag = tags[1][1] } },
-    { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
-    { rule = { class = "Dolphin" }, properties = { tag = tags[1][9] } },
-    { rule = { class = "Acroread" }, properties = { tag = tags[1][8] } },
-    { rule = { class = "Evince" }, properties = { tag = tags[1][8] } },
-    { rule = { class = "Okular" }, properties = { tag = tags[1][8] } },
-    { rule = { class = "Soffice.bin" }, properties = { tag = tags[1][8] } },
-    { rule = { class = "VirtualBox" }, properties = { tag = tags[1][6] } },
-    { rule = { class = "thunderbird-bin" }, properties = { tag = tags[1][7] } },
+--    { rule = { class = "MPlayer" }, properties = { floating = true } },
+--    { rule = { class = "pinentry" }, properties = { floating = true } },
+--    { rule = { class = "gimp" }, properties = { floating = true } },
+--    { rule = { class = "Gvim" }, properties = { tag = tags[1][2] } },
+--    { rule = { class = "Chromium" }, properties = { tag = tags[1][3] } },
+--    { rule = { class = "Google-chrome-stable" }, properties = { tag = tags[1][3] } },
+--    { rule = { class = "Firefox" }, properties = { tag = tags[1][4] } },
+--    { rule = { class = "Kdiff3" }, properties = { tag = tags[1][5] } },
+--    { rule = { class = "Meld" }, properties = { tag = tags[1][5] } },
+--    { rule = { class = "Terminator" }, properties = { tag = tags[1][1] } },
+--    { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][9] } },
+--    { rule = { class = "Dolphin" }, properties = { tag = tags[1][9] } },
+--    { rule = { class = "Acroread" }, properties = { tag = tags[1][8] } },
+--    { rule = { class = "Evince" }, properties = { tag = tags[1][8] } },
+--    { rule = { class = "Okular" }, properties = { tag = tags[1][8] } },
+--    { rule = { class = "Soffice.bin" }, properties = { tag = tags[1][8] } },
+--    { rule = { class = "VirtualBox" }, properties = { tag = tags[1][6] } },
+--    { rule = { class = "thunderbird-bin" }, properties = { tag = tags[1][7] } },
 }
 -- }}}
 

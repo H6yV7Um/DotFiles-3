@@ -818,7 +818,8 @@ let g:miniBufExplSplitBelow=0 " Put new window above
 "--------------------lua-inspect---------------
 
 
-highlight link luaInspectFieldUndefined  Member
+hi link luaInspectFieldUndefined  Member
+hi link luaInspectLocalMutated LocalVariable
 
 "------------------------------std_c---------------
 let c_C99=1

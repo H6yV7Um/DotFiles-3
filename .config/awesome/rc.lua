@@ -132,7 +132,7 @@ layouts =
 -- {{{ Tags
 tags = {
 --    names  = { "1:term", "2:gvim", "3:chrome", "4:firefox", "5:diff", 6, "7:win", "8:reading", "9:file_manager" },
-    names  = { "1:term", "2:gvim", "3:chrome", "4:firefox", "5:diff", "6:win", "7:mail", 8, 9 },
+    names  = { "1:term", "2:work", "3:work", "4:work", "5:work", "6:rd", "7:online", "8:web", "9:others" },
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 
@@ -705,7 +705,7 @@ awful.key({                   }, "Print", function  ()
     awful.util.spawn("scrot -e 'mv $f ~/ 2>/dev/null'")
     naughty.notify{ title = "Notice", text  = "Screenshot Saved!", timeout = 7}
 end),
-awful.key({ modkey,           }, "z",     function () awful.util.spawn("slock") end),
+awful.key({ modkey,           }, "l",     function () awful.util.spawn("slock") end),
 awful.key({ modkey            }, "e",     revelation),
 awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 1%+") end),
 awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 1%-") end)
@@ -718,6 +718,9 @@ awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                
 awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
 awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
 awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
+awful.key({ modkey,           }, "F1",      function (c) awful.client.movetoscreen(c,1) end ),
+awful.key({ modkey,           }, "F2",      function (c) awful.client.movetoscreen(c,2) end ),
+awful.key({ modkey,           }, "F3",      function (c) awful.client.movetoscreen(c,3) end ),
 awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
 awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
 awful.key({ modkey,           }, "n",      function (c) c.minimized = not c.minimized    end),

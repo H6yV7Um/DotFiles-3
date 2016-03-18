@@ -62,7 +62,7 @@ local r = require("runonce")
 
 autorun_items = 
 {
---    "terminator", 
+    "terminator", 
     --"VBoxClient-all",
 --    "gvim",
 --    "VirtualBox",
@@ -70,7 +70,7 @@ autorun_items =
     --"ibus-daemon -d -x",
     "fcitx",
 --    "google-chrome-stable",
- --   "synergys",
+    "synergys",
 --    "firefox",
 --    "kdiff3",
 --    "meld",
@@ -142,12 +142,11 @@ tags_new = {
 }
 
 tags[1] = awful.tag(tags.names, 1, tags.layout)
-tags[2] = awful.tag(tags.names, 2, tags.layout)
 
 print("=======================")
 print(screen.count())
 print("=======================")
-for s = 3, screen.count() do
+for s = 2, screen.count() do
 --for s = 2, 4 do
     tags[s] = awful.tag(tags_new.names, s, tags_new.layout)
 end
@@ -681,7 +680,7 @@ awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal
 awful.key({ modkey, "Control" }, "r", awesome.restart),
 awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
-awful.key({ modkey,           }, "z",     function () awful.tag.incmwfact( 0.05)    end),
+awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
 awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
 awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
 awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
@@ -706,7 +705,7 @@ awful.key({                   }, "Print", function  ()
     awful.util.spawn("scrot -e 'mv $f ~/ 2>/dev/null'")
     naughty.notify{ title = "Notice", text  = "Screenshot Saved!", timeout = 7}
 end),
-awful.key({ modkey,           }, "l",     function () awful.util.spawn("slock") end),
+awful.key({ modkey,           }, "z",     function () awful.util.spawn("slock") end),
 awful.key({ modkey            }, "e",     revelation),
 awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 1%+") end),
 awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 1%-") end)

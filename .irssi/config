@@ -13,15 +13,21 @@ servers = (
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
+  },
+  {
+    address = "irc.oftc.net";
+    chatnet = "OFTC";
+    port = "6668";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
   }
 );
 
 chatnets = {
-  OFTC = { 
+  OFTC = {
     type = "IRC";
-    max_kicks = "1";
-    max_msgs = "3";
-    max_whois = "30";
+    autosendcmd = "/^msg NickServ identify jinlei0216";
   };
   freenode = {
     type = "IRC";
@@ -39,15 +45,15 @@ channels = (
   #{ name = "#ubuntu-cn"; chatnet = "freenode"; autojoin = "yes"; },
   #{ name = "#awesome"; chatnet = "freenode"; },
   #{ name = "#ruby-tw"; chatnet = "freenode"; },
-  #{ name = "#awesome"; chatnet = "OFTC"; autojoin = "yes"; },
+  { name = "#awesome"; chatnet = "OFTC"; autojoin = "yes"; },
   #{ name = "#redis"; chatnet = "freenode"; autojoin = "yes"; },
   #{ name = "#vim"; chatnet = "freenode"; autojoin = "yes"; },
   #{ name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
   #{ name = "#xfce"; chatnet = "freenode"; },
   #{ name = "#lua"; chatnet = "freenode"; autojoin = "yes"; }
-  { name = "subtle"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#subtle"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#winehq"; chatnet = "freenode"; autojoin = "yes"; },
+  #{ name = "subtle"; chatnet = "freenode"; autojoin = "yes"; },
+  #{ name = "#subtle"; chatnet = "freenode"; autojoin = "yes"; },
+  #{ name = "#winehq"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "rxvt-unicode"; chatnet = "freenode"; autojoin = "yes"; }
 );
 

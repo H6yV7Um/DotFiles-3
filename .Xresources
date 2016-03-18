@@ -4,8 +4,39 @@ Xft.hinting: true
 Xft.antialias: true
 Xft.hintstyle: hintslight
 
+! font
+URxvt.font:xft:Monospace:pixelsize=18:antialias=true
+URxvt.letterSpace: -1
+
+! url can click
+URxvt.perl-lib: .urxvt/
+URxvt.perl-ext-common: default,matcher,tabbedex,keyboard-select
+URxvt.url-launcher: /usr/bin/google-chrome-stable
+URxvt.matcher.button: 1
 
 
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+
+
+! URxvt.perl-lib: /usr/lib64/urxvt/perl
+! 
+! 
+! URxvt.perl-ext-common: ...,keyboard-select
+! URxvt.keysym.M-Escape: perl:keyboard-select:activate
+! URxvt.keysym.M-s: perl:keyboard-select:search
+
+
+! tab
+! URxvt.perl-ext-common: ...,tabbed,...
+
+
+! URxvt.perl-ext-common:  ...,resize-font,...
+! URxvt.resize-font.smaller: C-Down
+! URxvt.resize-font.bigger: C-Up
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 
 ! Solarized color scheme for the X Window System

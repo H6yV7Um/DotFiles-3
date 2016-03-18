@@ -518,6 +518,7 @@ cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 map <Leader>y "+y
 map <Leader>p "+gP
 map <Leader>wp ve"0p
+map <Leader>v "0p
 map vp "cp
 map vy "cy
  

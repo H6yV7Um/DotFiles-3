@@ -15,6 +15,8 @@ require("plugins/revelation")
 --require("plugins/lognotify")
 require("cal")
 require("markup")
+-- shifty - dynamic tagging library
+require("shifty")
 --require("iwlist")
 --require("util")
 -- }}} 
@@ -122,9 +124,9 @@ layouts =
     awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
+    --awful.layout.suit.max,
+    --awful.layout.suit.max.fullscreen,
+    --awful.layout.suit.magnifier,
     awful.layout.suit.floating
 }
 -- }}}

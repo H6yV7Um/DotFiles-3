@@ -34,7 +34,7 @@ eval `dbus-launch --sh-syntax --exit-with-session`
 #exec ck-launch-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
 #exec ck-launch-session dbus-launch --sh-syntax --exit-with-session awesome >> ~/.awesome_stdout 2>> ~/.awesome_stderr
 
-python ~/bnac.py jinlei04 Leiking02161 &
+exec python ~/bnac.py jinlei04 Leiking02163 &
 
 
 #feh /mnt/share/mine/baby.jpg --bg-max

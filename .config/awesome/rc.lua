@@ -11,12 +11,12 @@ require("awful.rules")
 require("beautiful")
 -- Notification library
 require("naughty")
-require("plugins/revelation")
+--require("plugins/revelation")
 --require("plugins/lognotify")
 require("cal")
 require("markup")
 -- shifty - dynamic tagging library
-require("shifty")
+--require("shifty")
 --require("iwlist")
 --require("util")
 -- }}} 
@@ -116,17 +116,17 @@ local icon_path = awful.util.getdir("config").."/icons/"
 layouts =
 {
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.floating,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.spiral,
-    --awful.layout.suit.spiral.dwindle,
-    --awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.magnifier,
+--    awful.layout.suit.tile.left,
+--    awful.layout.suit.tile.bottom,
+--    awful.layout.suit.tile.top,
+--    awful.layout.suit.floating,
+--    awful.layout.suit.fair,
+--    awful.layout.suit.fair.horizontal,
+--    awful.layout.suit.spiral,
+--    awful.layout.suit.spiral.dwindle,
+--    awful.layout.suit.max,
+--    awful.layout.suit.max.fullscreen,
+--    awful.layout.suit.magnifier,
     awful.layout.suit.floating
 }
 -- }}}
@@ -134,22 +134,22 @@ layouts =
 -- {{{ Tags
 tags = {
 --    names  = { "1:term", "2:gvim", "3:chrome", "4:firefox", "5:diff", 6, "7:win", "8:reading", "9:file_manager" },
-    names  = { "1:term", "2:gvim", "3:chrome", "4:firefox", "5:diff", "6:win", "7:mail", 8, 9 },
+    names  = { "1:term", "2:normal", "3:work", "4:work", "5:work", "6:work", "7:work", "8:rd", "9:online" },
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 
 tags_new = {
-    names  = { "1:term", "2", "3", "4", "5", 6, "7", "8", "9" },
+    names  = { "1", "2", "3", "4", "5", 6, "7", "8", "9" },
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 
 tags[1] = awful.tag(tags.names, 1, tags.layout)
-tags[2] = awful.tag(tags.names, 2, tags.layout)
+--tags[2] = awful.tag(tags.names, 2, tags.layout)
 
 print("=======================")
 print(screen.count())
 print("=======================")
-for s = 3, screen.count() do
+for s = 2, screen.count() do
 --for s = 2, 4 do
     tags[s] = awful.tag(tags_new.names, s, tags_new.layout)
 end
@@ -158,13 +158,13 @@ end
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
-   { "manual", term_cmd .. "\'man awesome\'" },
-   { "edit config", shell_cmd .. "\'gvim " .. awful.util.getdir("config") .. "/rc.lua" .. "\'" },
-   { "powersafe off", "xset s off" },
-   { "xrandr", "xrandr --auto" },
-   { "arandr", "arandr" },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
+  -- { "manual", term_cmd .. "\'man awesome\'" },
+  -- { "edit config", shell_cmd .. "\'gvim " .. awful.util.getdir("config") .. "/rc.lua" .. "\'" },
+  -- { "powersafe off", "xset s off" },
+  -- { "xrandr", "xrandr --auto" },
+  -- { "arandr", "arandr" },
+  -- { "restart", awesome.restart },
+  -- { "quit", awesome.quit }
 }
 --shifty.config.tags = {
     --w1 = {
@@ -597,7 +597,7 @@ for s = 1, screen.count() do
 
     mywibox[s].widgets = {
         {
-            mylauncher,
+            -- mylauncher,
             mytaglist[s],
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
@@ -709,7 +709,7 @@ awful.key({                   }, "Print", function  ()
     naughty.notify{ title = "Notice", text  = "Screenshot Saved!", timeout = 7}
 end),
 awful.key({ modkey,           }, "l",     function () awful.util.spawn("slock") end),
-awful.key({ modkey            }, "e",     revelation),
+--awful.key({ modkey            }, "e",     revelation),
 awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 1%+") end),
 awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 1%-") end)
 --awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
@@ -723,7 +723,15 @@ awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getm
 awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
 awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
 awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-awful.key({ modkey,           }, "n",      function (c) c.minimized = not c.minimized    end),
+awful.key({ modkey,           }, "n",    function ()
+    awful.prompt.run({ prompt = "Rename tab: ", text = awful.tag.selected().name, },
+    mypromptbox[mouse.screen].widget,
+    function (s)
+        awful.tag.selected().name = s
+    end)
+end),
+
+-- awful.key({ modkey,           }, "n",      function (c) c.minimized = not c.minimized    end),
 
 awful.key({ modkey,           }, "m",
 function (c)

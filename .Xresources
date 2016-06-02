@@ -4,8 +4,12 @@ Xft.hinting: true
 Xft.antialias: true
 Xft.hintstyle: hintslight
 
+urxvt.imLocale: zh_CN.utf8
+urxvt.saveLines:         20000
+
+
 ! font
-URxvt.font:xft:Monospace:pixelsize=18:antialias=true
+URxvt.font:xft:Monospace:pixelsize=18:antialias=true,xft:WenQuanYi Micro Hei:bold:size=12
 URxvt.letterSpace: -1
 
 ! url can click

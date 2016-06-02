@@ -20,6 +20,9 @@ Plugin 'gmarik/Vundle.vim'
 "
 " original repos on github
 Plugin 'tpope/vim-repeat'
+
+Plugin 'bkad/CamelCaseMotion'
+
 " vim-scripts repos
 "Plugin 'FuzzyFinder'
 " non github repos
@@ -640,6 +643,13 @@ set complete=.,w,b,u,t
 """""""""""""""""""""""""plugins""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+
+
+"-----------------------camelcase-----------------------------
+call camelcasemotion#CreateMotionMappings('<leader>')
+
+
 "-----------------------taghighlight-----------------------------
 map <F10> :UpdateTypesFile<CR>
 
@@ -667,7 +677,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 "-----------------------nerdtree---------------------
 map <F8> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.o$','\.a$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$']
+let NERDTreeIgnore=['\.o$','\.a$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$', '\.php\~$']
 let NERDTreeChDirMode = 2
 let NERDTreeWinSize = 30
 let NERDTreeShowBookmarks = 1

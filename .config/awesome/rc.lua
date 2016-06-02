@@ -72,7 +72,7 @@ autorun_items =
     --"ibus-daemon -d -x",
     "fcitx",
 --    "google-chrome-stable",
- --   "synergys",
+--   "synergys",
 --    "firefox",
 --    "kdiff3",
 --    "meld",
@@ -138,21 +138,26 @@ tags = {
     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 
-tags_new = {
-    names  = { "1", "2", "3", "4", "5", 6, "7", "8", "9" },
-    layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
-}
+-- tags_new = {
+--     names  = { "1", "2", "3", "4", "5", 6, "7", "8", "9" },
+--     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
+-- }
 
-tags[1] = awful.tag(tags.names, 1, tags.layout)
---tags[2] = awful.tag(tags.names, 2, tags.layout)
 
-print("=======================")
-print(screen.count())
-print("=======================")
-for s = 2, screen.count() do
---for s = 2, 4 do
-    tags[s] = awful.tag(tags_new.names, s, tags_new.layout)
-end
+
+
+
+
+
+-- tags[1] = awful.tag(tags.names, 1, tags.layout)
+--
+-- print("=======================")
+-- print(screen.count())
+-- print("=======================")
+-- for s = 2, screen.count() do
+-- --for s = 2, 4 do
+--     tags[s] = awful.tag(tags_new.names, s, tags_new.layout)
+-- end
 -- }}}
 
 -- {{{ Menu

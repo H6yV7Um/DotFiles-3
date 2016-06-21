@@ -213,6 +213,7 @@ Plugin 'rayburgemeestre/phpfolding.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 " Plugin 'bbchung/clighter'
 
+Plugin 'fatih/vim-go'
 
 
 "textile

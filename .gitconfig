@@ -1,6 +1,6 @@
 [user]
-	email = jinlei04@baidu.com
-	name = jinlei04
+	email = JINLEI1@kingsoft.com.cn
+	name = JINLEI1
 [color]
 	diff = auto
 	status = auto
@@ -16,6 +16,6 @@
 	tool = meld
 [http]
 	postBuffer = 524288000
-    #proxy = http://agent.baidu.com:8118
+    proxy = http://120.132.72.199:52179
 [https]
-    #proxy = https://agent.baidu.com:8118
+	proxy = https://120.132.72.199:52179

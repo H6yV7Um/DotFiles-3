@@ -16,6 +16,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 
+
+"~~~~~~~~~~~~~~~~~~~~~misc~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "Plugin 'xolox/vim-session'
 "
 " original repos on github
@@ -53,9 +55,6 @@ Plugin 'Shougo/neomru.vim'
 "Plugin 'jinleileiking/bandit.vim'
 "Plugin 'szw/vim-ctrlspace'
 
-"Plugin 'tomasr/molokai'
-"let g:solarized_termcolors=256
-Plugin 'altercation/vim-colors-solarized'
 "Plugin 'vim-scripts/FuzzyFinder'
  
 Plugin 'scrooloose/nerdtree'
@@ -63,13 +62,7 @@ Plugin 'scrooloose/nerdtree'
  
 "VOoM (Vim Outliner of Markers) is a plugin for Vim that emulates a two-pane text outliner.
 "Plugin 'VOoM'
- 
-"------------------------------------comment-------------------
-"Plugin 'scrooloose/nerdcommenter'
-"Plugin 'EnhCommentify.vim'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-commentary'
- 
+
 "Plugin 'fholgado/minibufexpl.vim'
 "Plugin 'sjbach/lusty'
  
@@ -82,7 +75,7 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'tpope/vim-unimpaired'
 "Plugin 'ervandew/supertab'
 "Plugin 'vim-scripts/AutoComplPop'
-Plugin 'Shougo/neocomplete'
+"Plugin 'Shougo/neocomplete'
 " Plugin 'Valloric/YouCompleteMe'
  
 " This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
@@ -100,11 +93,6 @@ Plugin 'tpope/vim-dispatch'
 "Plugin 'jiangmiao/auto-pairs'
  
 Plugin 'scrooloose/syntastic'
-
-"----------------------------clipboard----------------
-Plugin 'YankRing.vim'
-"Plugin 'svermeulen/vim-easyclip'
- 
 " extend %
 " 默认的% 只能匹配简单的比如括号, 这个扩展了一些
 Plugin 'matchit.zip'
@@ -117,17 +105,6 @@ Plugin 'majutsushi/tagbar'
  
 Plugin 'pbrisbin/vim-mkdir'
  
-"snipmate & deps
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
- 
-Plugin 'jinleileiking/snipmate-snippets'
- 
-"Plugin 'scrooloose/snipmate-snippets'
- 
-"Plugin 'honza/snipmate-snippets'
-"Plugin 'msanders/snipmate.vim'// not maintained
  
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -140,11 +117,6 @@ Plugin 'nathanaelkane/vim-indent-guides'
  
 "align
 Plugin 'godlygeek/tabular'
- 
-"Highlight what you want
-Plugin 'Mark--Karkat'
- 
-"Plugin 'Railscasts-Theme-GUIand256color'
 "Plugin 'a.vim'
  
  
@@ -175,6 +147,65 @@ Plugin 'chrisbra/NrrwRgn'
  
 "Plugin 'rson/vim-conque'
  
+
+
+ 
+"------------------------------------comment-------------------
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'EnhCommentify.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-commentary'
+ 
+
+"----------------------------clipboard----------------
+Plugin 'YankRing.vim'
+"Plugin 'svermeulen/vim-easyclip'
+ 
+ 
+"~~~~~~~~~~~~~~~~~~~~~highlight~~~~~~~~~~~~~~~~~~~~
+"Highlight what you want
+Plugin 'Mark--Karkat'
+"Plugin 'TagHighlight'
+Plugin 'jinleileiking/taghighlight-automirror'
+ 
+
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~color~~~~~~~~~~~~~~~~~~~~~~
+"Plugin 'Railscasts-Theme-GUIand256color'
+"Plugin 'tomasr/molokai'
+"let g:solarized_termcolors=256
+Plugin 'altercation/vim-colors-solarized'
+
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~snipmate~~~~~~~~~~~~~~~~~~
+"
+"
+" Plugin 'MarcWeber/vim-addon-mw-utils'
+" Plugin 'tomtom/tlib_vim'
+" Plugin 'garbas/vim-snipmate'
+"  
+" Plugin 'jinleileiking/snipmate-snippets'
+ 
+"Plugin 'scrooloose/snipmate-snippets'
+ 
+"Plugin 'honza/snipmate-snippets'
+"Plugin 'msanders/snipmate.vim'// not maintained
+"
+
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+"
+" " Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+"
+" " Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+" " If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 "---------------------------statusline-------------------------------------
 "Plugin 'Lokaltog/vim-powerline'
  
@@ -216,6 +247,16 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'fatih/vim-go'
 
 
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_format_strings = 1
+
 "textile
  
  
@@ -231,8 +272,6 @@ Plugin 'fatih/vim-go'
 "Plugin 'cg433n/better-c'
 "Plugin 'davidxia/vim-c'
 
-"Plugin 'TagHighlight'
-Plugin 'jinleileiking/taghighlight-automirror'
 "Auto reload ctags
 "Plugin 'xolox/vim-easytags'
 
@@ -696,7 +735,7 @@ map <F6> :TagbarToggle<CR>
 let g:tagbar_sort = 0
 let g:tagbar_width = 40
 "let g:tagbar_foldlevel = 0
-autocmd FileType c,cpp,rb,vim,php nested :TagbarOpen
+" autocmd FileType c,cpp,rb,vim,php nested :TagbarOpen
 
 " add a definition for Objective-C to tagbar
 
@@ -850,92 +889,98 @@ let Tlist_Use_Right_Window = 1
 
 
 
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" " Disable AutoComplPop.
+" let g:acp_enableAtStartup = 0
+" " Use neocomplete.
+" let g:neocomplete#enable_at_startup = 1
+" " Use smartcase.
+" let g:neocomplete#enable_smart_case = 1
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+"
+" " Define dictionary.
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"     \ 'default' : '',
+"     \ 'vimshell' : $HOME.'/.vimshell_hist',
+"     \ 'scheme' : $HOME.'/.gosh_completions'
+"         \ }
+"
+" " Define keyword.
+" if !exists('g:neocomplete#keyword_patterns')
+"     let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+"
+" " Plugin key-mappings.
+" inoremap <expr><C-g>     neocomplete#undo_completion()
+" inoremap <expr><C-l>     neocomplete#complete_common_string()
+"
+" " Recommended key-mappings.
+" " <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+"   " For no inserting <CR> key.
+"   "return pumvisible() ? "\<C-y>" : "\<CR>"
+" endfunction
+" " <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" " <C-h>, <BS>: close popup and delete backword char.
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" " Close popup by <Space>.
+" "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+"
+" " AutoComplPop like behavior.
+" "let g:neocomplete#enable_auto_select = 1
+"
+" " Shell like behavior(not recommended).
+" "set completeopt+=longest
+" "let g:neocomplete#enable_auto_select = 1
+" "let g:neocomplete#disable_auto_complete = 1
+" "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+"
+" " Enable omni completion.
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"
+" " Enable heavy omni completion.
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"   let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+" "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+" "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+" "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+"
+" " For perlomni.vim setting.
+" " https://github.com/c9s/perlomni.vim
+" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+"
+"
+"
+"
+"
+"
+"
+" " let g:neocomplcache_enable_auto_select = 1
+" " let g:neocomplcache_disable_auto_complete = 0
+" " let g:neocomplcache_enable_at_startup = 1
+" " let g:neocomplcache_max_list = 10
+" " let g:neocomplcache_manual_completion_start_length = 100
+" " let g:neocomplcache_auto_completion_start_length = 5
+" " let g:neocomplcache_min_keyword_length = 10
+" " let g:neocomplcache_min_syntax_length = 10
+" " let g:neocomplcache_disable_caching_file_path_pattern = "out*.*"
+" " <TAB>: completion.
+" "inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
 
+let g:go_bin_path = "/home/jinlei1/gotools/bin"      "or give absolute path
 
-
-
-
-" let g:neocomplcache_enable_auto_select = 1
-" let g:neocomplcache_disable_auto_complete = 0
-" let g:neocomplcache_enable_at_startup = 1
-" let g:neocomplcache_max_list = 10
-" let g:neocomplcache_manual_completion_start_length = 100
-" let g:neocomplcache_auto_completion_start_length = 5
-" let g:neocomplcache_min_keyword_length = 10
-" let g:neocomplcache_min_syntax_length = 10
-" let g:neocomplcache_disable_caching_file_path_pattern = "out*.*"
-" <TAB>: completion.
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"

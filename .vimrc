@@ -291,7 +291,12 @@ let g:go_highlight_format_strings = 1
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-lua-inspect' 
  
+Plugin 'derekwyatt/vim-scala'
  
+"Plugin 'klen/python-mode'
+Plugin 'hynek/vim-python-pep8-indent'
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
  
@@ -527,6 +532,7 @@ autocmd BufRead,BufNewFile *.c syntax keyword return return
 
 
 "----------------------------map------------------------------
+nnoremap <leader>g :!ruby %:p<CR>
 map <leader>bn :bn<CR>
 map <leader>v "0p
 map <leader>q <C-W>_

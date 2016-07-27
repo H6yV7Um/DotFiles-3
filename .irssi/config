@@ -37,6 +37,7 @@ chatnets = {
 
 channels = (
   #{ name = "#ruboto"; chatnet = "freenode"; },
+  { name = "#tmux"; chatnet = "freenode"; },
   #{ name = "#sinatra"; chatnet = "freenode"; },
   #{ name = "#irssi"; chatnet = "freenode"; },
   #{ name = "#gentoo-cn"; chatnet = "freenode"; },
@@ -45,7 +46,7 @@ channels = (
   #{ name = "#ubuntu-cn"; chatnet = "freenode"; autojoin = "yes"; },
   #{ name = "#awesome"; chatnet = "freenode"; },
   #{ name = "#ruby-tw"; chatnet = "freenode"; },
-  { name = "#awesome"; chatnet = "OFTC"; autojoin = "yes"; },
+  #{ name = "#awesome"; chatnet = "OFTC"; autojoin = "yes"; },
   #{ name = "#redis"; chatnet = "freenode"; autojoin = "yes"; },
   #{ name = "#vim"; chatnet = "freenode"; autojoin = "yes"; },
   #{ name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },

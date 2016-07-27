@@ -105,4 +105,13 @@ export GOROOT=/home/jinlei1/os/go/
 
 PATH=/home/jinlei1/os/go/bin:$PATH:/home/jinlei1/gotools/bin
 
+export PATH="$HOME/tools/apache-maven-3.3.9/bin:$PATH"
+export PATH="$HOME/tools/scala-2.11.8/bin:$PATH"
+export PATH="$HOME/tools/spark-1.6.2-bin-hadoop2.6/bin:$PATH"
+export PATH="$HOME/tools/sbt/bin:$PATH"
+export PATH="usr/local/bin:$PATH"
+
+
 #rvm use default
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

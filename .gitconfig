@@ -1,5 +1,5 @@
 [user]
-	email = JINLEI1@kingsoft.com.cn
+	email = JINLEI1@kingsoft.com
 	name = JINLEI1
 [color]
 	diff = auto
@@ -16,6 +16,6 @@
 	tool = meld
 [http]
 	postBuffer = 524288000
-    proxy = http://120.132.72.199:52179
+#    proxy = http://120.132.72.199:52179
 [https]
-	proxy = https://120.132.72.199:52179
+#	proxy = https://120.132.72.199:52179

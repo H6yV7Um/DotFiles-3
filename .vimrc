@@ -18,6 +18,7 @@ Plugin 'gmarik/Vundle.vim'
 
 
 "~~~~~~~~~~~~~~~~~~~~~misc~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Plugin 'robbles/logstash.vim'
 "Plugin 'xolox/vim-session'
 "
 " original repos on github
@@ -248,14 +249,25 @@ Plugin 'fatih/vim-go'
 
 
 let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
 let g:go_highlight_fields = 1
-let g:go_highlight_interfaces = 1
+let g:go_highlight_interfaces = 0
+let g:go_highlight_structs = 0
+let g:go_highlight_operators = 0
+" let g:go_highlight_interfaces = 1
+" let g:go_highlight_structs = 1
+" let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_format_strings = 1
+let g:go_auto_type_info = 0
+
+
+noremap <silent> <Leader>cc :GoCallers<CR>
+noremap <silent> <Leader>ce :GoCallees<CR>
+
+
+let g:go_guru_scope = ["maid"]
 
 "textile
  
@@ -288,8 +300,9 @@ let g:go_highlight_format_strings = 1
 "Plugin 'bash-support.vim'
  
 "Plugin 'tpope/vim-speeddating'
-"Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-lua-inspect' 
+Plugin 'xolox/vim-lua-ftplugin'
  
 Plugin 'derekwyatt/vim-scala'
  
@@ -352,6 +365,44 @@ filetype plugin indent on
 "-----------------------Tools-------------------------------------------
 "Shell
 "Cmd
+
+
+
+noremap <silent> <Leader>n :call ToggleWrap()<CR>
+function ToggleWrap()
+  if &wrap
+    echo "Wrap OFF"
+    setlocal nowrap
+    silent! nunmap <buffer> <Up>
+    silent! nunmap <buffer> <Down>
+    silent! nunmap <buffer> <Home>
+    silent! nunmap <buffer> <End>
+    silent! iunmap <buffer> <Up>
+    silent! iunmap <buffer> <Down>
+    silent! iunmap <buffer> <Home>
+    silent! iunmap <buffer> <End>
+  else
+    echo "Wrap ON"
+    setlocal wrap
+    noremap  <buffer> <silent> <Up>   gk
+    noremap  <buffer> <silent> <Down> gj
+    noremap  <buffer> <silent> <Home> g<Home>
+    noremap  <buffer> <silent> <End>  g<End>
+    inoremap <buffer> <silent> <Up>   <C-o>gk
+    inoremap <buffer> <silent> <Down> <C-o>gj
+    inoremap <buffer> <silent> <Home> <C-o>g<Home>
+    inoremap <buffer> <silent> <End>  <C-o>g<End>
+  endif
+endfunction
+
+
+
+
+
+
+
+
+
 
 
 " Get :cmd output to a buffer :TabMessage
@@ -673,9 +724,8 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
 set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
+" set statusline+=\|%{go#complete#GetInfo()}
 "set statusline+=%{tagbar#currenttag('[%s] ','')}
-
-
 
 
 set complete=.,w,b,u,t

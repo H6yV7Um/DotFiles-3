@@ -97,21 +97,24 @@ autoload -U bashcompinit && bashcompinit
 
 TERM=xterm
 # export GOROOT=/usr/lib/golang/
-export GOPATH=/home/jinlei1/gotools
+# export GOPATH=/home/jinlei1/gotools
 
-export GOPATH=/home/jinlei1/ksyun/:${GOPATH}
+# export GOPATH=/home/jinlei1/ksyun/:${GOPATH}
+export GOPATH=/home/jinlei1/ksyun/
 
 export GOROOT=/home/jinlei1/os/go/
 
-PATH=/home/jinlei1/os/go/bin:$PATH:/home/jinlei1/gotools/bin
+# export PATH=/home/jinlei1/os/go/bin:/home/jinlei1/ksyun/bin:$PATH
+export PATH=/home/jinlei1/os/go/bin:/home/jinlei1/ksyun/bin:$PATH
 
 export PATH="$HOME/tools/apache-maven-3.3.9/bin:$PATH"
 export PATH="$HOME/tools/scala-2.11.8/bin:$PATH"
-export PATH="$HOME/tools/spark-1.6.2-bin-hadoop2.6/bin:$PATH"
+export PATH="$HOME/tools/spark-2.0.0-bin-hadoop2.7/bin:$PATH"
 export PATH="$HOME/tools/sbt/bin:$PATH"
 export PATH="usr/local/bin:$PATH"
+export PATH="$HOME/tools/php-5.6.26/sapi/cli:$PATH"
 
 
-#rvm use default
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+rvm use 2.0.0
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"

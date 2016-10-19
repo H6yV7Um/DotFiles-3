@@ -111,10 +111,13 @@ export PATH="$HOME/tools/apache-maven-3.3.9/bin:$PATH"
 export PATH="$HOME/tools/scala-2.11.8/bin:$PATH"
 export PATH="$HOME/tools/spark-2.0.0-bin-hadoop2.7/bin:$PATH"
 export PATH="$HOME/tools/sbt/bin:$PATH"
-export PATH="usr/local/bin:$PATH"
 export PATH="$HOME/tools/php-5.6.26/sapi/cli:$PATH"
 
+export PATH="usr/local/bin:$PATH"
 
 rvm use 2.0.0
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(rbenv init -)"
+#rvm use default
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

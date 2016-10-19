@@ -457,8 +457,9 @@ endfunction
 "-------------------------vim settings------------------------------------
  
  
+
 if(has('mac'))
-    set guifont=Menlo:h12
+    set guifont=Menlo:h14
     " map ctrl to fn use mac key map tool
 else
 "    set guifont=Ubuntu\ Mono\ 12
@@ -775,7 +776,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 map <F8> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.o$','\.a$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$', '\.php\~$']
 let NERDTreeChDirMode = 2
-let NERDTreeWinSize = 30
+let NERDTreeWinSize = 20
 let NERDTreeShowBookmarks = 1
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "autocmd vimenter * NERDTree
@@ -789,7 +790,7 @@ let g:unite_source_tag_max_fname_length = 80
 "-----------------------Tagbar--------------------
 map <F6> :TagbarToggle<CR>
 let g:tagbar_sort = 0
-let g:tagbar_width = 40
+let g:tagbar_width = 20
 "let g:tagbar_foldlevel = 0
 " autocmd FileType c,cpp,rb,vim,php nested :TagbarOpen
 

@@ -1,8 +1,7 @@
 
 
 "------------------------------Vundle---------------------------------
-"
-"
+" "
 " FIX: PluginUpdate => git pull: git-sh-setup: No such file or directory in MacVim (OK in non-GUI version of Vim)
 if has("gui_macvim")
     set shell=/bin/bash\ -l 
@@ -246,6 +245,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 " Plugin 'bbchung/clighter'
 
 Plugin 'fatih/vim-go'
+" Plugin 'athom/more-colorful.vim'  "html and go
 
 
 let g:go_highlight_extra_types = 1
@@ -261,7 +261,9 @@ let g:go_highlight_operators = 0
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_format_strings = 1
 let g:go_auto_type_info = 0
-
+" let g:go_auto_sameids = 1
+"
+" set updatetime=200
 
 noremap <silent> <Leader>cc :GoCallers<CR>
 noremap <silent> <Leader>ce :GoCallees<CR>
@@ -368,7 +370,7 @@ filetype plugin indent on
 
 
 
-noremap <silent> <Leader>n :call ToggleWrap()<CR>
+noremap <silent> <F4> :call ToggleWrap()<CR>
 function ToggleWrap()
   if &wrap
     echo "Wrap OFF"
@@ -417,20 +419,20 @@ endfunction
 command! -nargs=+ -complete=command Cmd call TabMessage(<q-args>)
  
 " Execute a cmd in a shell :Shell xxxx
-function! s:ExecuteInShell(command)
-let command = join(map(split(a:command), 'expand(v:val)'))
-let winnr = bufwinnr('^' . command . '$')
-silent! execute winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
-setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
-echo 'Execute ' . command . '...'
-silent! execute 'silent %!'. command
-silent! execute 'resize ' . line('$')
-silent! redraw
-silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
-echo 'Shell command ' . command . ' executed.'
-endfunction
-command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+" function! s:ExecuteInShell(command)
+" let command = join(map(split(a:command), 'expand(v:val)'))
+" let winnr = bufwinnr('^' . command . '$')
+" silent! execute winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+" setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+" echo 'Execute ' . command . '...'
+" silent! execute 'silent %!'. command
+" silent! execute 'resize ' . line('$')
+" silent! redraw
+" silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+" silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+" echo 'Shell command ' . command . ' executed.'
+" endfunction
+" command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
@@ -571,6 +573,7 @@ colorscheme solarized
 autocmd BufRead,BufNewFile *.conf setfiletype c
 autocmd BufRead,BufNewFile *.inc setfiletype c
 autocmd BufRead,BufNewFile *.md setfiletype markdown
+autocmd BufRead,BufNewFile *.py set noexpandtab
 "autocmd BufRead,BufNewFile *.c syntax region Comment start="#if 0" end="#endif"
 "autocmd BufRead,BufNewFile *.c syntax region Comment start=".*#if .*OS_FREERTOS" end="#endif"
 "autocmd BufRead,BufNewFile *.c syntax region Comment start=".*#if .*OS_FREERTOS" end="#endif"
@@ -726,7 +729,7 @@ set statusline+=%*
 set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
 set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
 " set statusline+=\|%{go#complete#GetInfo()}
-"set statusline+=%{tagbar#currenttag('[%s] ','')}
+set statusline+=%{tagbar#currenttag('[%s]\ ','')}
 
 
 set complete=.,w,b,u,t
@@ -760,7 +763,7 @@ map <F10> :UpdateTypesFile<CR>
 "map <leader>t :<C-u>Unite tag<CR>
 map <leader>ff :<C-u>Unite file_rec/async<CR>
 map <leader>b :<C-u>Unite buffer<CR>
-map <leader>r :<C-u>Unite file_mru<CR>
+" map <leader>r :<C-u>Unite file_mru<CR>
 
 
 let g:unite_source_rec_max_cache_files = 100000
@@ -774,7 +777,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 "-----------------------nerdtree---------------------
 map <F8> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.o$','\.a$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$', '\.php\~$']
+let NERDTreeIgnore=['\.o$','\.a$', '\.pyc$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$', '\.php\~$']
 let NERDTreeChDirMode = 2
 let NERDTreeWinSize = 20
 let NERDTreeShowBookmarks = 1

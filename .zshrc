@@ -114,6 +114,8 @@ export PATH="$HOME/tools/sbt/bin:$PATH"
 export PATH="$HOME/tools/php-5.6.26/sapi/cli:$PATH"
 
 export PATH="usr/local/bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="/home/jinlei1/ksyun/nemo/php/php5/bin:$PATH"
 
 rvm use 2.0.0
 # export PATH="$HOME/.rbenv/bin:$PATH"

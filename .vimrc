@@ -76,7 +76,10 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'ervandew/supertab'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'Shougo/neocomplete'
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
+" python auto complete
+" Plugin 'davidhalter/jedi-vim'
+" Plugin 'ajh17/VimCompletesMe'
  
 " This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
 "Plugin 'cmdline-completion'
@@ -174,6 +177,7 @@ Plugin 'jinleileiking/taghighlight-automirror'
 "Plugin 'tomasr/molokai'
 "let g:solarized_termcolors=256
 Plugin 'altercation/vim-colors-solarized'
+
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~snipmate~~~~~~~~~~~~~~~~~~
 "

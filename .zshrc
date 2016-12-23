@@ -22,6 +22,7 @@ export ZSH_THEME="robbyrussell"
 # ~/.oh-my-zsh/plugins/*) Example format: plugins=(rails git textmate ruby
 # lighthouse)
 #plugins=(archlinux bundler extract gnu-utils rails3 redis-cli rvm vundle git rails ruby)
+# plugins=(extract gnu-utils vundle git)
 plugins=(extract gnu-utils vundle)
 #plugins=(archlinux bundler extract gnu-utils rails3 redis-cli rvm vundle
 #rails ruby)

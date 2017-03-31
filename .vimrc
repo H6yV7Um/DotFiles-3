@@ -16,40 +16,327 @@ Plugin 'gmarik/Vundle.vim'
 
 
 
-"~~~~~~~~~~~~~~~~~~~~~misc~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Plugin 'robbles/logstash.vim'
-"Plugin 'xolox/vim-session'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""plugins""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+
+"-----------------------camelcase-----------------------------
+" call camelcasemotion#CreateMotionMappings('<leader>')
+
+
+"-----------------------taghighlight-----------------------------
+map <F10> :UpdateTypesFile<CR>
+
+
+
+
+
+
+"-----------------------nerdtree---------------------
+map <F8> :NERDTreeToggle<CR>
+" let NERDTreeIgnore=['\.o$','\.a$', '\.pyc$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$', '\.php\~$']
+let NERDTreeIgnore=['\.o$','\.a$', '\.pyc$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$', '\.php\~$']
+let NERDTreeChDirMode = 2
+let NERDTreeWinSize = 20
+let NERDTreeShowBookmarks = 1
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"autocmd vimenter * NERDTree
+
+
+
+"-----------------------unite tags--------------------
+let g:unite_source_tag_max_name_length = 40
+let g:unite_source_tag_max_fname_length = 80
+
+"-----------------------Tagbar--------------------
+map <F6> :TagbarToggle<CR>
+let g:tagbar_sort = 0
+let g:tagbar_width = 20
+"let g:tagbar_foldlevel = 0
+" autocmd FileType c,cpp,rb,vim,php nested :TagbarOpen
+
+" add a definition for Objective-C to tagbar
+
+let g:tagbar_type_php = {
+    \ 'kinds' : [
+        \ 'i:interfaces:1',
+        \ 'c:classes:1',
+        \ 'd:constant definitions:1:0',
+        \ 'f:functions',
+        \ 'v:variables:1:0',
+        \ 'j:javascript functions:1',
+    \ ],
+\ }
+
+let g:tagbar_type_objc = {
+            \ 'ctagstype' : 'ObjectiveC',
+            \ 'kinds'     : [
+            \ 'i:interface',
+            \ 'I:implementation',
+            \ 'p:Protocol',
+            \ 'm:Object_method',
+            \ 'c:Class_method',
+            \ 'v:Global_variable',
+            \ 'F:Object field',
+            \ 'f:function',
+            \ 'p:property',
+            \ 't:type_alias',
+            \ 's:type_structure',
+            \ 'e:enumeration',
+            \ 'M:preprocessor_macro',
+            \ ],
+            \ 'sro'        : ' ',
+            \ 'kind2scope' : {
+            \ 'i' : 'interface',
+            \ 'I' : 'implementation',
+            \ 'p' : 'Protocol',
+            \ 's' : 'type_structure',
+            \ 'e' : 'enumeration'
+            \ },
+            \ 'scope2kind' : {
+            \ 'interface'      : 'i',
+            \ 'implementation' : 'I',
+            \ 'Protocol'       : 'p',
+            \ 'type_structure' : 's',
+            \ 'enumeration'    : 'e'
+            \ }
+            \ }
+
+"-----------------------Indent guides--------------
+let g:indent_guides_auto_colors = 1
+let g:indent_guides_start_level = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+
+
+"------------------------Yankring-----------------------
+let g:yankring_paste_using_g = 0
+" let g:yankring_n_keys = '4'
+nmap <Leader>yr :YRShow<CR>
+
+
+
+" ------------------------YCM----------------------
 "
-" original repos on github
-Plugin 'tpope/vim-repeat'
 
-Plugin 'bkad/CamelCaseMotion'
+let g:ycm_register_as_syntastic_checker = 0
+let g:ycm_min_num_of_chars_for_completion = 10
+let g:ycm_min_num_identifier_candidate_chars = 10
+let g:ycm_filetype_whitelist = { 'cpp': 1 }
+let g:ycm_filetype_specific_completion_to_disable = { 'cpp': 1 }
+let g:ycm_cache_omnifunc = 0
 
+
+
+"-----------------------tcomment--------------------
+" let g:tcommentMapLeaderOp2 = '<Leader>c'
+
+" --------------------syntastic-----------------
+" let g:syntastic_c_check_header = 1
+" let g:syntastic_echo_current_error=0
+" let g:syntastic_enable_signs=0
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+" let g:syntastic_php_checkers = ['php', 'cc']
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_quiet_messages = { "type": "style" }
+
+let g:syntastic_enable_signs = 1
+
+let g:syntastic_ignore_files = ['\m\c\.cc$', '\m\c\.h$']
+
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~git~~~~~~~~~~~~~~~~~~~~~~~~~~`
+"
+"
+Plugin 'gregsexton/gitv'
+Plugin 'airblade/vim-gitgutter'
+" Plugin 'mhinz/vim-signify'
+
+
+ 
+"~~~~~~~~~~~~~~~~~~finder~~~~~~~~~~~~~~~~~~~~~~~~~
 " vim-scripts repos
 "Plugin 'FuzzyFinder'
 " non github repos
 "Plugin 'git://git.wincent.com/command-t.git'
- 
-"ruby
-"Plugin 'tpope/vim-rails'
-"Plugin 'vim-ruby/vim-ruby'
-"Plugin 'astashov/vim-ruby-debugger'
-"ruby-debug
-"unmap <Leader>m
-"map <Leader>M :call g:RubyDebugger.open_breakpoints()<CR>
-"unmap <Leader>t
-"map <Leader>T :call g:RubyDebugger.open_frames()<CR>
-"unmap <Leader>n
-"map <Leader>N :call g:RubyDebugger.next()<CR>
- 
-"由于映射原因,暂不使用
-"Plugin 'janx/vim-rubytest'
- 
 "Plugin 'wincent/Command-T'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/neomru.vim'
+
+"let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+let g:ctrlp_extensions = ['tag']
+map <Leader>t :CtrlPTag<CR>
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:40,results:40'
+let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_max_files = 300
+"map <leader>ff :CtrlP<CR>
+
+
+" -------------------------fzf-----------------------------------
+
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
+" map <leader>ff :<C-u>FZF<CR>
+
+
+
+" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+
+map <leader>ff :<C-u>Files<CR>
+map <leader>b :<C-u>Buffers<CR>
+
+map <C-H><C-H> eb :Ag "<C-R><C-W>"<CR>
+
+"-----------------------denite-------------------------
+" Plugin 'Shougo/denite.nvim'
+" Plugin 'Shougo/neomru.vim'
+
+" map <leader>b :<C-u>Denite buffer<CR>
+" map <leader>c :<C-u>Denite register<CR>
+" map <leader>m :<C-u>Denite file_mru<CR>
+
+" " " Change file_rec command.
+" " call denite#custom#var('file_rec', 'command',
+" " \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+" " Change mappings.
+" call denite#custom#map(
+"       \ 'insert',
+"       \ '<C-j>',
+"       \ '<denite:move_to_next_line>',
+"       \ 'noremap'
+"       \)
+" call denite#custom#map(
+"       \ 'insert',
+"       \ '<C-k>',
+"       \ '<denite:move_to_previous_line>',
+"       \ 'noremap'
+"       \)
+
+" " Change matchers.
+" call denite#custom#source(
+" \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
+" call denite#custom#source(
+" \ 'file_rec', 'matchers', ['matcher_cpsm'])
+
+" " Change sorters.
+" call denite#custom#source(
+" \ 'file_rec', 'sorters', ['sorter_sublime'])
+
+" " " Add custom menus
+" " let s:menus = {}
+
+" " let s:menus.zsh = {
+" "     \ 'description': 'Edit your import zsh configuration'
+" "     \ }
+" " let s:menus.zsh.file_candidates = [
+" "     \ ['zshrc', '~/.config/zsh/.zshrc'],
+" "     \ ['zshenv', '~/.zshenv'],
+" "     \ ]
+
+" " let s:menus.my_commands = {
+" "     \ 'description': 'Example commands'
+" "     \ }
+" " let s:menus.my_commands.command_candidates = [
+" "     \ ['Split the window', 'vnew'],
+" "     \ ['Open zsh menu', 'Denite menu:zsh'],
+" "     \ ]
+
+" " call denite#custom#var('menu', 'menus', s:menus)
+
+" " Ag command on grep source
+" " call denite#custom#var('grep', 'command', ['ag'])
+" " call denite#custom#var('grep', 'default_opts',
+" "         \ ['-i', '--vimgrep'])
+" " call denite#custom#var('grep', 'recursive_opts', [])
+" " call denite#custom#var('grep', 'pattern_opt', [])
+" " call denite#custom#var('grep', 'separator', ['--'])
+" " call denite#custom#var('grep', 'final_opts', [])
+
+" " Ack command on grep source
+" " call denite#custom#var('grep', 'command', ['ack'])
+" " call denite#custom#var('grep', 'default_opts',
+" "         \ ['--ackrc', $HOME.'/.ackrc', '-H',
+" "         \  '--nopager', '--nocolor', '--nogroup', '--column'])
+" " call denite#custom#var('grep', 'recursive_opts', [])
+" " call denite#custom#var('grep', 'pattern_opt', ['--match'])
+" " call denite#custom#var('grep', 'separator', ['--'])
+" " call denite#custom#var('grep', 'final_opts', [])
+
+" " Ripgrep command on grep source
+" call denite#custom#var('grep', 'command', ['rg'])
+" call denite#custom#var('grep', 'default_opts',
+"         \ ['--vimgrep', '--no-heading'])
+" call denite#custom#var('grep', 'recursive_opts', [])
+" call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+" call denite#custom#var('grep', 'separator', ['--'])
+" call denite#custom#var('grep', 'final_opts', [])
+
+" " Pt command on grep source
+" " call denite#custom#var('grep', 'command', ['pt'])
+" " call denite#custom#var('grep', 'default_opts',
+" "         \ ['--nogroup', '--nocolor', '--smart-case'])
+" " call denite#custom#var('grep', 'recursive_opts', [])
+" " call denite#custom#var('grep', 'pattern_opt', [])
+" " call denite#custom#var('grep', 'separator', ['--'])
+" " call denite#custom#var('grep', 'final_opts', [])
+
+" " call denite#custom#source('file_mru', 'converters',
+" "       \ ['converter_relative_word'])
+
+" " Define alias
+" " call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+" " call denite#custom#var('file_rec/git', 'command',
+" "       \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
+" " Change default prompt
+" " call denite#custom#option('default', 'prompt', '>')
+
+" " Change ignore_globs
+" call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+"       \ [ '.git/', '.ropeproject/', '__pycache__/',
+"       \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
+
+"-------------------------------------------------------------------
+
+
+" Plugin 'mhinz/vim-grepper'
+
+
+
+
+
+
+
+"---------------------ack-----------------------
+" Plugin 'mileszs/ack.vim'
+" map <C-H><C-H> eb :Ack "<C-R><C-W>"<CR>
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+
+
+
+
+
+
+
+
+
+
+
+" Plugin 'Shougo/neomru.vim'
 "Plugin 'tsukkee/unite-tag'
 "Plugin 'h1mesuke/unite-outline'
 "Plugin 'jinleileiking/bandit.vim'
@@ -58,59 +345,42 @@ Plugin 'Shougo/neomru.vim'
 "Plugin 'vim-scripts/FuzzyFinder'
  
 Plugin 'scrooloose/nerdtree'
-"Plugin 'jistr/vim-nerdtree-tabs'
  
-"VOoM (Vim Outliner of Markers) is a plugin for Vim that emulates a two-pane text outliner.
-"Plugin 'VOoM'
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~error check~~~~~~~~~~~~~~~~
+" Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 
-"Plugin 'fholgado/minibufexpl.vim'
-"Plugin 'sjbach/lusty'
- 
- 
-"Plugin 'tpope/vim-repeat'
- 
-Plugin 'Lokaltog/vim-easymotion'
- 
-" key mapping , xml etc encoding decodeing......
-"Plugin 'tpope/vim-unimpaired'
-"Plugin 'ervandew/supertab'
-"Plugin 'vim-scripts/AutoComplPop'
-"Plugin 'Shougo/neocomplete'
-Plugin 'Valloric/YouCompleteMe'
-" python auto complete
-" Plugin 'davidhalter/jedi-vim'
-" Plugin 'ajh17/VimCompletesMe'
- 
-" This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
-"Plugin 'cmdline-completion'
- 
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-dispatch'
- 
-"Plugin 'vim-scripts/VimIM'
-"Plugin 'vimim/vimim'
- 
-"Plugin 'vim-scripts/AutoClose'
-"Plugin 'Raimondi/delimitMate'
-"Plugin 'tpope/vim-endwise'
-"Plugin 'jiangmiao/auto-pairs'
- 
-Plugin 'scrooloose/syntastic'
+
 " extend %
 " 默认的% 只能匹配简单的比如括号, 这个扩展了一些
 Plugin 'matchit.zip'
 
 "  'hello world' -> (hello world)
-Plugin 'tpope/vim-surround'
+" Plugin 'tpope/vim-surround'
 
 Plugin 'majutsushi/tagbar'
 "taglist
  
-Plugin 'pbrisbin/vim-mkdir'
+" Plugin 'pbrisbin/vim-mkdir'
  
  
+" 和neo冲突
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'nathanaelkane/vim-indent-guides'
+"
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
+" Plugin 'nathanaelkane/vim-indent-guides'
 "Plugin 'Yggdroot/indentLine.git'
  
 "Plugin 'ShowMarks'
@@ -118,8 +388,8 @@ Plugin 'nathanaelkane/vim-indent-guides'
 "git
 "Plugin 'tpope/vim-fugitive'
  
-"align
-Plugin 'godlygeek/tabular'
+"~~~~~~~~~~~~~~~~~~~~~~align~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Plugin 'godlygeek/tabular'
 "Plugin 'a.vim'
  
  
@@ -156,12 +426,12 @@ Plugin 'chrisbra/NrrwRgn'
 "------------------------------------comment-------------------
 "Plugin 'scrooloose/nerdcommenter'
 "Plugin 'EnhCommentify.vim'
-Plugin 'tomtom/tcomment_vim'
+" Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-commentary'
  
 
 "----------------------------clipboard----------------
-Plugin 'YankRing.vim'
+"Plugin 'YankRing.vim'
 "Plugin 'svermeulen/vim-easyclip'
  
  
@@ -169,7 +439,7 @@ Plugin 'YankRing.vim'
 "Highlight what you want
 Plugin 'Mark--Karkat'
 "Plugin 'TagHighlight'
-Plugin 'jinleileiking/taghighlight-automirror'
+" Plugin 'jinleileiking/taghighlight-automirror'
  
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~color~~~~~~~~~~~~~~~~~~~~~~
@@ -196,10 +466,10 @@ Plugin 'altercation/vim-colors-solarized'
 
 
 " Track the engine.
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 "
 " " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+" Plugin 'honza/vim-snippets'
 "
 " " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
@@ -238,17 +508,31 @@ let g:UltiSnipsEditSplit="vertical"
 "Plugin 'skammer/vim-css-color'
 "vim-liquid
  
-"md, rdoc, textile
+"~~~~~~~~~~~~~~~~~~~~~~~~~md, rdoc, textile~~~~~~~~~~~~~~~~
 "Plugin 'greyblake/vim-preview'
-"vim-markdown
 Plugin 'plasticboy/vim-markdown'
 
+"~~~~~~~~~~~~~~~~~~~~~~~php~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'rayburgemeestre/phpfolding.vim'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+
+
+"~~~~~~~~~~~~~~~~~~~~~~~cpp~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Plugin 'octol/vim-cpp-enhanced-highlight'
 " Plugin 'bbchung/clighter'
 
+"~~~~~~~~~~~~~~~~~~~~~~go~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plugin 'fatih/vim-go'
+
+
+let g:go_bin_path = "/home/jinlei1/gotools/bin"      "or give absolute path
+
+
+
+" Plugin 'nsf/gocode', {'rtp': 'vim/'}
+
+
+" Plugin 'jodosha/vim-godebug' 
 " Plugin 'athom/more-colorful.vim'  "html and go
 
 
@@ -269,26 +553,51 @@ let g:go_auto_type_info = 0
 "
 " set updatetime=200
 
-noremap <silent> <Leader>cc :GoCallers<CR>
-noremap <silent> <Leader>ce :GoCallees<CR>
+" noremap <silent> <Leader>cc :GoCallers<CR>
+" noremap <silent> <Leader>ce :GoCallees<CR>
 
 
-let g:go_guru_scope = ["maid"]
+let g:go_guru_scope = ["maid", "Gout"]
 
-"textile
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~textile~~~~~~~~~~~~~~~~
  
  
 "Plugin 'nelstrom/vim-textobj-rubyblock'
 "Plugin 'kana/vim-textobj-user'
  
  
-"html,xml
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~html,xml~~~~~~~~~~~~~~~
 "Plugin 'tpope/vim-ragtag'
  
-"C
+"~~~~~~~~~~~~~~~~~~~~~~~~~~C~~~~~~~~~~~~~~~~~~~~~~~~
 "Plugin 'std_c.zip'
 "Plugin 'cg433n/better-c'
-"Plugin 'davidxia/vim-c'
+" Plugin 'davidxia/vim-c'
+
+"~~~~~~~~~~~~~~~~~~~~~~~~~~lua~~~~~~~~~~~~~~~~~~~~~~
+"Plugin 'lua-support'
+"Plugin 'xolox/vim-lua-inspect' 
+" Plugin 'xolox/vim-lua-ftplugin'
+ 
+ 
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~bash~~~~~~~~~~~~~~~~~~~
+"Plugin 'bash-support.vim'
+
+
+
+ 
+"~~~~~~~~~~~~scala~~~~~~~~~~~~~~~~~~~~~~~~~
+" Plugin 'derekwyatt/vim-scala'
+ 
+
+
+"~~~~~~~~~~~~~python~~~~~~~~~~~~~~~~~~~~~
+"Plugin 'klen/python-mode'
+" Plugin 'hynek/vim-python-pep8-indent'
+
+"~~~~~~~~~~~~~~~~~~logstash~~~~~~~~~~~~~~~~
+" Plugin 'robbles/logstash.vim'
+
 
 "Auto reload ctags
 "Plugin 'xolox/vim-easytags'
@@ -299,23 +608,9 @@ let g:go_guru_scope = ["maid"]
 "automatically.
 "Plugin 'echofunc.vim'
  
-"lua
-"Plugin 'lua-support'
- 
- 
-"Plugin 'bash-support.vim'
  
 "Plugin 'tpope/vim-speeddating'
 Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-lua-inspect' 
-Plugin 'xolox/vim-lua-ftplugin'
- 
-Plugin 'derekwyatt/vim-scala'
- 
-"Plugin 'klen/python-mode'
-Plugin 'hynek/vim-python-pep8-indent'
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
  
@@ -362,104 +657,240 @@ Plugin 'hynek/vim-python-pep8-indent'
 "zencoding-vim
  
  
+ 
+"~~~~~~~~~~~~~~~~~~~~~misc~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"
+"Plugin 'jistr/vim-nerdtree-tabs'
+ 
+"VOoM (Vim Outliner of Markers) is a plugin for Vim that emulates a two-pane text outliner.
+"Plugin 'VOoM'
+
+"Plugin 'fholgado/minibufexpl.vim'
+"Plugin 'sjbach/lusty'
+ 
+ 
+Plugin 'tpope/vim-repeat'
+ 
+" Plugin 'Lokaltog/vim-easymotion'
+ 
+" key mapping , xml etc encoding decodeing......
+"Plugin 'tpope/vim-unimpaired'
+"Plugin 'ervandew/supertab'
+"Plugin 'vim-scripts/AutoComplPop'
+" Plugin 'Shougo/neocomplete'
+"Plugin 'Valloric/YouCompleteMe'
+" python auto complete
+" Plugin 'davidhalter/jedi-vim'
+" Plugin 'ajh17/VimCompletesMe'
+ 
+" This script let you can use CTRL-P/N to complete word in cmdline mode just like in insert mode.
+"Plugin 'cmdline-completion'
+ 
+" Plugin 'tpope/vim-dispatch'
+ 
+"Plugin 'vim-scripts/VimIM'
+"Plugin 'vimim/vimim'
+"Plugin 'vim-scripts/AutoClose'
+"Plugin 'Raimondi/delimitMate'
+"Plugin 'tpope/vim-endwise'
+"Plugin 'jiangmiao/auto-pairs'
+Plugin 'powerman/vim-plugin-AnsiEsc'
+"Plugin 'wesleyche/SrcExpl'
+"Plugin 'xolox/vim-session'
+"
+" original repos on github
+" Plugin 'tpope/vim-repeat'
+
+" Plugin 'bkad/CamelCaseMotion'
+
+ 
+"ruby
+"Plugin 'tpope/vim-rails'
+"Plugin 'vim-ruby/vim-ruby'
+"Plugin 'astashov/vim-ruby-debugger'
+"ruby-debug
+"unmap <Leader>m
+"map <Leader>M :call g:RubyDebugger.open_breakpoints()<CR>
+"unmap <Leader>t
+"map <Leader>T :call g:RubyDebugger.open_frames()<CR>
+"unmap <Leader>n
+"map <Leader>N :call g:RubyDebugger.next()<CR>
+ 
+"由于映射原因,暂不使用
+"Plugin 'janx/vim-rubytest'
+ 
+
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""no use""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"-------------------------unite-------------------------
+" Plugin 'Shougo/vimproc.vim'
+" Plugin 'Shougo/unite.vim'
+"nnoremap <leader>u :<C-u>Unite tag -start-insert file_rec/async:!<CR>
+"map <leader>ff :<C-u>Unite file_rec -start-insert file_rec/async:!<CR>
+"map <leader>ff :<C-u>Unite file_rec<CR>
+"map <leader>ft :<C-u>Unite tag -start-insert file_rec/async:!<CR>
+"map <leader>t :<C-u>Unite tag<CR>
+" map <leader>r :<C-u>Unite file_mru<CR>
+
+
+" map <leader>ff :<C-u>Unite file_rec/async<CR>
+" map <leader>b :<C-u>Unite buffer<CR>
+
+
+" let g:unite_source_rec_max_cache_files = 100000
+
+" call unite#custom#source( 'buffer', 'converters', ['converter_file_directory'])
+
+
+"----------------------Autoclose---------------------
+"nmap <Leader>x <Plug>ToggleAutoCloseMappings
+
+"-------------------MBF-------------------------
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+let g:miniBufExplMaxHeight = 1
+" MiniBufExpl Colors
+hi MBEVisibleActive guifg=#A6DB29 guibg=fg
+hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
+hi MBEVisibleChanged guifg=#F1266F guibg=fg
+hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
+hi MBEChanged guifg=#CD5907 guibg=fg
+hi MBENormal guifg=#808080 guibg=fg
+let g:miniBufExplorerMoreThanOne=0
+let g:miniBufExplSplitBelow=0 " Put new window above
+
+
+
+
+
+"--------------------lua-inspect---------------
+
+
+hi link luaInspectFieldUndefined  Member
+hi link luaInspectLocalMutated LocalVariable
+
+"------------------------------std_c---------------
+let c_C99=1
+
+"--------------------voom-----------------------
+let g:voom_tree_placement = "right"
+
+"----------------------taglist-----------------------
+let Tlist_Auto_Open=1
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Use_Right_Window = 1
+"map <F7> :TlistToggle<CR>
+
+"----------------neocomplete--------------------
+
+
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 10
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"     \ 'default' : '',
+"     \ 'vimshell' : $HOME.'/.vimshell_hist',
+"     \ 'scheme' : $HOME.'/.gosh_completions'
+"         \ }
+
+" Define keyword.
+" if !exists('g:neocomplete#keyword_patterns')
+"     let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+" inoremap <expr><C-g>     neocomplete#undo_completion()
+" inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+"   " For no inserting <CR> key.
+"   "return pumvisible() ? "\<C-y>" : "\<CR>"
+" endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+" inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+let g:neocomplete#enable_auto_select = 0
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+
+
+
+
+
+
+" let g:neocomplcache_enable_auto_select = 1
+" let g:neocomplcache_disable_auto_complete = 0
+" let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_max_list = 10
+" let g:neocomplcache_manual_completion_start_length = 100
+" let g:neocomplcache_auto_completion_start_length = 5
+" let g:neocomplcache_min_keyword_length = 10
+" let g:neocomplcache_min_syntax_length = 10
+" let g:neocomplcache_disable_caching_file_path_pattern = "out*.*"
+" <TAB>: completion.
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+
+
 call vundle#end()
 filetype plugin indent on
  
- 
- 
-
-"-----------------------Tools-------------------------------------------
-"Shell
-"Cmd
 
 
-
-noremap <silent> <F4> :call ToggleWrap()<CR>
-function ToggleWrap()
-  if &wrap
-    echo "Wrap OFF"
-    setlocal nowrap
-    silent! nunmap <buffer> <Up>
-    silent! nunmap <buffer> <Down>
-    silent! nunmap <buffer> <Home>
-    silent! nunmap <buffer> <End>
-    silent! iunmap <buffer> <Up>
-    silent! iunmap <buffer> <Down>
-    silent! iunmap <buffer> <Home>
-    silent! iunmap <buffer> <End>
-  else
-    echo "Wrap ON"
-    setlocal wrap
-    noremap  <buffer> <silent> <Up>   gk
-    noremap  <buffer> <silent> <Down> gj
-    noremap  <buffer> <silent> <Home> g<Home>
-    noremap  <buffer> <silent> <End>  g<End>
-    inoremap <buffer> <silent> <Up>   <C-o>gk
-    inoremap <buffer> <silent> <Down> <C-o>gj
-    inoremap <buffer> <silent> <Home> <C-o>g<Home>
-    inoremap <buffer> <silent> <End>  <C-o>g<End>
-  endif
-endfunction
-
-
-
-
-
-
-
-
-
-
-
-" Get :cmd output to a buffer :TabMessage
-function! TabMessage(cmd)
-redir => message
-silent execute a:cmd
-redir END
-new
-silent put=message
-set nomodified
-endfunction
-command! -nargs=+ -complete=command Cmd call TabMessage(<q-args>)
- 
-" Execute a cmd in a shell :Shell xxxx
-" function! s:ExecuteInShell(command)
-" let command = join(map(split(a:command), 'expand(v:val)'))
-" let winnr = bufwinnr('^' . command . '$')
-" silent! execute winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
-" setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
-" echo 'Execute ' . command . '...'
-" silent! execute 'silent %!'. command
-" silent! execute 'resize ' . line('$')
-" silent! redraw
-" silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-" silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
-" echo 'Shell command ' . command . ' executed.'
-" endfunction
-" command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-
-" Highlight all instances of word under cursor, when idle.
-" Useful when studying strange source code.
-" Type h/ to toggle highlighting on/off.
-nnoremap <Leader>z :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
-function! AutoHighlightToggle()
-    let @/ = ''
-    if exists('#auto_highlight')
-        au! auto_highlight
-        augroup! auto_highlight
-        setl updatetime=5000
-        echo 'Highlight current word: off'
-        return 0
-    else
-        augroup auto_highlight
-            au!
-            au CursorHold * let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
-        augroup end
-        setl updatetime=500
-        echo 'Highlight current word: ON'
-        return 1
-    endif
-endfunction
 "-------------------------vim settings------------------------------------
  
  
@@ -563,6 +994,33 @@ set undofile
 set ul=500
 
 
+"guibg=darkblue
+ 
+ 
+ 
+ 
+ 
+"fold
+set foldenable
+"set foldmethod=indent
+set foldmethod=syntax
+set foldlevel=0
+set foldcolumn=2
+set foldnestmax=2
+ 
+"number
+set nu
+set nuw=2
+ 
+ 
+" Cursor line
+"set cursorline
+ 
+ 
+"tab
+set showtabline=2
+"ctags
+set tags=tags;
 
 "------------------------color----------------------------
 "
@@ -584,13 +1042,200 @@ autocmd BufRead,BufNewFile *.py set noexpandtab
 autocmd BufRead,BufNewFile *.c syntax keyword return return
 
 
+ 
+"----------------tab label----------------------------------
+function! ShortTabLine()
+    let ret = ''
+    for i in range(tabpagenr('$'))
+        " select the color group for highlighting active tab
+        if i + 1 == tabpagenr()
+            let ret .= '%#errorMsg#'
+        else
+            let ret .= '%#TabLine#'
+        endif
+
+        " find the buffername for the tablabel
+        let buflist = tabpagebuflist(i+1)
+        let winnr = tabpagewinnr(i+1)
+        let buffername = bufname(buflist[winnr - 1])
+        let filename = fnamemodify(buffername,':t')
+        " check if there is no name
+        if filename == ''
+            let filename = 'noname'
+        endif
+        " only show the first 6 letters of the name and
+        " .. if the filename is more than 8 letters long
+        let maxlen = 15
+        if strlen(filename) >= maxlen
+            let ret .= '[' . filename[0:maxlen - 1] . '..]'
+        else
+            let ret .= '[' . filename . ']'
+        endif
+    endfor
+    " after the last tab fill with TabLineFill and reset tab page #
+    let ret .= '%#TabLineFill#%T'
+    return ret
+endfunction
+
+"set guitablabel=%!ShortTabLine()
+set guitablabel=%m%t
 
 
+"-------------------tooltip-----------------------------
+
+"function! InfoGuiTooltip()
+""get window count
+"let wincount = tabpagewinnr(tabpagenr(),'$')
+"let bufferlist=''
+""get name of active buffers in windows
+"for i in tabpagebuflist()
+"let bufferlist .= '[' . fnamemodify(bufname(i),':t') .'] '
+"endfor
+"return bufname($).' windows: ' . wincount .' ' . bufferlist. ' '
+"endfunction
+
+"set guitabtooltip=%!InfoGuiTooltip()
+
+"----------------------status line----------------------
+set laststatus=2
+"syntastic
+set statusline=
+set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
+set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
+" set statusline+=\|%{go#complete#GetInfo()}
+set statusline+=%{tagbar#currenttag('[%s]\ ','')}
+
+
+set complete=.,w,b,u,t
+
+
+"-----------------------Tools-------------------------------------------
+
+
+
+
+"------------------------------toggle wrap-----------------------------
+noremap <silent> <F4> :call ToggleWrap()<CR>
+function ToggleWrap()
+  if &wrap
+    echo "Wrap OFF"
+    setlocal nowrap
+    silent! nunmap <buffer> <Up>
+    silent! nunmap <buffer> <Down>
+    silent! nunmap <buffer> <Home>
+    silent! nunmap <buffer> <End>
+    silent! iunmap <buffer> <Up>
+    silent! iunmap <buffer> <Down>
+    silent! iunmap <buffer> <Home>
+    silent! iunmap <buffer> <End>
+  else
+    echo "Wrap ON"
+    setlocal wrap
+    noremap  <buffer> <silent> <Up>   gk
+    noremap  <buffer> <silent> <Down> gj
+    noremap  <buffer> <silent> <Home> g<Home>
+    noremap  <buffer> <silent> <End>  g<End>
+    inoremap <buffer> <silent> <Up>   <C-o>gk
+    inoremap <buffer> <silent> <Down> <C-o>gj
+    inoremap <buffer> <silent> <Home> <C-o>g<Home>
+    inoremap <buffer> <silent> <End>  <C-o>g<End>
+  endif
+endfunction
+
+
+
+
+
+
+
+
+
+
+
+"-------------------Get :cmd output to a buffer :TabMessage-----------
+function! TabMessage(cmd)
+redir => message
+silent execute a:cmd
+redir END
+new
+silent put=message
+set nomodified
+endfunction
+command! -nargs=+ -complete=command Cmd call TabMessage(<q-args>)
+ 
+
+
+"---------------------------exec cmd in shell-------------------------
+" Execute a cmd in a shell :Shell xxxx
+" function! s:ExecuteInShell(command)
+" let command = join(map(split(a:command), 'expand(v:val)'))
+" let winnr = bufwinnr('^' . command . '$')
+" silent! execute winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+" setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+" echo 'Execute ' . command . '...'
+" silent! execute 'silent %!'. command
+" silent! execute 'resize ' . line('$')
+" silent! redraw
+" silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+" silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+" echo 'Shell command ' . command . ' executed.'
+" endfunction
+" command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+
+
+"---------------------------autohighlight-------------------------------
+" Highlight all instances of word under cursor, when idle.
+" Useful when studying strange source code.
+" Type h/ to toggle highlighting on/off.
+nnoremap <Leader>z :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
+function! AutoHighlightToggle()
+    let @/ = ''
+    if exists('#auto_highlight')
+        au! auto_highlight
+        augroup! auto_highlight
+        setl updatetime=5000
+        echo 'Highlight current word: off'
+        return 0
+    else
+        augroup auto_highlight
+            au!
+            au CursorHold * let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
+        augroup end
+        setl updatetime=500
+        echo 'Highlight current word: ON'
+        return 1
+    endif
+endfunction
 
 
 
 
 "----------------------------map------------------------------
+
+
+" F4 toggle wrap
+" :TabMessage
+" :Shell
+" \z autohighght
+
+
+"_______________Cscope______________
+map <leader>jc :cs f c <C-R><C-W><CR>
+"map <F4> :cs f t <C-R><C-W><CR>
+map <leader>cs :cs add cscope.out<CR>
+
+
+
+"_________________Marks_______________
+
+map <F5> mA
+map <C-F5> `A
+
+map <F11> :noh<CR>
+
 nnoremap <leader>g :!ruby %:p<CR>
 map <leader>bn :bn<CR>
 map <leader>v "0p
@@ -630,421 +1275,7 @@ map <Leader>v "0p
 map vp "cp
 map vy "cy
  
-"guibg=darkblue
  
- 
- 
- 
- 
-"fold
-set foldenable
-"set foldmethod=indent
-set foldmethod=syntax
-set foldlevel=0
-set foldcolumn=2
-set foldnestmax=2
- 
-"number
-set nu
-set nuw=2
- 
- 
-" Cursor line
-"set cursorline
- 
- 
-"tab
-set showtabline=2
- 
- 
-function! ShortTabLine()
-    let ret = ''
-    for i in range(tabpagenr('$'))
-        " select the color group for highlighting active tab
-        if i + 1 == tabpagenr()
-            let ret .= '%#errorMsg#'
-        else
-            let ret .= '%#TabLine#'
-        endif
 
-        " find the buffername for the tablabel
-        let buflist = tabpagebuflist(i+1)
-        let winnr = tabpagewinnr(i+1)
-        let buffername = bufname(buflist[winnr - 1])
-        let filename = fnamemodify(buffername,':t')
-        " check if there is no name
-        if filename == ''
-            let filename = 'noname'
-        endif
-        " only show the first 6 letters of the name and
-        " .. if the filename is more than 8 letters long
-        let maxlen = 15
-        if strlen(filename) >= maxlen
-            let ret .= '[' . filename[0:maxlen - 1] . '..]'
-        else
-            let ret .= '[' . filename . ']'
-        endif
-    endfor
-    " after the last tab fill with TabLineFill and reset tab page #
-    let ret .= '%#TabLineFill#%T'
-    return ret
-endfunction
 
-"set guitablabel=%!ShortTabLine()
-set guitablabel=%m%t
-
-"function! InfoGuiTooltip()
-""get window count
-"let wincount = tabpagewinnr(tabpagenr(),'$')
-"let bufferlist=''
-""get name of active buffers in windows
-"for i in tabpagebuflist()
-"let bufferlist .= '[' . fnamemodify(bufname(i),':t') .'] '
-"endfor
-"return bufname($).' windows: ' . wincount .' ' . bufferlist. ' '
-"endfunction
-
-"set guitabtooltip=%!InfoGuiTooltip()
-"ctags
-set tags=tags;
-
-"Cscope
-map <leader>jc :cs f c <C-R><C-W><CR>
-"map <F4> :cs f t <C-R><C-W><CR>
-map <leader>cs :cs add cscope.out<CR>
-
-
-
-"Marks
-
-map <F5> mA
-map <C-F5> `A
-
-map <F11> :noh<CR>
-
-
-"----------------------status line----------------------
-set laststatus=2
-"syntastic
-set statusline=
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=%2*\|%f\|%0*%k\ %l/%L\(%p%%\)\:%c%(\ %y%m%r%h%)
-set statusline+=\(%{&fileencoding}\,%{&fileformat}\)
-" set statusline+=\|%{go#complete#GetInfo()}
-set statusline+=%{tagbar#currenttag('[%s]\ ','')}
-
-
-set complete=.,w,b,u,t
-
-
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""plugins""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
-
-"-----------------------camelcase-----------------------------
-call camelcasemotion#CreateMotionMappings('<leader>')
-
-
-"-----------------------taghighlight-----------------------------
-map <F10> :UpdateTypesFile<CR>
-
-
-
-"-------------------------unite-------------------------
-"nnoremap <leader>u :<C-u>Unite tag -start-insert file_rec/async:!<CR>
-"map <leader>ff :<C-u>Unite file_rec -start-insert file_rec/async:!<CR>
-"map <leader>ff :<C-u>Unite file_rec<CR>
-"map <leader>ft :<C-u>Unite tag -start-insert file_rec/async:!<CR>
-"map <leader>t :<C-u>Unite tag<CR>
-map <leader>ff :<C-u>Unite file_rec/async<CR>
-map <leader>b :<C-u>Unite buffer<CR>
-" map <leader>r :<C-u>Unite file_mru<CR>
-
-
-let g:unite_source_rec_max_cache_files = 100000
-
-call unite#custom#source( 'buffer', 'converters', ['converter_file_directory'])
-
-"---------------------ack-----------------------
-map <C-H><C-H> eb :Ack "<C-R><C-W>"<CR>
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
-
-"-----------------------nerdtree---------------------
-map <F8> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.o$','\.a$', '\.pyc$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$', '\.php\~$']
-let NERDTreeChDirMode = 2
-let NERDTreeWinSize = 20
-let NERDTreeShowBookmarks = 1
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-"autocmd vimenter * NERDTree
-
-
-
-"-----------------------unite tags--------------------
-let g:unite_source_tag_max_name_length = 40
-let g:unite_source_tag_max_fname_length = 80
-
-"-----------------------Tagbar--------------------
-map <F6> :TagbarToggle<CR>
-let g:tagbar_sort = 0
-let g:tagbar_width = 20
-"let g:tagbar_foldlevel = 0
-" autocmd FileType c,cpp,rb,vim,php nested :TagbarOpen
-
-" add a definition for Objective-C to tagbar
-
-let g:tagbar_type_php = {
-    \ 'kinds' : [
-        \ 'i:interfaces:1',
-        \ 'c:classes:1',
-        \ 'd:constant definitions:1:0',
-        \ 'f:functions',
-        \ 'v:variables:1:0',
-        \ 'j:javascript functions:1',
-    \ ],
-\ }
-
-let g:tagbar_type_objc = {
-            \ 'ctagstype' : 'ObjectiveC',
-            \ 'kinds'     : [
-            \ 'i:interface',
-            \ 'I:implementation',
-            \ 'p:Protocol',
-            \ 'm:Object_method',
-            \ 'c:Class_method',
-            \ 'v:Global_variable',
-            \ 'F:Object field',
-            \ 'f:function',
-            \ 'p:property',
-            \ 't:type_alias',
-            \ 's:type_structure',
-            \ 'e:enumeration',
-            \ 'M:preprocessor_macro',
-            \ ],
-            \ 'sro'        : ' ',
-            \ 'kind2scope' : {
-            \ 'i' : 'interface',
-            \ 'I' : 'implementation',
-            \ 'p' : 'Protocol',
-            \ 's' : 'type_structure',
-            \ 'e' : 'enumeration'
-            \ },
-            \ 'scope2kind' : {
-            \ 'interface'      : 'i',
-            \ 'implementation' : 'I',
-            \ 'Protocol'       : 'p',
-            \ 'type_structure' : 's',
-            \ 'enumeration'    : 'e'
-            \ }
-            \ }
-
-"-----------------------Indent guides--------------
-let g:indent_guides_auto_colors = 1
-let g:indent_guides_start_level = 1
-let g:indent_guides_guide_size = 1
-let g:indent_guides_enable_on_vim_startup = 1
-
-"------------------------ctrlp-------------------------
-"let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
-let g:ctrlp_extensions = ['tag']
-map <Leader>t :CtrlPTag<CR>
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:40,results:40'
-let g:ctrlp_working_path_mode = 'r'
-"map <leader>ff :CtrlP<CR>
-
-"------------------------Yankring-----------------------
-let g:yankring_paste_using_g = 0
-nmap <Leader>yr :YRShow<CR>
-
-
-
-" ------------------------YCM----------------------
-"
-
-let g:ycm_register_as_syntastic_checker = 0
-let g:ycm_min_num_of_chars_for_completion = 10
-let g:ycm_min_num_identifier_candidate_chars = 10
-let g:ycm_filetype_whitelist = { 'cpp': 1 }
-let g:ycm_filetype_specific_completion_to_disable = { 'cpp': 1 }
-let g:ycm_cache_omnifunc = 0
-
-
-
-"-----------------------tcomment--------------------
-" let g:tcommentMapLeaderOp2 = '<Leader>c'
-
-" --------------------syntastic-----------------
-" let g:syntastic_c_check_header = 1
-" let g:syntastic_echo_current_error=0
-" let g:syntastic_enable_signs=0
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-" let g:syntastic_php_checkers = ['php', 'cc']
-let g:syntastic_php_checkers = ['php']
-let g:syntastic_quiet_messages = { "type": "style" }
-
-let g:syntastic_enable_signs = 1
-
-let g:syntastic_ignore_files = ['\m\c\.cc$', '\m\c\.h$']
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""no use""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
-"----------------------Autoclose---------------------
-"nmap <Leader>x <Plug>ToggleAutoCloseMappings
-
-"-------------------MBF-------------------------
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplMaxHeight = 1
-" MiniBufExpl Colors
-hi MBEVisibleActive guifg=#A6DB29 guibg=fg
-hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
-hi MBEVisibleChanged guifg=#F1266F guibg=fg
-hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
-hi MBEChanged guifg=#CD5907 guibg=fg
-hi MBENormal guifg=#808080 guibg=fg
-let g:miniBufExplorerMoreThanOne=0
-let g:miniBufExplSplitBelow=0 " Put new window above
-
-
-
-
-
-"--------------------lua-inspect---------------
-
-
-hi link luaInspectFieldUndefined  Member
-hi link luaInspectLocalMutated LocalVariable
-
-"------------------------------std_c---------------
-let c_C99=1
-
-"--------------------voom-----------------------
-let g:voom_tree_placement = "right"
-
-"----------------------taglist-----------------------
-let Tlist_Auto_Open=1
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1
-"map <F7> :TlistToggle<CR>
-
-" ----------------neocomplete--------------------
-
-
-
-" " Disable AutoComplPop.
-" let g:acp_enableAtStartup = 0
-" " Use neocomplete.
-" let g:neocomplete#enable_at_startup = 1
-" " Use smartcase.
-" let g:neocomplete#enable_smart_case = 1
-" " Set minimum syntax keyword length.
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"
-" " Define dictionary.
-" let g:neocomplete#sources#dictionary#dictionaries = {
-"     \ 'default' : '',
-"     \ 'vimshell' : $HOME.'/.vimshell_hist',
-"     \ 'scheme' : $HOME.'/.gosh_completions'
-"         \ }
-"
-" " Define keyword.
-" if !exists('g:neocomplete#keyword_patterns')
-"     let g:neocomplete#keyword_patterns = {}
-" endif
-" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-"
-" " Plugin key-mappings.
-" inoremap <expr><C-g>     neocomplete#undo_completion()
-" inoremap <expr><C-l>     neocomplete#complete_common_string()
-"
-" " Recommended key-mappings.
-" " <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-"   return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-"   " For no inserting <CR> key.
-"   "return pumvisible() ? "\<C-y>" : "\<CR>"
-" endfunction
-" " <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" " <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" " Close popup by <Space>.
-" "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-"
-" " AutoComplPop like behavior.
-" "let g:neocomplete#enable_auto_select = 1
-"
-" " Shell like behavior(not recommended).
-" "set completeopt+=longest
-" "let g:neocomplete#enable_auto_select = 1
-" "let g:neocomplete#disable_auto_complete = 1
-" "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-"
-" " Enable omni completion.
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"
-" " Enable heavy omni completion.
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-" "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-" "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-" "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-"
-" " For perlomni.vim setting.
-" " https://github.com/c9s/perlomni.vim
-" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"
-"
-"
-"
-"
-"
-"
-" " let g:neocomplcache_enable_auto_select = 1
-" " let g:neocomplcache_disable_auto_complete = 0
-" " let g:neocomplcache_enable_at_startup = 1
-" " let g:neocomplcache_max_list = 10
-" " let g:neocomplcache_manual_completion_start_length = 100
-" " let g:neocomplcache_auto_completion_start_length = 5
-" " let g:neocomplcache_min_keyword_length = 10
-" " let g:neocomplcache_min_syntax_length = 10
-" " let g:neocomplcache_disable_caching_file_path_pattern = "out*.*"
-" " <TAB>: completion.
-" "inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-
-
-
-
-let g:go_bin_path = "/home/jinlei1/gotools/bin"      "or give absolute path
 

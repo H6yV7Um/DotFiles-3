@@ -19,3 +19,5 @@
 #    proxy = http://120.132.72.199:52179
 [https]
 #	proxy = https://120.132.72.199:52179
+[url "git@newgit.op.ksyun.com:"]
+    insteadOf = https://newgit.op.ksyun.com/

@@ -12,7 +12,7 @@ filetype off " required!
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 
 
@@ -21,21 +21,12 @@ Plugin 'gmarik/Vundle.vim'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-
-
-"-----------------------camelcase-----------------------------
-" call camelcasemotion#CreateMotionMappings('<leader>')
-
-
-"-----------------------taghighlight-----------------------------
-map <F10> :UpdateTypesFile<CR>
-
-
-
-
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""ide"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "-----------------------nerdtree---------------------
+Plugin 'scrooloose/nerdtree'
 map <F8> :NERDTreeToggle<CR>
 " let NERDTreeIgnore=['\.o$','\.a$', '\.pyc$', '\.d$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$', '\.php\~$']
 let NERDTreeIgnore=['\.o$','\.a$', '\.pyc$', '\.taghl$','\~$', 'cscope\.', 'tags$', '\.bak$', '\.php\~$']
@@ -45,13 +36,15 @@ let NERDTreeShowBookmarks = 1
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "autocmd vimenter * NERDTree
 
-
-
-"-----------------------unite tags--------------------
-let g:unite_source_tag_max_name_length = 40
-let g:unite_source_tag_max_fname_length = 80
+"----------------------------clipboard----------------
+"Plugin 'YankRing.vim'
+let g:yankring_paste_using_g = 0
+" let g:yankring_n_keys = '4'
+" nmap <Leader>yr :YRShow<CR>
+" Plugin 'svermeulen/vim-easyclip'
 
 "-----------------------Tagbar--------------------
+Plugin 'majutsushi/tagbar'
 map <F6> :TagbarToggle<CR>
 let g:tagbar_sort = 0
 let g:tagbar_width = 20
@@ -106,50 +99,14 @@ let g:tagbar_type_objc = {
             \ }
 
 "-----------------------Indent guides--------------
+" Plugin 'nathanaelkane/vim-indent-guides'
+"Plugin 'Yggdroot/indentLine.git'
 let g:indent_guides_auto_colors = 1
 let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
 
-"------------------------Yankring-----------------------
-let g:yankring_paste_using_g = 0
-" let g:yankring_n_keys = '4'
-nmap <Leader>yr :YRShow<CR>
-
-
-
-" ------------------------YCM----------------------
-"
-
-let g:ycm_register_as_syntastic_checker = 0
-let g:ycm_min_num_of_chars_for_completion = 10
-let g:ycm_min_num_identifier_candidate_chars = 10
-let g:ycm_filetype_whitelist = { 'cpp': 1 }
-let g:ycm_filetype_specific_completion_to_disable = { 'cpp': 1 }
-let g:ycm_cache_omnifunc = 0
-
-
-
-"-----------------------tcomment--------------------
-" let g:tcommentMapLeaderOp2 = '<Leader>c'
-
-" --------------------syntastic-----------------
-" let g:syntastic_c_check_header = 1
-" let g:syntastic_echo_current_error=0
-" let g:syntastic_enable_signs=0
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-" let g:syntastic_php_checkers = ['php', 'cc']
-let g:syntastic_php_checkers = ['php']
-let g:syntastic_quiet_messages = { "type": "style" }
-
-let g:syntastic_enable_signs = 1
-
-let g:syntastic_ignore_files = ['\m\c\.cc$', '\m\c\.h$']
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~git~~~~~~~~~~~~~~~~~~~~~~~~~~`
 "
@@ -166,15 +123,19 @@ Plugin 'airblade/vim-gitgutter'
 " non github repos
 "Plugin 'git://git.wincent.com/command-t.git'
 "Plugin 'wincent/Command-T'
-Plugin 'kien/ctrlp.vim'
 
-"let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
-let g:ctrlp_extensions = ['tag']
-map <Leader>t :CtrlPTag<CR>
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:40,results:40'
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_max_files = 300
-"map <leader>ff :CtrlP<CR>
+
+
+" ---------------------------ctrlp---------------------------------
+"Plugin 'kien/ctrlp.vim'
+
+""let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+"let g:ctrlp_extensions = ['tag']
+"map <Leader>t :CtrlPTag<CR>
+"let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:40,results:40'
+"let g:ctrlp_working_path_mode = 'r'
+"let g:ctrlp_max_files = 300
+""map <leader>ff :CtrlP<CR>
 
 
 " -------------------------fzf-----------------------------------
@@ -197,8 +158,10 @@ command! -bang -nargs=* Rg
 
 map <leader>ff :<C-u>Files<CR>
 map <leader>b :<C-u>Buffers<CR>
+map <leader>t :<C-u>Tags <C-R><C-W><CR>
+map <C-T><C-T> :<C-u>Tags 
 
-map <C-H><C-H> eb :Ag "<C-R><C-W>"<CR>
+map <C-H><C-H> eb :Ag <C-R><C-W><CR>
 
 "-----------------------denite-------------------------
 " Plugin 'Shougo/denite.nvim'
@@ -313,8 +276,8 @@ map <C-H><C-H> eb :Ag "<C-R><C-W>"<CR>
 "-------------------------------------------------------------------
 
 
-" Plugin 'mhinz/vim-grepper'
-
+"Plugin 'mhinz/vim-grepper'
+"Plugin 'vim-scripts/FuzzyFinder'
 
 
 
@@ -322,104 +285,32 @@ map <C-H><C-H> eb :Ag "<C-R><C-W>"<CR>
 
 
 "---------------------ack-----------------------
-" Plugin 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 " map <C-H><C-H> eb :Ack "<C-R><C-W>"<CR>
-" let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
-
-
-
-
-
-
-
-
-
-
-" Plugin 'Shougo/neomru.vim'
-"Plugin 'tsukkee/unite-tag'
-"Plugin 'h1mesuke/unite-outline'
-"Plugin 'jinleileiking/bandit.vim'
-"Plugin 'szw/vim-ctrlspace'
-
-"Plugin 'vim-scripts/FuzzyFinder'
  
-Plugin 'scrooloose/nerdtree'
  
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~error check~~~~~~~~~~~~~~~~
-" Plugin 'scrooloose/syntastic'
 Plugin 'w0rp/ale'
+ 
+" --------------------syntastic-----------------
+" Plugin 'scrooloose/syntastic'
+" let g:syntastic_c_check_header = 1
+" let g:syntastic_echo_current_error=0
+" let g:syntastic_enable_signs=0
 
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+" let g:syntastic_php_checkers = ['php', 'cc']
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_quiet_messages = { "type": "style" }
 
-" extend %
-" 默认的% 只能匹配简单的比如括号, 这个扩展了一些
-Plugin 'matchit.zip'
+let g:syntastic_enable_signs = 1
 
-"  'hello world' -> (hello world)
-" Plugin 'tpope/vim-surround'
-
-Plugin 'majutsushi/tagbar'
-"taglist
- 
-" Plugin 'pbrisbin/vim-mkdir'
- 
- 
-" 和neo冲突
-Plugin 'terryma/vim-multiple-cursors'
-"
-" Called once right before you start selecting multiple cursors
-function! Multiple_cursors_before()
-  if exists(':NeoCompleteLock')==2
-    exe 'NeoCompleteLock'
-  endif
-endfunction
-
-" Called once only when the multiple selection is canceled (default <Esc>)
-function! Multiple_cursors_after()
-  if exists(':NeoCompleteUnlock')==2
-    exe 'NeoCompleteUnlock'
-  endif
-endfunction
-" Plugin 'nathanaelkane/vim-indent-guides'
-"Plugin 'Yggdroot/indentLine.git'
- 
-"Plugin 'ShowMarks'
- 
-"git
-"Plugin 'tpope/vim-fugitive'
- 
-"~~~~~~~~~~~~~~~~~~~~~~align~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Plugin 'godlygeek/tabular'
-"Plugin 'a.vim'
- 
- 
-" show only window
-"Plugin 'vim-scripts/ZoomWin'
- 
-"Narrowing means focussing on a region and making the rest inaccessible.
-Plugin 'chrisbra/NrrwRgn'
- 
-"Buffergator is a plugin for listing, navigating between, and selecting buffers to edit.
-"Plugin 'jeetsukumaran/vim-buffergator'
- 
-"Gundo is a plugin to make browsing this ridiculously powerful undo tree less painful.
-"Plugin 'sjl/gundo.vim'
- 
-"This plugin defines a new text object, based on indentation levels. This is
-"very useful in languages such as Python, in which the syntax defines scope in
-"terms of indentation.
-"Plugin 'michaeljsmith/vim-indent-object'
- 
-"Keep Window on Buffer Delete - Improved
-"Plugin 'rgarver/Kwbd.vim'
-"map <Leader>bd :Kwbd<CR>
- 
-"Plugin 'Gist.vim'
- 
-"Plugin 'Conque-Shell'
- 
-"Plugin 'rson/vim-conque'
- 
+let g:syntastic_ignore_files = ['\m\c\.cc$', '\m\c\.h$']
 
 
  
@@ -427,18 +318,19 @@ Plugin 'chrisbra/NrrwRgn'
 "Plugin 'scrooloose/nerdcommenter'
 "Plugin 'EnhCommentify.vim'
 " Plugin 'tomtom/tcomment_vim'
+" let g:tcommentMapLeaderOp2 = '<Leader>c'
 Plugin 'tpope/vim-commentary'
  
 
-"----------------------------clipboard----------------
-"Plugin 'YankRing.vim'
-"Plugin 'svermeulen/vim-easyclip'
  
  
 "~~~~~~~~~~~~~~~~~~~~~highlight~~~~~~~~~~~~~~~~~~~~
 "Highlight what you want
 Plugin 'Mark--Karkat'
+
 "Plugin 'TagHighlight'
+" map <F10> :UpdateTypesFile<CR>
+
 " Plugin 'jinleileiking/taghighlight-automirror'
  
 
@@ -450,7 +342,7 @@ Plugin 'altercation/vim-colors-solarized'
 
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~snipmate~~~~~~~~~~~~~~~~~~
-"
+
 "
 " Plugin 'MarcWeber/vim-addon-mw-utils'
 " Plugin 'tomtom/tlib_vim'
@@ -483,19 +375,12 @@ let g:UltiSnipsEditSplit="vertical"
 "---------------------------statusline-------------------------------------
 "Plugin 'Lokaltog/vim-powerline'
  
-"DrawIt is a plugin which allows one to draw lines left, right, up, down, and along both slants.
-"Plugin 'DrawIt'
- 
-"Plugin 'calendar.vim'
  
  
-"This plugin is aimed at making it more convenient to compile or run a single
-"source file without leaving vim.
-"Plugin 'xuhdev/SingleCompile'
- 
- 
- 
-"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Langs~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""langs"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "Plugin 'tpope/vim-haml'
 "Plugin 'pangloss/vim-javascript'
 "Plugin 'jsbeautify'
@@ -507,6 +392,15 @@ let g:UltiSnipsEditSplit="vertical"
 "Plugin 'mmalecki/vim-node.js'
 "Plugin 'skammer/vim-css-color'
 "vim-liquid
+
+" ------------------------YCM----------------------
+let g:ycm_register_as_syntastic_checker = 0
+let g:ycm_min_num_of_chars_for_completion = 10
+let g:ycm_min_num_identifier_candidate_chars = 10
+let g:ycm_filetype_whitelist = { 'cpp': 1 }
+let g:ycm_filetype_specific_completion_to_disable = { 'cpp': 1 }
+let g:ycm_cache_omnifunc = 0
+
  
 "~~~~~~~~~~~~~~~~~~~~~~~~~md, rdoc, textile~~~~~~~~~~~~~~~~
 "Plugin 'greyblake/vim-preview'
@@ -527,7 +421,16 @@ Plugin 'fatih/vim-go'
 
 let g:go_bin_path = "/home/jinlei1/gotools/bin"      "or give absolute path
 
+let g:go_fmt_command = "goimports"
 
+let g:go_metalinter_autosave = 1
+
+let g:go_metalinter_autosave_enabled = [ 'errcheck']
+" let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
+
+let g:go_metalinter_deadline = "30s"
+
+let g:go_list_height = 20
 
 " Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
@@ -593,10 +496,115 @@ let g:go_guru_scope = ["maid", "Gout"]
 
 "~~~~~~~~~~~~~python~~~~~~~~~~~~~~~~~~~~~
 "Plugin 'klen/python-mode'
-" Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'hynek/vim-python-pep8-indent'
 
 "~~~~~~~~~~~~~~~~~~logstash~~~~~~~~~~~~~~~~
 " Plugin 'robbles/logstash.vim'
+
+ 
+ 
+ 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""misc""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plugin 'tpope/vim-repeat'
+ 
+Plugin 'Lokaltog/vim-easymotion'
+
+" extend %
+" 默认的% 只能匹配简单的比如括号, 这个扩展了一些
+Plugin 'matchit.zip'
+
+"  'hello world' -> (hello world)
+Plugin 'tpope/vim-surround'
+
+
+
+" 和neo冲突
+Plugin 'terryma/vim-multiple-cursors'
+"
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
+
+
+"Narrowing means focussing on a region and making the rest inaccessible.
+Plugin 'chrisbra/NrrwRgn'
+
+
+
+
+" 显示命令行颜色
+Plugin 'powerman/vim-plugin-AnsiEsc'
+ 
+
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""no use""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Plugin 'wesleyche/SrcExpl'
+"Plugin 'xolox/vim-session'
+"
+
+" Plugin 'bkad/CamelCaseMotion'
+
+ 
+"ruby
+"Plugin 'tpope/vim-rails'
+"Plugin 'vim-ruby/vim-ruby'
+"Plugin 'astashov/vim-ruby-debugger'
+"ruby-debug
+"unmap <Leader>m
+"map <Leader>M :call g:RubyDebugger.open_breakpoints()<CR>
+"unmap <Leader>t
+"map <Leader>T :call g:RubyDebugger.open_frames()<CR>
+"unmap <Leader>n
+"map <Leader>N :call g:RubyDebugger.next()<CR>
+ 
+"由于映射原因,暂不使用
+"Plugin 'janx/vim-rubytest'
+"DrawIt is a plugin which allows one to draw lines left, right, up, down, and along both slants.
+"Plugin 'DrawIt'
+ 
+"Plugin 'calendar.vim'
+ 
+ 
+"This plugin is aimed at making it more convenient to compile or run a single
+"source file without leaving vim.
+"Plugin 'xuhdev/SingleCompile'
+ 
+" Plugin 'Shougo/neomru.vim'
+"Plugin 'tsukkee/unite-tag'
+"-----------------------unite tags--------------------
+let g:unite_source_tag_max_name_length = 40
+let g:unite_source_tag_max_fname_length = 80
+"Plugin 'h1mesuke/unite-outline'
+"Plugin 'jinleileiking/bandit.vim'
+"Plugin 'szw/vim-ctrlspace'
+
+
+"-----------------------camelcase-----------------------------
+" call camelcasemotion#CreateMotionMappings('<leader>')
+
+
+
+
+
+
 
 
 "Auto reload ctags
@@ -608,10 +616,53 @@ let g:go_guru_scope = ["maid", "Gout"]
 "automatically.
 "Plugin 'echofunc.vim'
  
+
+
+
+
+ 
+" Plugin 'pbrisbin/vim-mkdir'
+ 
+ 
+ 
+"Plugin 'ShowMarks'
+ 
+"git
+"Plugin 'tpope/vim-fugitive'
+ 
+"~~~~~~~~~~~~~~~~~~~~~~align~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Plugin 'godlygeek/tabular'
+"Plugin 'a.vim'
+ 
+ 
+" show only window
+"Plugin 'vim-scripts/ZoomWin'
+ 
+ 
+"Buffergator is a plugin for listing, navigating between, and selecting buffers to edit.
+"Plugin 'jeetsukumaran/vim-buffergator'
+ 
+"Gundo is a plugin to make browsing this ridiculously powerful undo tree less painful.
+"Plugin 'sjl/gundo.vim'
+ 
+"This plugin defines a new text object, based on indentation levels. This is
+"very useful in languages such as Python, in which the syntax defines scope in
+"terms of indentation.
+"Plugin 'michaeljsmith/vim-indent-object'
+ 
+"Keep Window on Buffer Delete - Improved
+"Plugin 'rgarver/Kwbd.vim'
+"map <Leader>bd :Kwbd<CR>
+ 
+"Plugin 'Gist.vim'
+ 
+"Plugin 'Conque-Shell'
+ 
+"Plugin 'rson/vim-conque'
  
 "Plugin 'tpope/vim-speeddating'
-Plugin 'xolox/vim-misc'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin 'xolox/vim-misc'
+
 "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
  
 " Navigation
@@ -655,11 +706,7 @@ Plugin 'xolox/vim-misc'
 "vim-rake
 "vim-ruby-sinatra
 "zencoding-vim
- 
- 
- 
-"~~~~~~~~~~~~~~~~~~~~~misc~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-"
+
 "Plugin 'jistr/vim-nerdtree-tabs'
  
 "VOoM (Vim Outliner of Markers) is a plugin for Vim that emulates a two-pane text outliner.
@@ -669,9 +716,6 @@ Plugin 'xolox/vim-misc'
 "Plugin 'sjbach/lusty'
  
  
-Plugin 'tpope/vim-repeat'
- 
-" Plugin 'Lokaltog/vim-easymotion'
  
 " key mapping , xml etc encoding decodeing......
 "Plugin 'tpope/vim-unimpaired'
@@ -694,40 +738,6 @@ Plugin 'tpope/vim-repeat'
 "Plugin 'Raimondi/delimitMate'
 "Plugin 'tpope/vim-endwise'
 "Plugin 'jiangmiao/auto-pairs'
-Plugin 'powerman/vim-plugin-AnsiEsc'
-"Plugin 'wesleyche/SrcExpl'
-"Plugin 'xolox/vim-session'
-"
-" original repos on github
-" Plugin 'tpope/vim-repeat'
-
-" Plugin 'bkad/CamelCaseMotion'
-
- 
-"ruby
-"Plugin 'tpope/vim-rails'
-"Plugin 'vim-ruby/vim-ruby'
-"Plugin 'astashov/vim-ruby-debugger'
-"ruby-debug
-"unmap <Leader>m
-"map <Leader>M :call g:RubyDebugger.open_breakpoints()<CR>
-"unmap <Leader>t
-"map <Leader>T :call g:RubyDebugger.open_frames()<CR>
-"unmap <Leader>n
-"map <Leader>N :call g:RubyDebugger.next()<CR>
- 
-"由于映射原因,暂不使用
-"Plugin 'janx/vim-rubytest'
- 
-
-
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""no use""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "-------------------------unite-------------------------
 " Plugin 'Shougo/vimproc.vim'
@@ -947,7 +957,8 @@ syntax on
 "set number
 " set nospell
 set spell
-set spellfile=vim_spell.utf8.add
+" set spellfile=vim_spell.utf8.add
+set spelllang=en_us
 set linebreak
 set showbreak=...
 set nowrap
@@ -1238,7 +1249,6 @@ map <F11> :noh<CR>
 
 nnoremap <leader>g :!ruby %:p<CR>
 map <leader>bn :bn<CR>
-map <leader>v "0p
 map <leader>q <C-W>_
 map <leader>mk :make<CR>botright copen<CR>
 
@@ -1261,21 +1271,25 @@ else
     map <Leader>tg :!ctags -R<CR>
 endif
 
-map <Leader>tagg  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>/^<CR><F12>
-map <Leader>tag  :so tags.vim<CR>
+" map <Leader>tagg  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>/^<CR><F12>
+" map <Leader>tag  :so tags.vim<CR>
 
 
 map <Leader>h *#
 " In case I forget to start as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 map <Leader>y "+y
-map <Leader>p "+gP
+" map <Leader>p "+gP
 map <Leader>wp ve"0p
-map <Leader>v "0p
+" map <Leader>v "0p
+map <leader>p "0p
+
 map vp "cp
 map vy "cy
  
  
+highlight clear SpellBad
+highlight SpellBad term=standout,bold ctermfg=5 term=undercurl cterm=undercurl
 
 
 

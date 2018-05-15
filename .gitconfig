@@ -16,8 +16,9 @@
 	tool = meld
 [http]
 	postBuffer = 524288000
-#    proxy = http://120.132.72.199:52179
+    proxy = http://127.0.0.1:4321
 [https]
 #	proxy = https://120.132.72.199:52179
+    proxy = http://127.0.0.1:4321
 [url "git@newgit.op.ksyun.com:"]
     insteadOf = https://newgit.op.ksyun.com/

@@ -115,7 +115,6 @@ Plugin 'gregsexton/gitv'
 Plugin 'airblade/vim-gitgutter'
 " Plugin 'mhinz/vim-signify'
 
-
  
 "~~~~~~~~~~~~~~~~~~finder~~~~~~~~~~~~~~~~~~~~~~~~~
 " vim-scripts repos
@@ -308,7 +307,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_php_checkers = ['php']
 let g:syntastic_quiet_messages = { "type": "style" }
 
-let g:syntastic_enable_signs = 1
+" let g:syntastic_enable_signs = 1
 
 let g:syntastic_ignore_files = ['\m\c\.cc$', '\m\c\.h$']
 
@@ -392,13 +391,16 @@ let g:UltiSnipsEditSplit="vertical"
 "Plugin 'mmalecki/vim-node.js'
 "Plugin 'skammer/vim-css-color'
 "vim-liquid
+Plugin 'uarun/vim-protobuf'
+
 
 " ------------------------YCM----------------------
+" Plugin 'Valloric/YouCompleteMe'
 let g:ycm_register_as_syntastic_checker = 0
 let g:ycm_min_num_of_chars_for_completion = 10
 let g:ycm_min_num_identifier_candidate_chars = 10
-let g:ycm_filetype_whitelist = { 'cpp': 1 }
-let g:ycm_filetype_specific_completion_to_disable = { 'cpp': 1 }
+" let g:ycm_filetype_whitelist = { 'cpp': 1 }
+" let g:ycm_filetype_specific_completion_to_disable = { 'cpp': 1 }
 let g:ycm_cache_omnifunc = 0
 
  
@@ -412,8 +414,15 @@ Plugin 'rayburgemeestre/phpfolding.vim'
 
 
 "~~~~~~~~~~~~~~~~~~~~~~~cpp~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 " Plugin 'bbchung/clighter'
+" Plugin 'bbchung/clighter8'
+" Plugin 'jeaye/color_coded'
+
+
+" ----------------------clighter-----------------
+
+let g:clighter_libclang_file = '/usr/lib64/llvm/libclang.so'
 
 "~~~~~~~~~~~~~~~~~~~~~~go~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plugin 'fatih/vim-go'
@@ -425,7 +434,8 @@ let g:go_fmt_command = "goimports"
 
 let g:go_metalinter_autosave = 1
 
-let g:go_metalinter_autosave_enabled = [ 'errcheck']
+let g:go_metalinter_autosave_enabled = [ ]
+" let g:go_metalinter_autosave_enabled = [ 'errcheck']
 " let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
 
 let g:go_metalinter_deadline = "30s"
@@ -460,7 +470,7 @@ let g:go_auto_type_info = 0
 " noremap <silent> <Leader>ce :GoCallees<CR>
 
 
-let g:go_guru_scope = ["maid", "Gout"]
+" let g:go_guru_scope = ["maid", "Gout"]
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~textile~~~~~~~~~~~~~~~~
  
@@ -499,7 +509,7 @@ let g:go_guru_scope = ["maid", "Gout"]
 Plugin 'hynek/vim-python-pep8-indent'
 
 "~~~~~~~~~~~~~~~~~~logstash~~~~~~~~~~~~~~~~
-" Plugin 'robbles/logstash.vim'
+Plugin 'robbles/logstash.vim'
 
  
  
@@ -722,7 +732,6 @@ let g:unite_source_tag_max_fname_length = 80
 "Plugin 'ervandew/supertab'
 "Plugin 'vim-scripts/AutoComplPop'
 " Plugin 'Shougo/neocomplete'
-"Plugin 'Valloric/YouCompleteMe'
 " python auto complete
 " Plugin 'davidhalter/jedi-vim'
 " Plugin 'ajh17/VimCompletesMe'
@@ -955,8 +964,8 @@ set encoding=utf-8
  
 syntax on
 "set number
-" set nospell
-set spell
+set nospell
+" set spell
 " set spellfile=vim_spell.utf8.add
 set spelllang=en_us
 set linebreak
@@ -1017,7 +1026,7 @@ set foldenable
 set foldmethod=syntax
 set foldlevel=0
 set foldcolumn=2
-set foldnestmax=2
+set foldnestmax=1
  
 "number
 set nu
@@ -1089,8 +1098,51 @@ function! ShortTabLine()
 endfunction
 
 "set guitablabel=%!ShortTabLine()
-set guitablabel=%m%t
+"set guitablabel=%m%t
 
+	function MyTabLabel(n)
+	  let buflist = tabpagebuflist(a:n)
+	  let winnr = tabpagewinnr(a:n)
+	  " return bufname(buflist[winnr - 1])
+	  return substitute( bufname(buflist[winnr - 1]), '.\+\/\(.\+\)\/.\+', '\1', '' )
+      " return substitute( expand( '%:p' ), '.\+\/\(.\+\)\/.\+', '\1', '' )
+	endfunction
+
+	function MyTabLine()
+	  let s = ''
+	  for i in range(tabpagenr('$'))
+	    " select the highlighting
+	    if i + 1 == tabpagenr()
+	      let s .= '%#TabLineSel#'
+	    else
+	      let s .= '%#TabLine#'
+	    endif
+
+	    " set the tab page number (for mouse clicks)
+	    let s .= '%' . (i + 1) . 'T'
+
+	    " the label is made by MyTabLabel()
+	    let s .= ' %{MyTabLabel(' . (i + 1) . ')} |'
+	  endfor
+
+	  " after the last tab fill with TabLineFill and reset tab page nr
+	  let s .= '%#TabLineFill#%T'
+
+	  " right-align the label to close the current tab page
+	  if tabpagenr('$') > 1
+	    let s .= '%=%#TabLine#%999Xclose'
+	  endif
+
+	  return s
+	endfunction
+
+set tabline=%!MyTabLine()
+
+function! GuiTabLabel()
+     return substitute( expand( '%:p' ), '.\+\/\(.\+\)\/.\+', '\1', '' )
+ endfunction
+ set guitablabel=%{GuiTabLabel()}
+ " set tabline=%m%t%{GuiTabLabel()}
 
 "-------------------tooltip-----------------------------
 
@@ -1247,7 +1299,7 @@ map <C-F5> `A
 
 map <F11> :noh<CR>
 
-nnoremap <leader>g :!ruby %:p<CR>
+" nnoremap <leader>g :!ruby %:p<CR>
 map <leader>bn :bn<CR>
 map <leader>q <C-W>_
 map <leader>mk :make<CR>botright copen<CR>
@@ -1260,6 +1312,8 @@ map <kMultiply> <c-w>>
 endif
  
 map <leader>json '<,'>!python -m json.tool
+map <leader>h :NERDTreeClose<CR>:set nonumber<CR>:set nolist<CR>
+map <leader>g :set number<CR>:set list<CR>:NERDTree<CR>
 "map <F7> eb"tye k /<C-R>t<CR>
 "map <F12> :!ctags <CR> <CR> :!cscope -Rbq<CR><CR>
 "map <F12> :!ctags <CR>
@@ -1275,7 +1329,7 @@ endif
 " map <Leader>tag  :so tags.vim<CR>
 
 
-map <Leader>h *#
+" map <Leader>h *#
 " In case I forget to start as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 map <Leader>y "+y

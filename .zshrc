@@ -23,11 +23,11 @@ export ZSH_THEME="robbyrussell"
 # lighthouse)
 #plugins=(archlinux bundler extract gnu-utils rails3 redis-cli rvm vundle git rails ruby)
 # plugins=(extract gnu-utils vundle git)
-plugins=(extract gnu-utils vundle)
+# plugins=(extract gnu-utils vundle git zsh-autosuggestions zsh-syntax-highlighting)
 #plugins=(archlinux bundler extract gnu-utils rails3 redis-cli rvm vundle
 #rails ruby)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 #export TOOL_PATH=~/tools
 
@@ -36,6 +36,52 @@ source $ZSH/oh-my-zsh.sh
 #JRE_HOME=$TOOL_PATH/jdk1.6.0_25/jre export
 #PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin export
 #CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:
+
+source ~/antigen.zsh
+
+
+# Initialize oh-my-zsh
+antigen use oh-my-zsh
+
+# default bundles
+# visit https://github.com/unixorn/awesome-zsh-plugins
+# antigen bundle git
+# antigen bundle heroku
+antigen bundle pip
+antigen bundle vundle
+antigen bundle extract
+antigen bundle gnu-utils
+antigen bundle sudo
+antigen bundle history-substring-search
+# antigen bundle svn-fast-info
+# antigen bundle command-not-find
+
+antigen bundle colorize
+antigen bundle github
+antigen bundle python
+antigen bundle rupa/z z.sh
+# antigen bundle z
+
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
+# antigen bundle supercrabtree/k
+antigen bundle Vifon/deer
+
+
+antigen bundle chrissicool/zsh-256color
+antigen bundle b4b4r07/emoji-cli
+
+antigen theme robbyrussell
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen apply
+
+
+autoload -U deer
+zle -N deer
+bindkey '\ek' deer
+
+
 
 
 
@@ -78,9 +124,9 @@ LANG="en_US.UTF-8"
 LC_CTYPE="en_US.UTF-8"
 LC_ALL="en_US.UTF-8"
 
-autoload -U compinit && compinit
-autoload -U bashcompinit && bashcompinit
-[[ -s "/home/users/jinlei04/.jumbo/etc/bashrc" ]] && source "/home/users/jinlei04/.jumbo/etc/bashrc"
+# autoload -U compinit && compinit
+# autoload -U bashcompinit && bashcompinit
+# [[ -s "/home/users/jinlei04/.jumbo/etc/bashrc" ]] && source "/home/users/jinlei04/.jumbo/etc/bashrc"
 
 
 # export PATH="${PATH}:/opt/crosstools/bin"
@@ -112,15 +158,20 @@ export PATH="$HOME/tools/apache-maven-3.3.9/bin:$PATH"
 export PATH="$HOME/tools/scala-2.11.8/bin:$PATH"
 export PATH="$HOME/tools/spark-2.0.0-bin-hadoop2.7/bin:$PATH"
 export PATH="$HOME/tools/sbt/bin:$PATH"
-export PATH="$HOME/tools/php-5.6.26/sapi/cli:$PATH"
 
 
 
 export PATH="usr/local/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/home/jinlei1/ksyun/nemo/php/php5/bin:$PATH"
+# export PATH="/home/jinlei1/ksyun/nemo/php/php7/bin:$PATH"
+# export PATH="$HOME/tools/php-5.6.26/sapi/cli:$PATH"
 
 export PATH="$HOME/tools/bin:$PATH"
+
+
+export PATH="/usr/local/openresty/bin:$PATH"
+
 
 rvm use 2.0.0
 # export PATH="$HOME/.rbenv/bin:$PATH"
@@ -130,3 +181,17 @@ rvm use 2.0.0
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source /opt/rh/devtoolset-2/enable
+
+
+bindkey '^l' autosuggest-accept
+bindkey '^j' autosuggest-execute
+
+
+
+#alias for cnpm
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+  --cache=$HOME/.npm/.cache/cnpm \
+  --disturl=https://npm.taobao.org/dist \
+  --userconfig=$HOME/.cnpmrc"
